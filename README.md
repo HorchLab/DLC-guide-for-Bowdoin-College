@@ -63,22 +63,34 @@ Quick and easy guide to running DLC on Bowdoin's HPC
   - Python is now open and you should be prompted with the following:
 
 ```python
-In [1] 
+In [1] import deeplabcut
 ```
 
   - Now, lets start using DLC to extract frames, label frames, and train a network
 
   - We want to first create a new project
+    - ```python
+      copy_videos=True/False
+      ``` True makes a reference to a video
 
 ```python
-In [2] deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
+In [2] deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved', (optional) copy_videos=True/False)
 ```
 
   - Great, your new project is created, but lets save the filepath to the configuration file (config.yaml) as a variable
 
 ```python
-In [3] path_config = '/mnt/research/hhorch/[username]/[working directory]' 
+In [3] config_path = '/mnt/research/hhorch/[username]/[working directory]' 
 ```
+
+  - We can now extract frames:
+ 
+```python
+In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmeans')
+```
+    - additional paramerters include: 
+    ```python crop=True/False``` which can crop the video if True
+    ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so
   
   
   
