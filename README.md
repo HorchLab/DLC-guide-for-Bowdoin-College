@@ -90,12 +90,12 @@ In [3] config_path = '/mnt/research/hhorch/[username]/[working directory]'
  
 ```python
 In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmeans')
-Do you want to extract (perhaps additional) frames for [file path]? yes/no yes 
+"Do you want to extract (perhaps additional) frames for [file path]? yes/no" yes 
 ...
-Kmeans clustering (this may take a while)
+"Kmeans clustering (this may take a while)"
 ...
-Frames were successfully extracted, for the videos listed in the config.yaml file.
-You can now label the frames using the function 'label_frames' (Note, you should label frames extracted from diverse videos (and many videos; we do not recommend training on single videos!)).
+"Frames were successfully extracted, for the videos listed in the config.yaml file.
+You can now label the frames using the function 'label_frames' (Note, you should label frames extracted from diverse videos (and many videos; we do not recommend training on single videos!))."
 ```
  
   - additional paramerters include: 
