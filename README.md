@@ -21,8 +21,10 @@ Reference to [DLC's github](https://github.com/DeepLabCut/DeepLabCut/tree/master
   dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
   [username]@dover.bowdoin.edu's password: [enter your password here]
   ```
-  - To make sure the graphic user interface (GUI), we need the following line of code:
-  ```$ xeyes```
+  - To make sure the graphic user interface (GUI), we need to submit following line of code:
+  ```
+  $ xeyes
+  ```
       - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
   
   - Now, we want to access the correct filepath (directory)
