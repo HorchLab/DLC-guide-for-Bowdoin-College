@@ -135,7 +135,7 @@ ssh -Y [username]@moosehead.bowdoin.edu
 ```
 
   - Unlike @dover and @foxcroft, we have to pass scripts (.sh files) to the HPC so that it can perfom high performance computing using the GPU's (which     allow for larger capacities of data
-  - You can find all of the scipts and python files in the 'HPC_scripts' folder in this repository.
+  - You can find all of the scipts and python files in the [HPC_scripts](https://github.com/esmall2023/DLC_HPC/tree/main/HPC_scripts) folder in this repository.
   
 
 
