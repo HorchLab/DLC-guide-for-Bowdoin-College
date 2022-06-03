@@ -1,7 +1,7 @@
 # Easy guide to use DeepLabCut on Bowdoin's HPC
 Reference to [DLC's github](https://github.com/DeepLabCut/DeepLabCut/tree/master/deeplabcut) to find trouble shooting as well as jupyter notebook
 
-**Step 1: Downloading necessary software**
+### **Step 1: Downloading necessary software**
   - Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
     - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
   - If you are on campus:
@@ -10,7 +10,7 @@ Reference to [DLC's github](https://github.com/DeepLabCut/DeepLabCut/tree/master
     - Log into the Bowdoin [VPN](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=99743)
 
 
-**Step 2: Accessing the Bowdoin HPC through interactive server**
+### **Step 2: Accessing the Bowdoin HPC through interactive server**
   - Open terminal on MacOS
   - Log in with your Bowdoin credentials with the SSH sever
     - Can either use @dover, @foxcroft, or @slurm
