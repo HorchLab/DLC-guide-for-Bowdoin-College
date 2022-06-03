@@ -90,7 +90,7 @@ In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmean
 ```
     - additional paramerters include: 
     ```python crop=True/False``` which can crop the video if True
-    ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so
+    ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so```
   
   
   
