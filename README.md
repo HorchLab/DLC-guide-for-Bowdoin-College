@@ -118,8 +118,8 @@ In [5] deeplabcut.label_frames(path_config)
 ```python
 In [6] deeplabcut.check_labels(path_config)
 "Creating images with labels by [your name]."
-"100%|████████████████████████████████████████████████████████████████████████████| 19/19 [00:13<00:00,  1.41it/s]
-If all the labels are ok, then use the function 'create_training_dataset' to create the training dataset!"
+"100%|████████████████████████████████████████████████████████████████████████████| 19/19 [00:13<00:00,  1.41it/s]"
+"If all the labels are ok, then use the function 'create_training_dataset' to create the training dataset!"
 ```
 
   - Great! Now we can start training the network.
