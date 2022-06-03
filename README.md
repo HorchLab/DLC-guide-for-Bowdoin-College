@@ -21,6 +21,9 @@ Quick and easy guide to running DLC on Bowdoin's HPC
   dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
   [username]@dover.bowdoin.edu's password: [enter your password here]
   ```
+  - To make sure the graphic user interface (GUI), we need the following line of code:
+  ```$ xeyes```
+      - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
   
   - Now, we want to access the correct filepath (directory)
     - we can use the ```cd``` feature to quickly move around in terminal's filepaths like the following (once entering a few letters, use the tab key to fill in       the rest instead of writing out your file path each time)
@@ -86,7 +89,8 @@ In [3] config_path = '/mnt/research/hhorch/[username]/[working directory]'
 ```
 
   - We can now extract frames:
-    - this may take a few moments, but you should see the frames being counted
+    - This may take a few moments, but you should see the frames being counted
+    - You will primarily use 'automatic' and 'kmeans' as the parameters, but these are default, so you don't always have to fill them in
  
 ```python
 In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmeans')
@@ -102,7 +106,10 @@ In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmean
     - ```python crop=True/False``` which can crop the video if True
     - ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so```
 
-  - This 
+  - This gives us the frames, now we can label them
+
+```python
+In [5] deeplabcut.
 
 
   
