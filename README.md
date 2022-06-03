@@ -126,7 +126,16 @@ In [6] deeplabcut.check_labels(path_config)
   
 
 **Step 4: Training the network using Bowdoin's GPU computers (ie Moosehead)**
+  - Now we need to log into Bowdoin's @slurm or @moosehead GPU servers with the following
 
+``` 
+ssh -Y [username]@moosehead.bowdoin.edu
+[username]@moosehead's password: [enter password]
+```
+
+  - Unlike @dover and @foxcroft, we have to pass scripts (.sh files) to the HPC so that it can perfom high performance computing using the GPU's (which     allow for larger capacities of data
+  - You can find all of the scipts and python files in the 'HPC_scripts' folder in this repository.
+  
 
 
 
