@@ -1,7 +1,7 @@
 # Easy guide to use DeepLabCut on Bowdoin's HPC
 Reference to [DLC's github](https://github.com/DeepLabCut/DeepLabCut/tree/master/deeplabcut) to find trouble shooting as well as jupyter notebook
 
-### **Step 1: Downloading necessary software**
+### Step 1: Downloading necessary software
   - Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
     - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
   - If you are on campus:
@@ -10,7 +10,7 @@ Reference to [DLC's github](https://github.com/DeepLabCut/DeepLabCut/tree/master
     - Log into the Bowdoin [VPN](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=99743)
 
 
-### **Step 2: Accessing the Bowdoin HPC through interactive server**
+### Step 2: Accessing the Bowdoin HPC through interactive server
   - Open terminal on MacOS
   - Log in with your Bowdoin credentials with the SSH sever
     - Can either use @dover, @foxcroft, or @slurm
@@ -54,7 +54,7 @@ Reference to [DLC's github](https://github.com/DeepLabCut/DeepLabCut/tree/master
       - To copy materials manually: ```cp [filepath of file] [filepath of destination]```
       
 
-**Step 3: creating DeepLabCut (DLC) environments and running ipython to use DLC on HPC interactive servers**
+### Step 3: creating DeepLabCut (DLC) environments and running ipython to use DLC on HPC interactive servers
 
   - We first need to create a DLC environment: this is activating a local python environment with DLC version 2.2
 
@@ -125,8 +125,9 @@ In [6] deeplabcut.check_labels(path_config)
   - Great! Now we can start training the network.
   
 
-**Step 4: Training the network using Bowdoin's GPU computers (ie Moosehead)**
-  - Now we need to log into Bowdoin's @slurm or @moosehead GPU servers with the following
+### Step 4: Training the network using Bowdoin's GPU computers (ie Moosehead)
+
+- Now we need to log into Bowdoin's @slurm or @moosehead GPU servers with the following
 
 ``` 
 ssh -Y [username]@moosehead.bowdoin.edu
