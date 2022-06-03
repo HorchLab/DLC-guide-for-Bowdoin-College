@@ -31,26 +31,24 @@ Quick and easy guide to running DLC on Bowdoin's HPC
 
   - Other helpful tips with terminal
 
-  To move one directory backwards:
-  ```cd .```
+      - To move one directory backwards: ```cd .```
   
-  Two directories backwards:
-  ```cd ..```
+      - Two directories backwards: ```cd ..```
   
-  Instead of writing out the entire file path to your [username] directory, you can access sub directories as follows":
-  ```
-  [esmall2@dover /mnt/research/hhorch/esmall2]$ cd ./practice_DLC
-  [esmall2@dover /mnt/research/hhorch/esmall2/practice_DLC]$
-  ```
-  Now you are in a subdirectory of your [username] directory
+      - Instead of writing out the entire file path to your [username] directory, you can access sub directories as follows":
+      ```
+      [esmall2@dover /mnt/research/hhorch/esmall2]$ cd ./practice_DLC
+      [esmall2@dover /mnt/research/hhorch/esmall2/practice_DLC]$
+      ```
+      - Now you are in a subdirectory of your [username] directory
   
-  To view the contents of each directory by name use: ```ls .```
+      - To view the contents of each directory by name use: ```ls .```
   
-  To view contents with more detail use: ```ls -l```
+      - To view contents with more detail use: ```ls -l```
   
-  To make a new directory manually: ```mkdir [name of directory]```
-  
-  To copy materials manually: ```cp [filepath of file] [filepath of destination]```
+      - To make a new directory manually: ```mkdir [name of directory]```
+        
+      - To copy materials manually: ```cp [filepath of file] [filepath of destination]```
   
   
   
