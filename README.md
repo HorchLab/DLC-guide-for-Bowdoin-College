@@ -44,9 +44,14 @@ Quick and easy guide to running DLC on Bowdoin's HPC
   ```
   Now you are in a subdirectory of your [username] directory
   
-  To view the contents of each directory by name: ```ls .```
+  To view the contents of each directory by name use: ```ls .```
   
-  To view contents with more detail: ```ls -l```
+  To view contents with more detail use: ```ls -l```
+  
+  To make a new directory manually: ```mkdir [name of directory]```
+  
+  To copy materials manually: ```cp [filepath of file] [filepath of destination]```
+  
   
   
       
