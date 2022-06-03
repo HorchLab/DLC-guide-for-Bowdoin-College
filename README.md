@@ -36,10 +36,10 @@ Quick and easy guide to running DLC on Bowdoin's HPC
       - Two directories backwards: ```cd ..```
   
       - Instead of writing out the entire file path to your [username] directory, you can access sub directories as follows":
-      ```
-      [esmall2@dover /mnt/research/hhorch/esmall2]$ cd ./practice_DLC
-      [esmall2@dover /mnt/research/hhorch/esmall2/practice_DLC]$
-      ```
+    ```
+    [esmall2@dover /mnt/research/hhorch/esmall2]$ cd ./practice_DLC
+    [esmall2@dover /mnt/research/hhorch/esmall2/practice_DLC]$
+    ```
       - Now you are in a subdirectory of your [username] directory
   
       - To view the contents of each directory by name use: ```ls .```
@@ -49,6 +49,22 @@ Quick and easy guide to running DLC on Bowdoin's HPC
       - To make a new directory manually: ```mkdir [name of directory]```
         
       - To copy materials manually: ```cp [filepath of file] [filepath of destination]```
+
+**Step 3: creating DeepLabCut (DLC) environments and running ipython to use DLC**
+
+  - We first need to create a DLC environment: this is activating a local python environment with DLC version 2.2
+
+``` source /mnt/local/python-venv/dlc-2.2/bin/activate ```
+
+  - Next, we need to open a virtual python environment:
+
+``` ipython ```
+
+  - Python is now open and you should be prompted with the following:
+
+```python
+[1] 
+```
   
   
   
