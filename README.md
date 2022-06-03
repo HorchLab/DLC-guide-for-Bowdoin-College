@@ -68,6 +68,7 @@ Reference to [DLC's github](https://github.com/DeepLabCut/DeepLabCut/tree/master
 
 ```python
 In [1]: import deeplabcut
+"DLC loaded in light mode; you cannot use any GUI (labeling, relabeling and standalone GUI)"
 ```
 
   - Now, lets start using DLC to extract frames, label frames, and train a network
