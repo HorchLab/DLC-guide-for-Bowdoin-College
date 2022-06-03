@@ -19,6 +19,14 @@ Quick and easy guide to running DLC on Bowdoin's HPC
 
   ``` terminal
   dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
-  esmall2@dover.bowdoin.edu's password: [enter your password here]
+  [username]@dover.bowdoin.edu's password: [enter your password here]
   ```
+  
+  - Now, we want to access the correct filepath (directory)
+    - we can use the cd feature to quickly move around in terminal's filepaths like the following (once entering a few letters, use the tab key to fill in       the rest instead of writing out your file path each time)
+  ``` terminal
+  cd /mnt/research/hhorch/[username]
+  ```
+  
+  - We are now in your HPC-research directory
       
