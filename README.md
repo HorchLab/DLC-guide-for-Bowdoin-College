@@ -42,5 +42,11 @@ Quick and easy guide to running DLC on Bowdoin's HPC
   [esmall2@dover /mnt/research/hhorch/esmall2]$ cd ./practice_DLC
   [esmall2@dover /mnt/research/hhorch/esmall2/practice_DLC]$
   ```
+  Now you are in a subdirectory of your [username] directory
+  
+  To view the contents of each directory by name: ```ls .```
+  
+  To view contents with more detail: ```ls -l```
+  
   
       
