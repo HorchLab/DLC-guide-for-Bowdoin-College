@@ -73,7 +73,7 @@ In [1] import deeplabcut
   - Now, lets start using DLC to extract frames, label frames, and train a network
 
   - We want to first create a new project
-    - ```python copy_videos=True/False``` True makes a reference to a video
+    - ```python copy_videos=True/False``` 'True' makes a reference to a video
 
 ```python
 In [2] deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
@@ -108,7 +108,24 @@ In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmean
   - This gives us the frames, now we can label them
 
 ```python
-In [5] deeplabcut.
+In [5] deeplabcut.label_frames(path_config)
+```
+  - The DLC GUI should now pop-up
+    - You can now label each bodypart for each frame before training the network
+
+  - Before training the network, let's make sure our labels were correctly placed:
+
+```python
+In [6] deeplabcut.check_labels(path_config)
+"Creating images with labels by [your name]."
+```
+
+  - Great! Now we can start training the network.
+  
+
+**Step 4: Training the network using Bowdoin's GPU computers (ie Moosehead)**
+
+
 
 
   
