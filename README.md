@@ -13,4 +13,12 @@ Quick and easy guide to running DLC on Bowdoin's HPC
 **Step 2: Accessing the Bowdoin HPC through interactive server**
   - Open terminal on MacOS
   - Log in with your Bowdoin credentials with the SSH sever
-    - Can either use @dover, @foxcroft, or 
+    - Can either use @dover, @foxcroft, or @slurm
+
+  - Example code:
+
+  ``` terminal
+  dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
+  esmall2@dover.bowdoin.edu's password: [enter your password here]
+  ```
+      
