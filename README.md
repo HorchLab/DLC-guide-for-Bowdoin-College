@@ -89,7 +89,7 @@ In [3] config_path = '/mnt/research/hhorch/[username]/[working directory]'
 In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmeans')
 ```
  
- - additional paramerters include: 
+    - additional paramerters include: 
     ```python crop=True/False``` which can crop the video if True
     ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so```
   
