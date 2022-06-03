@@ -67,7 +67,7 @@ Quick and easy guide to running DLC on Bowdoin's HPC
   - Python is now open and you should be prompted with the following:
 
 ```python
-In [1] import deeplabcut
+In [1]: import deeplabcut
 ```
 
   - Now, lets start using DLC to extract frames, label frames, and train a network
@@ -76,7 +76,7 @@ In [1] import deeplabcut
     - ```python copy_videos=True/False``` 'True' makes a reference to a video
 
 ```python
-In [2] deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
+In [2]: deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 ```
   - additional parameter includes:
     - ```copy_videos=True/False``` which will create a reference to a video in the video directory
@@ -84,7 +84,7 @@ In [2] deeplabcut.create_new_project('name of project', 'your name', ['complete 
   - Great, your new project is created, but lets save the filepath to the configuration file (config.yaml) as a variable
 
 ```python
-In [3] config_path = '/mnt/research/hhorch/[username]/[working directory]' 
+In [3]: config_path = '/mnt/research/hhorch/[username]/[working directory]' 
 ```
 
   - We can now extract frames:
@@ -92,7 +92,7 @@ In [3] config_path = '/mnt/research/hhorch/[username]/[working directory]'
     - You will primarily use 'automatic' and 'kmeans' as the parameters, but these are default, so you don't always have to fill them in
  
 ```python
-In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmeans')
+In [4]: deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmeans')
 "Do you want to extract (perhaps additional) frames for [file path]? yes/no" yes 
 ...
 "Kmeans clustering (this may take a while)"
@@ -108,7 +108,7 @@ In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmean
   - This gives us the frames, now we can label them
 
 ```python
-In [5] deeplabcut.label_frames(path_config)
+In [5]: deeplabcut.label_frames(path_config)
 ```
   - The DLC GUI should now pop-up
     - You can now label each bodypart for each frame before training the network
