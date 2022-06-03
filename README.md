@@ -27,6 +27,20 @@ Quick and easy guide to running DLC on Bowdoin's HPC
   ``` terminal
   cd /mnt/research/hhorch/[username]
   ```
-  
   - We are now in your HPC-research directory
+
+  - Other helpful tips with terminal
+
+  To move one directory backwards:
+  ```cd .```
+  
+  Two directories backwards:
+  ```cd ..```
+  
+  Instead of writing out the entire file path to your [username] directory, you can access sub directories as follows":
+  ```
+  [esmall2@dover /mnt/research/hhorch/esmall2]$ cd ./practice_DLC
+  [esmall2@dover /mnt/research/hhorch/esmall2/practice_DLC]$
+  ```
+  
       
