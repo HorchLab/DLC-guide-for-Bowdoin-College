@@ -52,6 +52,7 @@ Quick and easy guide to running DLC on Bowdoin's HPC
       - To make a new directory manually: ```mkdir [name of directory]```
         
       - To copy materials manually: ```cp [filepath of file] [filepath of destination]```
+      
 
 **Step 3: creating DeepLabCut (DLC) environments and running ipython to use DLC on HPC interactive servers**
 
@@ -72,9 +73,7 @@ In [1] import deeplabcut
   - Now, lets start using DLC to extract frames, label frames, and train a network
 
   - We want to first create a new project
-    - ```python
-      copy_videos=True/False
-      ``` True makes a reference to a video
+    - ```python copy_videos=True/False``` True makes a reference to a video
 
 ```python
 In [2] deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
