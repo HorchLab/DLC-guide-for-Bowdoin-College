@@ -73,6 +73,12 @@ In [1]
 ```python
 In [2] deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 ```
+
+  - Great, your new project is created, but lets save the filepath to the configuration file (config.yaml) as a variable
+
+```python
+In [3] path_config = '/mnt/research/hhorch/[username]/[working directory]' 
+```
   
   
   
