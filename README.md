@@ -74,8 +74,10 @@ In [1] import deeplabcut
       ``` True makes a reference to a video
 
 ```python
-In [2] deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved', (optional) copy_videos=True/False)
+In [2] deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 ```
+  - additional parameter includes:
+    - ```copy_videos=True/False``` which will create a reference to a video in the video directory
 
   - Great, your new project is created, but lets save the filepath to the configuration file (config.yaml) as a variable
 
@@ -90,8 +92,10 @@ In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmean
 ```
  
   - additional paramerters include: 
-  ```python crop=True/False``` which can crop the video if True \n
-  ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so```
+    - ```python crop=True/False``` which can crop the video if True
+    - ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so```
+
+
   
   
   
