@@ -86,14 +86,23 @@ In [3] config_path = '/mnt/research/hhorch/[username]/[working directory]'
 ```
 
   - We can now extract frames:
+    - this may take a few moments, but you should see the frames being counted
  
 ```python
 In [4] deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmeans')
+Do you want to extract (perhaps additional) frames for [file path]? yes/no yes 
+...
+Kmeans clustering (this may take a while)
+...
+Frames were successfully extracted, for the videos listed in the config.yaml file.
+You can now label the frames using the function 'label_frames' (Note, you should label frames extracted from diverse videos (and many videos; we do not recommend training on single videos!)).
 ```
  
   - additional paramerters include: 
     - ```python crop=True/False``` which can crop the video if True
     - ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so```
+
+  - This 
 
 
   
