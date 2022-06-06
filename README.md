@@ -36,9 +36,9 @@ Reference to [DLC's github](https://github.com/DeepLabCut/DeepLabCut/tree/master
 
   - Other helpful tips with terminal
 
-      - To move one directory backwards: ```cd .```
+      - To view current directory backwards: ```cd .```
   
-      - Two directories backwards: ```cd ..```
+      - To move one directory backwards: ```cd ..```
   
       - Instead of writing out the entire file path to your [username] directory, you can access sub directories as follows":
     ```
