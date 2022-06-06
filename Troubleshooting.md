@@ -4,3 +4,5 @@
 
 1. ```SystemExit: Unable to access the X Display, is $DISPLAY set properly?```
 - This is an error with using the GUI —— make sure you have downloaded XQUARTZ and ran ```xeyes```
+
+2. 
