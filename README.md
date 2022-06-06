@@ -40,7 +40,7 @@ Reference to [DLC's github](https://github.com/DeepLabCut/DeepLabCut/tree/master
   
       - To move one directory backwards: ```cd ..```
   
-      - Instead of writing out the entire file path to your [username] directory, you can access sub directories to your current directory as follows":
+      - Instead of writing out the entire file path to your [username] directory, you can access sub directories to your current directory as follows:
     ```
     [esmall2@dover /mnt/research/hhorch/esmall2]$ cd ./practice_DLC
     [esmall2@dover /mnt/research/hhorch/esmall2/practice_DLC]$
