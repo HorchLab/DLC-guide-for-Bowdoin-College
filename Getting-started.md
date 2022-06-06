@@ -1,3 +1,5 @@
+# Steps to use DLC on Bowdoin's HPC
+
 ### Step 1: Downloading necessary software
   - Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
     - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
