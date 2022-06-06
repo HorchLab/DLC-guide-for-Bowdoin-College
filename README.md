@@ -76,7 +76,6 @@ In [1]: import deeplabcut
   - Now, lets start using DLC to extract frames, label frames, and train a network
 
   - We want to first create a new project
-    - ```python copy_videos=True/False``` 'True' makes a reference to a video
 
 ```python
 In [2]: deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
