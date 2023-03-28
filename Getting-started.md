@@ -30,7 +30,7 @@ I suggest reading through this entire Markdown and if any specific questions rem
   - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
   
   3. Now, we want to access the correct filepath (directory)
-    - we can use the ```cd``` feature to quickly move around in terminal's filepaths like the following (once entering a few letters, use the tab key to       fill in the rest instead of writing out your file path each time)
+      - we can use the ```cd``` feature to quickly move around in terminal's filepaths like the following (once entering a few letters, use the tab key to       fill in the rest instead of writing out your file path each time)
   ``` terminal
   cd /mnt/research/hhorch/[username]
   ```
