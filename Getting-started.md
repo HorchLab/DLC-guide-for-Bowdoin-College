@@ -73,17 +73,15 @@ I suggest reading through this entire Markdown and if any specific questions rem
 ```python
 In [1]: 
 ```
-- Here, you can import deeplabcut with the following code
+- Here, you can import deeplabcut with the following code and click return:
 
 ```python
 In [1]: import deeplabcut
 "DLC loaded in light mode; you cannot use any GUI (labeling, relabeling and standalone GUI)"
 ```
 
-4. Now, lets start using DLC to extract frames, label frames, and train a network
-
-  - We want to first create a new project
-
+### Step 4: creating DeepLabCut (DLC) project, extract frames, label frames, and train your network
+1. Now, lets start using DLC to create a new project with the following code:
 ```python
 In [2]: deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 ```
