@@ -180,10 +180,12 @@ Once we have trained our network as in step 6, we want to evaluate the network t
 
 1. Evaluating the network: we do so the same way as training the network with the script file. Make sure you are in the right directory where your HPC_scripts are like this:  /mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/HPC_Scripts
 
-```python
+```terminal
 sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G evaluate_script.sh
 ```
 - For ```Shuffles[1]``` in evaluate_network.py, you will want to change this for each shuffle that you did. For example, if you set Shuffles=3 when training the network, then submit this script when Shuffles=[1], Shuffles=[2], and Shuffles=[3]. 
+
+![Might look something like this](./HPC_scripts/evaluation.png)
 
 ### Step 7: Re-training the network if it wasn't trained well enough
 
