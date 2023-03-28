@@ -16,17 +16,17 @@ I suggest reading through this entire Markdown and if any specific questions rem
 ### Step 2: Accessing the Bowdoin HPC through interactive server
   1. Open terminal on MacOS
   2. Log in with your Bowdoin credentials with the SSH sever
-    - Can either use @dover, @foxcroft, or @slurm
+    -   Can either use @dover, @foxcroft, or @slurm
 
   -  Example code:
-    ```terminal
-    dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
-    [username]@dover.bowdoin.edu's password: [enter your password here]
-    ```
+  ```terminal
+  dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
+  [username]@dover.bowdoin.edu's password: [enter your password here]
+  ```
   - To make sure the graphic user interface (GUI), we need to submit following line of code:
-    ```
-    $ xeyes
-    ```
+  ```
+  $ xeyes
+  ```
   - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
   
   3. Now, we want to access the correct filepath (directory)
