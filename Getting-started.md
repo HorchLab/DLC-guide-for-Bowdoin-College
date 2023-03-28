@@ -132,12 +132,8 @@ If you are extracting frames for a second time, it will prompt you with the foll
 In [5]: deeplabcut.label_frames(path_config)
 ```
 
-![The DLC GUI should now pop-up](./HPC_scripts/labeling.png)
-
-    
  You can now label each bodypart for each frame before training the network
-
-
+![The DLC GUI should now pop-up](./HPC_scripts/labeling.png)
 
 6. Before training the network, let's make sure our labels were correctly placed:
 
@@ -156,19 +152,27 @@ In [7]: deeplabcut.create_training_dataset(path_config)
 8. Great! Now we can start training the network.
   
 
-### Step 4: Training the network using Bowdoin's GPU computers (ie Moosehead)
+### Step 5: Training the network using Bowdoin's GPU computers (ie Moosehead)
+All of this is located [here](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut) as well
 
 1. Now we need to log into Bowdoin's @slurm or @moosehead GPU servers with the following. Open a new terminal window and login within the following:
-``` 
+``` terminal
 ssh -Y [username]@moosehead.bowdoin.edu
 [username]@moosehead's password: [enter password]
 ```
   - Unlike @dover and @foxcroft, we have to pass scripts (.sh files) to the HPC so that it can perfom high performance computing using the GPU's (which     allow for larger capacities of data
   - You can find all of the scipts and python files in the [HPC_scripts](https://github.com/esmall2023/DLC_HPC/tree/main/HPC_scripts) folder in this repository.
 
-### Step 5: Re-training the network if it wasn't trained well enough
+2. You then need to submit this "job" to the cluster with the following code:
 
-- In order to do so, we will typically want to add new/more videos to our training dataset with the following code:
+```terminal
+sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G myscript.sh
+```
+
+
+### Step 6: Re-training the network if it wasn't trained well enough
+
+1. In order to do so, we will typically want to add new/more videos to our training dataset with the following code:
 
 ```
 deeplabcut.add_new_videos(config, ['full path to each specific video'])
