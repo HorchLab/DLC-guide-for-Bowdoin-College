@@ -187,6 +187,8 @@ sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G evaluate_script.sh
 
 ![Might look something like this](./HPC_scripts/evaluation.png)
 
+
+
 ### Step 7: Re-training the network if it wasn't trained well enough
 
 1. In order to do so, we will typically want to add new/more videos to our training dataset with the following code:
