@@ -106,12 +106,11 @@ A real example would look like the following:
 ```python
 deeplabcut.extract_frames(config, mode='automatic')
 "Config file read successfully."
-"Do you want to extract (perhaps additional) frames for video: /mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/videos/2020-10-27 09-38-34 201026UM1 stim01.mkv ?
-yes/no" [type your response here] yes
+"Do you want to extract (perhaps additional) frames for video: /mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/videos/2020-10-27 09-38-34 201026UM1 stim01.mkv ? yes/no" [type your response here] yes
 
-"Kmeans-quantization based extracting of frames from 0.0  seconds to 178.23  seconds.
-Extracting and downsampling... 10694  frames from the video.
-10694it [01:44, 102.62it/s]"
+"Kmeans-quantization based extracting of frames from 0.0  seconds to 178.23  seconds."
+"Extracting and downsampling... 10694  frames from the video."
+"10694it [01:44, 102.62it/s]"
 ```
 If you are extracting frames for a second time, it will prompt you with the following
 ```python
