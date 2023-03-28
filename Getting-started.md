@@ -17,8 +17,9 @@ I suggest reading through this entire Markdown and if any specific questions rem
 
 ### Step 2: Accessing the Bowdoin HPC through interactive server
   2.1: Open terminal on MacOS
+  
   2.2: Log in with your Bowdoin credentials with the SSH sever
-    -   Can either use @dover, @foxcroft, or @slurm
+  - Can either use @dover, @foxcroft, or @slurm
 
   -  Example code:
   ```terminal
@@ -84,6 +85,7 @@ In [1]: import deeplabcut
 
 ### Step 4: creating DeepLabCut (DLC) project, extract frames, label frames, and train your network
 4.1: Now, lets start using DLC to create a new project with the following code:
+
 ```python
 In [2]: deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 ```
