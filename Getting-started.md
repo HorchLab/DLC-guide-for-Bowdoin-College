@@ -185,6 +185,7 @@ sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G evaluate_script.sh
 ```
 - For ```Shuffles[1]``` in evaluate_network.py, you will want to change this for each shuffle that you did. For example, if you set Shuffles=3 when training the network, then submit this script when Shuffles=[1], Shuffles=[2], and Shuffles=[3]. 
 
+The evaluation results might look something like this: you can find them by going to ./evaluation-results/iteration-7/ and it is the .csv file at the top
 ![Might look something like this](./HPC_scripts/evaluation.png)
 
 
