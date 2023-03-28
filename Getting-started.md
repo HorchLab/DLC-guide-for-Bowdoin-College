@@ -85,7 +85,7 @@ In [1]: import deeplabcut
 ```python
 In [2]: deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 ```
-    - additional parameter includes:
+  - additional parameter includes:
       - ```copy_videos=True/False``` which will create a reference to a video in the video directory
 
 2. Great, your new project is created, but lets save the filepath to the configuration file (config.yaml) as a variable
