@@ -5,7 +5,7 @@ This guide was written to help with the basics of getting DLC up and running. Fo
 I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
 
 ### Step 1: Downloading necessary software
-  # 1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
+  #### 1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
      - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
   # 2. If you are on campus:
      - Make sure you are connected to the Bowdoin Wifi (must be Bowdoin, not Bowdoin-Guest or Bowdoin-PSK)
