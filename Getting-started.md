@@ -47,15 +47,15 @@ I suggest reading through this entire Markdown and if any specific questions rem
   [esmall2@dover /mnt/research/hhorch/esmall2]$ cd ./practice_DLC
   [esmall2@dover /mnt/research/hhorch/esmall2/practice_DLC]$
   ```
-      - Now you are in a subdirectory of your [username] directory
+  - Now you are in a subdirectory of your [username] directory
   
-      - To view the contents of each directory by name use: ```ls .```
+  - To view the contents of each directory by name use: ```ls .```
   
-      - To view contents with more detail use: ```ls -l```
+  - To view contents with more detail use: ```ls -l```
   
-      - To make a new directory manually: ```mkdir [name of directory]```
+  - To make a new directory manually: ```mkdir [name of directory]```
         
-      - To copy materials manually: ```cp [filepath of file] [filepath of destination]```
+  - To copy materials manually: ```cp [filepath of file] [filepath of destination]```
       
 
 ### Step 3: creating DeepLabCut (DLC) environments and running ipython to use DLC on HPC interactive servers
