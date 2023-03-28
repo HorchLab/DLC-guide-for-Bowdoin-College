@@ -6,11 +6,11 @@ I suggest reading through this entire Markdown and if any specific questions rem
 
 ### Step 1: Downloading necessary software
   1.1: Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
-     - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
+       - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
   1.2: If you are on campus:
-     - Make sure you are connected to the Bowdoin Wifi (must be Bowdoin, not Bowdoin-Guest or Bowdoin-PSK)
+       - Make sure you are connected to the Bowdoin Wifi (must be Bowdoin, not Bowdoin-Guest or Bowdoin-PSK)
   1.3: If you are off campus:
-     - Log into the Bowdoin [VPN](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=99743)
+       - Log into the Bowdoin [VPN](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=99743)
 
 
 ### Step 2: Accessing the Bowdoin HPC through interactive server
