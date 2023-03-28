@@ -16,23 +16,23 @@ This guide was written by me to help with the basics of getting DLC up and runni
   2. Log in with your Bowdoin credentials with the SSH sever
     - Can either use @dover, @foxcroft, or @slurm
 
-    -  Example code:
+  -  Example code:
     ```terminal
     dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
     [username]@dover.bowdoin.edu's password: [enter your password here]
     ```
-    - To make sure the graphic user interface (GUI), we need to submit following line of code:
+  - To make sure the graphic user interface (GUI), we need to submit following line of code:
     ```
     $ xeyes
     ```
-    - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
+  - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
   
   3. Now, we want to access the correct filepath (directory)
     - we can use the ```cd``` feature to quickly move around in terminal's filepaths like the following (once entering a few letters, use the tab key to       fill in the rest instead of writing out your file path each time)
   ``` terminal
   cd /mnt/research/hhorch/[username]
   ```
-    - We are now in your HPC-research directory
+  - We are now in your HPC-research directory
 
   - Other helpful tips with terminal
 
