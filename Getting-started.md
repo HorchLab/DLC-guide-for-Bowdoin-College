@@ -101,6 +101,22 @@ In [4]: deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmea
 "Frames were successfully extracted, for the videos listed in the config.yaml file."
 "You can now label the frames using the function 'label_frames' (Note, you should label frames extracted from diverse videos (and many videos; we do not recommend training on single videos!))."
 ```
+
+A real example would look like the following: 
+```
+deeplabcut.extract_frames(config, mode='automatic')
+Config file read successfully.
+Do you want to extract (perhaps additional) frames for video: /mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/videos/2020-10-27 09-38-34 201026UM1 stim01.mkv ?
+yes/no [type your response here] yes
+
+Kmeans-quantization based extracting of frames from 0.0  seconds to 178.23  seconds.
+Extracting and downsampling... 10694  frames from the video.
+10694it [01:44, 102.62it/s]
+```
+If you are extracting frames for a second time, it will prompt you with the following
+```
+The directory already contains some frames. Do you want to add to it?(yes/no): yes
+```
  
   - additional paramerters include: 
     - ```python crop=True/False``` which can crop the video if True
@@ -139,9 +155,22 @@ In [7]: deeplabcut.create_training_dataset(path_config)
 ssh -Y [username]@moosehead.bowdoin.edu
 [username]@moosehead's password: [enter password]
 ```
-
   - Unlike @dover and @foxcroft, we have to pass scripts (.sh files) to the HPC so that it can perfom high performance computing using the GPU's (which     allow for larger capacities of data
   - You can find all of the scipts and python files in the [HPC_scripts](https://github.com/esmall2023/DLC_HPC/tree/main/HPC_scripts) folder in this repository.
+
+
+### Step 5: Re-training the network if it wasn't trained well enough
+
+- In order to do so, we will typically want to add new/more videos to our training dataset with the following code:
+
+```
+deeplabcut.add_new_videos(config, ['full path to each specific video'])
+```
+
+NOTE: I tried just using the path to the file containing all of the videos, but it didn't work so I had to add each new video individually
+
+
+
   
 
 
