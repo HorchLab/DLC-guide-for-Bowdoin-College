@@ -161,7 +161,7 @@ In [7]: deeplabcut.create_training_dataset(path_config)
 ### Step 5: Training the network using Bowdoin's GPU computers (ie Moosehead)
 All of this is located [here](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut) as well
 
-1. Now we need to log into Bowdoin's @slurm or @moosehead GPU servers with the following. Open a new terminal window and login within the following:
+5.1: Now we need to log into Bowdoin's @slurm or @moosehead GPU servers with the following. Open a new terminal window and login within the following:
 ``` terminal
 ssh -Y [username]@moosehead.bowdoin.edu
 [username]@moosehead's password: [enter password]
@@ -169,7 +169,7 @@ ssh -Y [username]@moosehead.bowdoin.edu
   - Unlike @dover and @foxcroft, we have to pass scripts (.sh files) to the HPC so that it can perfom high performance computing using the GPU's (which     allow for larger capacities of data
   - You can find all of the scipts and python files in the [HPC_scripts](https://github.com/esmall2023/DLC_HPC/tree/main/HPC_scripts) folder in this repository.
 
-2. You then need to submit this "job" to the cluster with the following code:
+5.2: You then need to submit this "job" to the cluster with the following code:
 
 ```terminal
 sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G training_script.sh
@@ -178,7 +178,7 @@ sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G training_script.sh
 ### Step 6: Evaluating the network, analyzing novel videos, and filtering predictions
 Once we have trained our network as in step 6, we want to evaluate the network to see how well it was trained. There are parameters called Train error and Test Error. For the sake of our experiment and from my research (which was very hard to find), if the train and test error are close to eachother (in pixels) and they are both close to, or below 4 px, then the training is sufficient. You can also create labeled videos to determine whether DLC was able to accurately locate each body part throughout the video.
 
-1. Evaluating the network: we do so the same way as training the network with the script file. Make sure you are in the right directory where your HPC_scripts are like this:  /mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/HPC_Scripts
+6.1: Evaluating the network: we do so the same way as training the network with the script file. Make sure you are in the right directory where your HPC_scripts are like this:  /mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/HPC_Scripts
 
 ```terminal
 sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G evaluate_script.sh
@@ -192,7 +192,7 @@ The evaluation results might look something like this: you can find them by goin
 
 ### Step 7: Re-training the network if it wasn't trained well enough
 
-1. In order to do so, we will typically want to add new/more videos to our training dataset with the following code:
+7.1: In order to do so, we will typically want to add new/more videos to our training dataset with the following code:
 
 ```
 deeplabcut.add_new_videos(config, ['full path to each specific video'])
@@ -200,7 +200,7 @@ deeplabcut.add_new_videos(config, ['full path to each specific video'])
 
 #### NOTE: I tried just using the path to the file containing all of the videos, but it didn't work so I had to add each new video individually
 
-2. Once you've added the new videos, you can repeat steps 4.3 and beyond.
+7.2: Once you've added the new videos, you can repeat steps 4.3 and beyond.
   
 
 
