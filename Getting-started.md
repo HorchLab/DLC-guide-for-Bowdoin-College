@@ -5,17 +5,17 @@ This guide was written to help with the basics of getting DLC up and running. Fo
 I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
 
 ### Step 1: Downloading necessary software
-  1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
+  1.1: Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
      - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
-  2. If you are on campus:
+  1.2: If you are on campus:
      - Make sure you are connected to the Bowdoin Wifi (must be Bowdoin, not Bowdoin-Guest or Bowdoin-PSK)
-  3. If you are off campus:
+  1.3: If you are off campus:
      - Log into the Bowdoin [VPN](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=99743)
 
 
 ### Step 2: Accessing the Bowdoin HPC through interactive server
-  1. Open terminal on MacOS
-  2. Log in with your Bowdoin credentials with the SSH sever
+  2.1: Open terminal on MacOS
+  2.2: Log in with your Bowdoin credentials with the SSH sever
     -   Can either use @dover, @foxcroft, or @slurm
 
   -  Example code:
@@ -29,7 +29,7 @@ I suggest reading through this entire Markdown and if any specific questions rem
   ```
   - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
   
-  3. Now, we want to access the correct filepath (directory)
+  2.3: Now, we want to access the correct filepath (directory)
       - we can use the ```cd``` feature to quickly move around in terminal's filepaths like the following (once entering a few letters, use the tab key to       fill in the rest instead of writing out your file path each time)
   ``` terminal
   cd /mnt/research/hhorch/[username]
@@ -60,15 +60,15 @@ I suggest reading through this entire Markdown and if any specific questions rem
 
 ### Step 3: creating DeepLabCut (DLC) environments and running ipython to use DLC on HPC interactive servers
 
-1. We first need to create a DLC environment: this is activating a local python environment with DLC version 2.2
+3.1: We first need to create a DLC environment: this is activating a local python environment with DLC version 2.2
 
 ``` source /mnt/local/python-venv/dlc-2.2/bin/activate ```
 
-2. Next, we need to open a virtual python environment:
+3.2: Next, we need to open a virtual python environment:
 
 ``` ipython ```
 
-3. Python is now open and you should be prompted with the following:
+3.3: Python is now open and you should be prompted with the following:
 
 ```python
 In [1]: 
@@ -81,20 +81,20 @@ In [1]: import deeplabcut
 ```
 
 ### Step 4: creating DeepLabCut (DLC) project, extract frames, label frames, and train your network
-1. Now, lets start using DLC to create a new project with the following code:
+4.1: Now, lets start using DLC to create a new project with the following code:
 ```python
 In [2]: deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 ```
   - additional parameter includes:
       - ```copy_videos=True/False``` which will create a reference to a video in the video directory
 
-2. Great, your new project is created, but lets save the filepath to the configuration file (config.yaml) as a variable
+4.2: Great, your new project is created, but lets save the filepath to the configuration file (config.yaml) as a variable
 
 ```python
 In [3]: config_path = '/mnt/research/hhorch/[username]/[working directory]' 
 ```
 
-3. We can now extract frames:
+4.3: We can now extract frames:
     - This may take a few moments, but you should see the frames being counted
     - You will primarily use 'automatic' and 'kmeans' as the parameters, but these are default, so you don't always have to fill them in
 ```python
@@ -126,7 +126,7 @@ If you are extracting frames for a second time, it will prompt you with the foll
     - ```python crop=True/False``` which can crop the video if True
     - ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so
 
-5. This gives us the frames, now we can label them:
+4.4: This gives us the frames, now we can label them:
 
 ```python
 In [5]: deeplabcut.label_frames(path_config)
@@ -135,7 +135,7 @@ In [5]: deeplabcut.label_frames(path_config)
  You can now label each bodypart for each frame before training the network
 ![The DLC GUI should now pop-up](./HPC_scripts/labeling.png)
 
-6. Before training the network, let's make sure our labels were correctly placed:
+4.5: Before training the network, let's make sure our labels were correctly placed:
 
 ```python
 In [6]: deeplabcut.check_labels(path_config)
@@ -144,12 +144,12 @@ In [6]: deeplabcut.check_labels(path_config)
 "If all the labels are ok, then use the function 'create_training_dataset' to create the training dataset!"
 ```
 
-7. Finally, let's create a training dataset
+4.6: Finally, let's create a training dataset
 ```python
 In [7]: deeplabcut.create_training_dataset(path_config)
 "The training dataset is successfully created. Use the function 'train_network' to start training. Happy training!"
 ```
-8. Great! Now we can start training the network.
+4.7: Great! Now we can start training the network.
   
 
 ### Step 5: Training the network using Bowdoin's GPU computers (ie Moosehead)
@@ -178,10 +178,9 @@ sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G myscript.sh
 deeplabcut.add_new_videos(config, ['full path to each specific video'])
 ```
 
-NOTE: I tried just using the path to the file containing all of the videos, but it didn't work so I had to add each new video individually
+#### NOTE: I tried just using the path to the file containing all of the videos, but it didn't work so I had to add each new video individually
 
-
-
+2. Once you've added the new videos, you can repeat steps 4.3 and beyond.
   
 
 
