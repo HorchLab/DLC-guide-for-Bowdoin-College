@@ -60,22 +60,27 @@ I suggest reading through this entire Markdown and if any specific questions rem
 
 ### Step 3: creating DeepLabCut (DLC) environments and running ipython to use DLC on HPC interactive servers
 
-  - We first need to create a DLC environment: this is activating a local python environment with DLC version 2.2
+1. We first need to create a DLC environment: this is activating a local python environment with DLC version 2.2
 
 ``` source /mnt/local/python-venv/dlc-2.2/bin/activate ```
 
-  - Next, we need to open a virtual python environment:
+2. Next, we need to open a virtual python environment:
 
 ``` ipython ```
 
-  - Python is now open and you should be prompted with the following:
+3. Python is now open and you should be prompted with the following:
+
+```python
+In [1]: 
+```
+- Here, you can import deeplabcut with the following code
 
 ```python
 In [1]: import deeplabcut
 "DLC loaded in light mode; you cannot use any GUI (labeling, relabeling and standalone GUI)"
 ```
 
-  - Now, lets start using DLC to extract frames, label frames, and train a network
+4. Now, lets start using DLC to extract frames, label frames, and train a network
 
   - We want to first create a new project
 
