@@ -6,7 +6,7 @@ I suggest reading through this entire Markdown and if any specific questions rem
 
 ### Step 1: Downloading necessary software
   1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
-  - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
+   - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
   2. If you are on campus:
   - make sure you are connected to the Bowdoin Wifi (must be Bowdoin, not Bowdoin-Guest or Bowdoin-PSK)
   3. If you are off campus:
