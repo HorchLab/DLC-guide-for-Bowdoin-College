@@ -85,16 +85,16 @@ In [1]: import deeplabcut
 ```python
 In [2]: deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 ```
-  - additional parameter includes:
-    - ```copy_videos=True/False``` which will create a reference to a video in the video directory
+    - additional parameter includes:
+      - ```copy_videos=True/False``` which will create a reference to a video in the video directory
 
-  - Great, your new project is created, but lets save the filepath to the configuration file (config.yaml) as a variable
+2. Great, your new project is created, but lets save the filepath to the configuration file (config.yaml) as a variable
 
 ```python
 In [3]: config_path = '/mnt/research/hhorch/[username]/[working directory]' 
 ```
 
-  - We can now extract frames:
+3. We can now extract frames:
     - This may take a few moments, but you should see the frames being counted
     - You will primarily use 'automatic' and 'kmeans' as the parameters, but these are default, so you don't always have to fill them in
  
