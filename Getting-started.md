@@ -139,6 +139,8 @@ In [5]: deeplabcut.label_frames(path_config)
  You can now label each bodypart for each frame before training the network
 ![The DLC GUI should now pop-up](./HPC_scripts/labeling.png)
 
+NOTE: I was using a marker size of 12 for each training before this. I changed it to 5 to be more precise, whihc I think will ultimately be more accurate. 
+
 4.5: Before training the network, let's make sure our labels were correctly placed:
 
 ```python
@@ -170,11 +172,20 @@ ssh -Y [username]@moosehead.bowdoin.edu
 2. You then need to submit this "job" to the cluster with the following code:
 
 ```terminal
-sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G myscript.sh
+sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G training_script.sh
 ```
 
+### Step 6: Evaluating the network, analyzing novel videos, and filtering predictions
+Once we have trained our network as in step 6, we want to evaluate the network to see how well it was trained. There are parameters called Train error and Test Error. For the sake of our experiment and from my research (which was very hard to find), if the train and test error are close to eachother (in pixels) and they are both close to, or below 4 px, then the training is sufficient. You can also create labeled videos to determine whether DLC was able to accurately locate each body part throughout the video.
 
-### Step 6: Re-training the network if it wasn't trained well enough
+1. Evaluating the network: we do so the same way as training the network with the script file. Make sure you are in the right directory where your HPC_scripts are like this:  /mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/HPC_Scripts
+
+```python
+sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G evaluate_script.sh
+```
+- For ```Shuffles[1]``` in evaluate_network.py, you will want to change this for each shuffle that you did. For example, if you set Shuffles=3 when training the network, then submit this script when Shuffles=[1], Shuffles=[2], and Shuffles=[3]. 
+
+### Step 7: Re-training the network if it wasn't trained well enough
 
 1. In order to do so, we will typically want to add new/more videos to our training dataset with the following code:
 
