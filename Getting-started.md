@@ -5,17 +5,17 @@ This guide was written to help with the basics of getting DLC up and running. Fo
 I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
 
 ### Step 1: Downloading necessary software
-  #### 1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
+  1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
      - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
-  # 2. If you are on campus:
+  2. If you are on campus:
      - Make sure you are connected to the Bowdoin Wifi (must be Bowdoin, not Bowdoin-Guest or Bowdoin-PSK)
-  # 3. If you are off campus:
+  3. If you are off campus:
      - Log into the Bowdoin [VPN](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=99743)
 
 
 ### Step 2: Accessing the Bowdoin HPC through interactive server
-  # 1. Open terminal on MacOS
-  # 2. Log in with your Bowdoin credentials with the SSH sever
+  1. Open terminal on MacOS
+  2. Log in with your Bowdoin credentials with the SSH sever
     -   Can either use @dover, @foxcroft, or @slurm
 
   -  Example code:
@@ -29,7 +29,7 @@ I suggest reading through this entire Markdown and if any specific questions rem
   ```
   - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
   
-  # 3. Now, we want to access the correct filepath (directory)
+  3. Now, we want to access the correct filepath (directory)
       - we can use the ```cd``` feature to quickly move around in terminal's filepaths like the following (once entering a few letters, use the tab key to       fill in the rest instead of writing out your file path each time)
   ``` terminal
   cd /mnt/research/hhorch/[username]
@@ -97,7 +97,6 @@ In [3]: config_path = '/mnt/research/hhorch/[username]/[working directory]'
 3. We can now extract frames:
     - This may take a few moments, but you should see the frames being counted
     - You will primarily use 'automatic' and 'kmeans' as the parameters, but these are default, so you don't always have to fill them in
- 
 ```python
 In [4]: deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmeans')
 "Do you want to extract (perhaps additional) frames for [file path]? yes/no" yes 
@@ -120,14 +119,14 @@ deeplabcut.extract_frames(config, mode='automatic')
 ```
 If you are extracting frames for a second time, it will prompt you with the following
 ```python
-"The directory already contains some frames. Do you want to add to it?(yes/no): yes"
+"The directory already contains some frames. Do you want to add to it?(yes/no):" yes
 ```
  
   - additional paramerters include: 
     - ```python crop=True/False``` which can crop the video if True
     - ```python userFeedback=True/False``` which will ask the user to process a specific video before doing so
 
-  - This gives us the frames, now we can label them
+5. This gives us the frames, now we can label them:
 
 ```python
 In [5]: deeplabcut.label_frames(path_config)
@@ -135,7 +134,7 @@ In [5]: deeplabcut.label_frames(path_config)
   - The DLC GUI should now pop-up
     - You can now label each bodypart for each frame before training the network
 
-  - Before training the network, let's make sure our labels were correctly placed:
+6. Before training the network, let's make sure our labels were correctly placed:
 
 ```python
 In [6]: deeplabcut.check_labels(path_config)
@@ -144,25 +143,23 @@ In [6]: deeplabcut.check_labels(path_config)
 "If all the labels are ok, then use the function 'create_training_dataset' to create the training dataset!"
 ```
 
-  - Finally, let's create a training dataset
+7. Finally, let's create a training dataset
 ```python
 In [7]: deeplabcut.create_training_dataset(path_config)
 "The training dataset is successfully created. Use the function 'train_network' to start training. Happy training!"
 ```
-  - Great! Now we can start training the network.
+8. Great! Now we can start training the network.
   
 
 ### Step 4: Training the network using Bowdoin's GPU computers (ie Moosehead)
 
-- Now we need to log into Bowdoin's @slurm or @moosehead GPU servers with the following
-
+1. Now we need to log into Bowdoin's @slurm or @moosehead GPU servers with the following. Open a new terminal window and login within the following:
 ``` 
 ssh -Y [username]@moosehead.bowdoin.edu
 [username]@moosehead's password: [enter password]
 ```
   - Unlike @dover and @foxcroft, we have to pass scripts (.sh files) to the HPC so that it can perfom high performance computing using the GPU's (which     allow for larger capacities of data
   - You can find all of the scipts and python files in the [HPC_scripts](https://github.com/esmall2023/DLC_HPC/tree/main/HPC_scripts) folder in this repository.
-
 
 ### Step 5: Re-training the network if it wasn't trained well enough
 
