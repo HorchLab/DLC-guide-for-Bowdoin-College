@@ -1,24 +1,25 @@
 # Steps to use DLC on Bowdoin's HPC
 
+This guide was written by me to help with the basics of getting DLC up and running. For the most detailed user guide, DLC offers a very handy one located at: https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/standardDeepLabCut_UserGuide.md
+
 ### Step 1: Downloading necessary software
-  - Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
+  1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
     - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
-  - If you are on campus:
+  2. If you are on campus:
     - make sure you are connected to the Bowdoin Wifi (must be Bowdoin, not Bowdoin-Guest or Bowdoin-PSK)
-  - If you are off campus:
+  3. If you are off campus:
     - Log into the Bowdoin [VPN](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=99743)
 
 
 ### Step 2: Accessing the Bowdoin HPC through interactive server
-  - Open terminal on MacOS
-  - Log in with your Bowdoin credentials with the SSH sever
+  1. Open terminal on MacOS
+  2. Log in with your Bowdoin credentials with the SSH sever
     - Can either use @dover, @foxcroft, or @slurm
 
   - Example code:
-
-  ``` terminal
-  dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
-  [username]@dover.bowdoin.edu's password: [enter your password here]
+  ```terminal
+  dhcp-195-230:~ eansmall$ **ssh -Y [username]@dover.bowoin.edu**
+  [username]@dover.bowdoin.edu's password: **[enter your password here]**
   ```
   - To make sure the graphic user interface (GUI), we need to submit following line of code:
   ```
