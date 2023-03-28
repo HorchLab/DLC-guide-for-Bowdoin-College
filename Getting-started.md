@@ -5,17 +5,17 @@ This guide was written to help with the basics of getting DLC up and running. Fo
 I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
 
 ### Step 1: Downloading necessary software
-  1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
+  # 1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
      - Will use following code in future to check status of GUI (graphic user interface) ``` $ xeyes ```
-  2. If you are on campus:
+  # 2. If you are on campus:
      - Make sure you are connected to the Bowdoin Wifi (must be Bowdoin, not Bowdoin-Guest or Bowdoin-PSK)
-  3. If you are off campus:
+  # 3. If you are off campus:
      - Log into the Bowdoin [VPN](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=99743)
 
 
 ### Step 2: Accessing the Bowdoin HPC through interactive server
-  1. Open terminal on MacOS
-  2. Log in with your Bowdoin credentials with the SSH sever
+  # 1. Open terminal on MacOS
+  # 2. Log in with your Bowdoin credentials with the SSH sever
     -   Can either use @dover, @foxcroft, or @slurm
 
   -  Example code:
@@ -29,7 +29,7 @@ I suggest reading through this entire Markdown and if any specific questions rem
   ```
   - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
   
-  3. Now, we want to access the correct filepath (directory)
+  # 3. Now, we want to access the correct filepath (directory)
       - we can use the ```cd``` feature to quickly move around in terminal's filepaths like the following (once entering a few letters, use the tab key to       fill in the rest instead of writing out your file path each time)
   ``` terminal
   cd /mnt/research/hhorch/[username]
