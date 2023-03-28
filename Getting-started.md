@@ -132,7 +132,7 @@ If you are extracting frames for a second time, it will prompt you with the foll
 In [5]: deeplabcut.label_frames(path_config)
 ```
 
-![The DLC GUI should now pop-up](./Screenshot 2023-03-27 at 8.55.44 PM.png)
+![The DLC GUI should now pop-up](/DLC-guide-for-Bowdoin-College/Screenshot 2023-03-27 at 8.55.44 PM.png)
 
     
     You can now label each bodypart for each frame before training the network
