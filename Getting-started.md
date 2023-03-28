@@ -1,6 +1,8 @@
 # Steps to use DLC on Bowdoin's HPC
 
-This guide was written by me to help with the basics of getting DLC up and running. For the most detailed user guide, DLC offers a very handy one located at: https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/standardDeepLabCut_UserGuide.md
+This guide was written to help with the basics of getting DLC up and running. For the most detailed user guide, DLC offers a very handy one located at: https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/standardDeepLabCut_UserGuide.md
+
+I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
 
 ### Step 1: Downloading necessary software
   1. Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
