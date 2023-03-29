@@ -188,6 +188,18 @@ sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G evaluate_script.sh
 The evaluation results might look something like this: you can find them by going to ./evaluation-results/iteration-7/ and it is the .csv file at the top
 ![Might look something like this](./HPC_scripts/evaluation.png)
 
+6.2: Once we evaluate the network, we will want to analyse new video to determine how well the network was actually trained:
+
+```python
+In [1]: deeplabcut.analyze_videos(config, ['full path of video'], videotype='mkv or your videotype', save_as_csv=True)
+```
+
+6.3: In order to make a graph, we need to filter the CSV values using the following code:
+
+```python
+In [2]: deeplabcut.filterpredictions(config, ['full path of video'], videotype='mkv or your videotype', shuffle=1)
+```
+
 
 
 ### Step 7: Re-training the network if it wasn't trained well enough
