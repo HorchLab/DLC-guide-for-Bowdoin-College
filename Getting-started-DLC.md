@@ -200,6 +200,11 @@ In [1]: deeplabcut.analyze_videos(config, ['full path of video'], videotype='mkv
 In [2]: deeplabcut.filterpredictions(config, ['full path of video'], videotype='mkv or your videotype', shuffle=1)
 ```
 
+6.4: We can also create a labeled video to see whether the labels for the body parts were marked correctly using one of the HPC scripts:
+
+```terminal
+sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G create_labeled_script.sh
+```
 
 
 ### Step 7: Re-training the network if it wasn't trained well enough
