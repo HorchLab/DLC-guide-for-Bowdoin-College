@@ -1,5 +1,4 @@
-
-
+More details located [here](https://github.com/mhukill/Crickets-Methods) with the help of Max Hukill and Professor Jack O'Brien. Max's Github page contains a video demonstrating how to use the pipeline along with supplementary materials. I have updates the R files on his Github and can be found in the [R files folder](https://github.com/esmall2023/DLC-guide-for-Bowdoin-College/tree/main/R%20files).
 ## Follow these steps to produce graphs of your DLC data
 
 1. Once you have analyzed novel vidoes, DLC produces CSV files containing the xy-coordinates of each body part you tracked for each frame in the video. Once you have filtered these,
