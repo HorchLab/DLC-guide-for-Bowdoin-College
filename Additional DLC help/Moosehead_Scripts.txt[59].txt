@@ -1,0 +1,24 @@
+#THIS IS WHAT YOU WILL SUBMIT TO MOOSEHEAD AS A JOB WITH THE COMMAND: qsub -l gpu2080=1 SCRIPT.sh
+
+#!/bin/bash
+#$ -cwd
+#$ -j y
+#$ -S /bin/bash
+#$ -M rwarburt@bowdoin.edu -m be
+
+source /mnt/local/python-venv/dlc/bin/activate
+export DLClight="True";
+python analyze_video.py
+
+
+#THIS IS THE PYTHON SCRIPT THAT WILL INCLUDE ALL THE ANALYZE COMMANDS
+#CAN CREATE BOTH THESE SCRIPTS WITH CAT COMMAND (MAKE SURE THIS ONE'S NAME ENDS IN .py)
+
+import deeplabcut
+config_path ='PATH TO CONFIG FILE/config.yaml'
+deeplabcut.analyze_videos(config_path,['PATH TO VIDEO ANYWHERE ON COMPUTER/VIDEO.MP4'],save_as_csv=True,videotype='.MP4')
+
+
+
+
+#HOPEFULLY THIS WORKS :))

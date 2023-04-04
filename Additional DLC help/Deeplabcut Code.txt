@@ -1,0 +1,81 @@
+#get into network from File explorer
+
+\\microwave\hpc-research\pjones3
+
+
+# set up Python -  USE DOVER
+scl enable rh-python36 /bin/bash
+
+source /mnt/local/python-venv/dlc/bin/activate
+
+ipython
+
+#set up deeplab
+
+import deeplabcut
+
+#create project and configure config path
+
+deeplabcut.create_new_project(‘ethanolrw’, ‘rwarburt’, 
+[‘/mnt/research/pjones3/ethanol_color/videos_for_training/F2019_1_7_color.MP4’], 
+working_directory=’/mnt/research/pjones3/rwarburt’)
+
+config_path = ‘/mnt/research/hhorch/username/projectname/config.yaml’ #the output for the create new project should be the path you use
+
+ 	#config_path= '/mnt/research/pjones3/rwarburt/ethanolrw1-rwarburt-2020-10-07/config.yaml
+
+#Labeling frames
+
+deeplabcut.extract_frames(config_path)
+
+deeplabcut.label_frames(config_path) 
+
+#Create Training Data Set
+
+deeplabcut.create_training_dataset(config_path, num_shuffles=1)
+
+#Creating scripts
+
+Create files and copy from Prof. Jones' folder
+chmod u+x BLANK_SCRIPT #to make it a functioning script
+dos2unix BLANK_SCRIPT #to remove all any windows gunk
+
+qsub -l gpu2080=1 BLANK_SCRIPT.sh   #Make sure to do this in the HPC folder on moosehead
+
+#After last script (analyze) create a labeled video
+
+deeplabcut.create_labeled_video (config_path, [‘video_path_file’]) #Make sure video path is to INSIDE project #Make sure to include the .MP4
+
+
+#Evaluate Video Command
+
+deeplabcut.analyze_videos(config_path,['/mnt/research/pjones3/rwarburt/ethanolrw1-rwarburt-2020-10-07/videos/F2019_1_7_color.MP4'],save_as_csv=True,videotype='.MP4')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
