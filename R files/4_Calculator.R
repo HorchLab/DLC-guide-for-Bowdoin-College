@@ -225,6 +225,7 @@ for (i in 1:frame_len) {
 }
 #View(gap)
 
+
 # 21 spacings of zero and go until you get to the 26th
 # 2783 and 3175
 # 93 frame gap between them
