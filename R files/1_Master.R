@@ -6,10 +6,10 @@ library(openxlsx)
 ### We do this in 5 steps, each with its oscript. See the tutorial video and handout for more guidance.
 
 formatted_time <- format(Sys.time(), "%Y-%m-%d-%H-%M")
-
+output_description <- ""
 ### STEP 0: Define your directories
 primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
-output_directory <- paste0("graphs_output/", formatted_time)
+output_directory <- paste0("graphs_output/", formatted_time, " ", output_description)
 input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
 setwd(primary_directory)
 

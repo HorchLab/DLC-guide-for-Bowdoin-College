@@ -6,6 +6,21 @@ if(is.null(output_name)){ # generates the output name file according to preferen
   output_name_pdf <- paste(output_name, ".pdf", sep='')
 }
 
+# Extracting individual name (e.g., 201027UM1)
+individual_name <- sub(".*?(\\d{6}[A-Za-z0-9]+).*", "\\1", file_name)
+
+# Extracting description (e.g., SHORT ANTENNAE)
+description <- sub(".*stim\\d{2}(.*?)DLC.*", "\\1", file_name)
+
+
+# Extracting stim number (e.g., stim01)
+stim_number <- sub(".*stim(\\d+).*", "\\1", file_name)
+
+# Converting timestamp to a human-friendly format
+timestamp <- sub("(\\d{4})-(\\d{2})-(\\d{2})\\s(\\d{2})-(\\d{2})-(\\d{2}).*", "\\2/\\3/\\1 \\4:\\5:\\6", file_name)
+
+info <- paste(individual_name, "at", timestamp, "with", stim_number, description)
+
 pdf(output_name_pdf, width=30,height=20)
 par(mfrow = c(4,1), mar = c(0.5,7,0.5,0.5), oma = c(10,2,4,10),cex.lab=1.5,cex.axis=1.5)
 
@@ -20,7 +35,7 @@ points(viz_lr_x[14,],viz_lr_y[14,],col = "red3",pch = 16,cex=3)
 box()
 position_lab_coords <- position.label( viz_a_x[14,], c(-700,-100), c(-0.02, 0.1) )
 text(x=position_lab_coords[1], y=position_lab_coords[2], label="(A)",cex=5)
-mtext(side=3,file_name, line=4,cex=2.5, font=2)
+mtext(side=3,info, line=4,cex=2.5, font=2)
 mtext(side=2,"Mean Position", line=4,cex=2.5, font=12)
 for(j in 1:len)
 {
@@ -125,7 +140,7 @@ if(file_name_csv == "191009_190708_ALT.test.file_csv"){ ## this was used back wh
        xlab = "", ylab = "", axes=TRUE, ylim=c(minimum_sound,maximum_sound*1.1), cex=3, yaxs='i')
   min_frame = 0
   max_frame = frame_len
-  frame_num 
+  frame_nums
   axis(1,labels=TRUE,cex.axis=0.5,
        at = seq(min_frame, max_frame, by=15),
        line=0.5,tick=TRUE)
