@@ -48,6 +48,10 @@ for(j in 1:len)
 
 ## TWITCH GRAPH
 par(mar=c(0.5,9,0.5,0.5))
+old.shots <- shots
+if (length(shots) != length(lowerrightshot.twitch)) {
+  shots = shots[1:length(lowerrightshot.twitch)]
+}
 
 plot(shots,lowerrightshot.twitch, type = "l", xlab = "", ylab = "",  ylim=c(-100,21000), lwd = 4, col = rgb(205/255, 0, 0, 0.6),axes=FALSE)
 points(shots,bodyshot.twitch, type = "l", col = rgb(0, 0, 1, 0.6), lwd = 4)
@@ -61,6 +65,7 @@ mtext(side=2,expression(paste("Variation (",mm^2,")",sep="")), line=4,cex=2.5)
 axis(2,at=c(0,5000,10000,15000,20000,25000,30000,60000),labels=c(0,50,100,150,200,250,300,600),cex.axis=2.5)
 
 ## ANGLE GRAPH
+shots <- old.shots
 par(mar=c(0.5,9,0.5,0.5))
 plot(shots, angle.frame, type = "l", xlab = "",ylab = "", col = "mediumorchid4", lwd = 2,axes=FALSE)
 mtext(side=2,expression(paste("Angle (degrees)",sep="")), line=4,cex=2.5)
@@ -72,6 +77,8 @@ axis(2, at=seq(angle_range[1],angle_range[2], by=2), cex.axis=2.5)
 
 ## SOUND GRAPH
 ## Determines sidedness of sound stimulus
+
+
 cols <- rep("lightgrey", length(ss_x_db))
 light.green <- rgb(0.1,0.9,0.1,0.5)
 light.red <- rgb(0.9,0.1,0.1,0.5)
