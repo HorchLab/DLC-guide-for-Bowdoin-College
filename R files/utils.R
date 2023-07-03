@@ -22,7 +22,9 @@ convert_to_datavec <- function(filename) {
   c(extract_date_from_filename(filename),
     extract_name_from_filename(filename),
     extract_stim_from_filename(filename),
-    extract_note_from_filename(filename))
+    extract_note_from_filename(filename), 
+    extract_group_from_filename(filename), 
+    extract_sex_from_filename(filename))
 }
 
 extract_name_from_filename <- function(filename) {
@@ -31,9 +33,14 @@ extract_name_from_filename <- function(filename) {
 }
 
 extract_date_from_filename <- function(filename) {
-  # Converting timestamp to a human-friendly format
-  sub("(\\d{4})-(\\d{2})-(\\d{2})\\s(\\d{2})-(\\d{2})-(\\d{2}).*",
-  "\\1/\\2/\\3 \\4:\\5:\\6", filename)
+  # Extracting date and time from filename
+  out <- str_extract(filename, "\\d{4}-\\d{2}-\\d{2}\\s\\d{2}-\\d{2}-\\d{2}")
+  
+  if (is.na(out)) {
+    # if there's no time, date is fine. 
+    out <- str_extract(filename, "\\d{4}-\\d{2}-\\d{2}")
+  }
+  out
 }
 
 extract_stim_from_filename <- function(filename) {
@@ -43,6 +50,14 @@ extract_stim_from_filename <- function(filename) {
 
 extract_note_from_filename <- function(filename) {
   str_extract(filename, "(?<=stim\\d{2}).*(?=DLC)")
+}
+
+extract_group_from_filename <- function(filename) {
+  str_extract(extract_name_from_filename(filename), "(?<=\\d{6}).*(?=[MF])")
+}
+
+extract_sex_from_filename <- function(filename) {
+  str_extract(extract_name_from_filename(filename), "[MF]")
 }
 
 # Given three vectors of x and y coordinates, this function will return the

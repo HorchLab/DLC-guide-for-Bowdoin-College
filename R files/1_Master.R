@@ -1,8 +1,9 @@
 library(tidyverse)
 library(MASS)
 library(stringr)
+source("R files/utils.R")
 
-#### 1_Master.R      (updated June 29, 2021 by Max Hukill for the tutorial video)
+#### 1_Master.R 
 ### This script controls the process of going from a DLC .csv file to a graphical .pdf file.
 ### We do this in 5 steps, each with its oscript. See the tutorial video and handout for more guidance.
 
@@ -22,10 +23,6 @@ if (!file.exists(output_directory)) {
   cat("Output directory already exists.\n")
 }
 
-## I recommend using the structure from the extant GitHub link, but you can use whatever file structure you deem fit. 
-## (These three lines above are all you should have to change if changing the file structure.)
-
-
 ### STEP 1: Decide on your filename(s)
 file_list <- list.files(path = input_directory, pattern='.csv') # make sure to identify which directory 
 stripped_files <- str_remove(file_list, pattern='.csv')
@@ -33,35 +30,31 @@ cat("# of .csv files found: ", length(stripped_files), "\n")
 results = matrix(NA, nrow = length(stripped_files), ncol = 2)
 colnames(results) = c("File name", "Average turn (degrees)")
 num.files = 1
-#results <- aperm(results, c(2, 1))
 
 ### STEP 2: Load in the functions
 source("R files/2_Functions.R") # this will read in the script containing the necessary functions
-#cat("Step 2 Complete. Functions successfully read.", "\n")
 
 ## This loop allows us to read every csv file in a directory
 for (i in stripped_files) {
   file_name = i # this is one file in a directory
   file_name_csv <- paste(file_name, ".csv", sep='') 
   output_name <- NULL
-  print(file_name_csv)
+  # print(file_name_csv)
   
+  info_vec <- convert_to_datavec(file_name)
+  
+  if ((info_vec[6] == "M") && (info_vec[5] == "S11")) {
+    # Filtering and only plot those that fits in the selection. 
+    print(convert_to_title(file_name))
+  }
+  if (FALSE) {
   ### STEP 3: Load in the data
   source("R files/3_Reader.R")
-  #cat("Step 3 Complete. Data successfully read.", "\n")
   
   ### STEP 4: Perform the relevant calculations
   minimum_sound <- 0 # in dB, typically zero 
   maximum_sound <- 90 # in dB, depends on experiment
   tick_mark_interval <- 10 # in dB, space between tick marks
-  # results[1, 1] = file_name_csv
-  # print(file_name_csv)
-  # results[1, 2] = avg.turn
-  # print(avg.turn)
-  # results[1, 3] = sd.turn
-  #cat("diff.turn is:", diff.turn)
-  # results[num.files, 1] = file_name_csv
-  # results[2, 2] = diff.turn
   
   #results[num.files, 3] = sd.turn
   source("R files/4_Calculator_Fix_Anchor.R")
@@ -69,13 +62,11 @@ for (i in stripped_files) {
 
   ### STEP 5: Generate and save the cricket's graph
   source("R files/5_Grapher_Fixed_Anchor.R")
-  #qcat("Step 5 Complete. Graph saved as:", output_name_pdf ,"\n")
+  #cat("Step 5 Complete. Graph saved as:", output_name_pdf ,"\n")
    
   num.files = num.files + 1
-  print(num.files)
+  }
 }
-#results <- aperm(results, c(2, 1))
 
-#print(results[2,2])
-# create a data frame with some values
+print(paste0(num.files, " files outputted sucessfully. "))
 
