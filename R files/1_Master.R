@@ -1,5 +1,4 @@
 library(tidyverse)
-library(openxlsx)
 
 #### 1_Master.R      (updated June 29, 2021 by Max Hukill for the tutorial video)
 ### This script controls the process of going from a DLC .csv file to a graphical .pdf file.
@@ -77,21 +76,4 @@ for (i in stripped_files) {
 
 #print(results[2,2])
 # create a data frame with some values
-
-
-# create a new Excel workbook
-my_wb <- createWorkbook()
-
-# add a new worksheet to the workbook
-addWorksheet(my_wb, "Sheet2")
-
-# write the data frame to the worksheet
-writeData(my_wb, "Sheet2", results)
-
-# save the workbook to a file
-saveWorkbook(my_wb, "Full_pass_throughv2.xlsx")
-
-#write.xlsx(results, file = "test7.xlsx", sheetName = "Sheet1")
-
-#write.xlsx(results, "Turn angle stats", row.names=FALSE, col.names=FALSE)
 
