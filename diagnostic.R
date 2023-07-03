@@ -42,11 +42,9 @@ for (i in stripped_files)
   ### STEP 3: Load in the data
   source("R files/3_Reader.R")
   
-  center.point <- center_point(wax_x, wax_y)
+  source("R files/4_Calculator_Fix_Anchor.R")
   
-  # plot(wax_x, wax_y, col = rgb(0,0,0,0.3))
-  points(center.point[1], center.point[2], col = "red", pch = 16)
-
+  
 }
 
 dev.off()

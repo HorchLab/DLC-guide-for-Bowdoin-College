@@ -1,4 +1,5 @@
-## 4_Calculator.R: performs calculations and visualization routine given a file name. Used with 1_Master.R
+# 4_Calculator.R: performs calculations and visualization routine given a 
+# file name. Used with 1_Master.R
 
 # Some positions of interest
 thorax_x_mean <- mean(ab_x)
@@ -19,10 +20,10 @@ for (i in 1:frame_len){
   }
 }
 
+# This part of the code is simplified in further iterations of the code. 
 frame_nums = rep(0, frame_len)
 for (i in 1:frame_len) {
   frame_nums[i] = i
-  #print(frame_num)
 }
 
 # 21 spacings of zero and go until you get to the 26th
@@ -42,11 +43,7 @@ for(i in seq(0, T, num.frames)){
 #print(avg.turn)
 
 frames <- seq(1:frame_len)
-shots <- rep(0, frame_len/num.frames)
-
-for (i in seq(0, T, num.frames)){
-  shots[i/num.frames] <- i
-}
+shots <- seq(0, T, num.frames)
 
 
 body.twitch <- rep(0, frame_len)

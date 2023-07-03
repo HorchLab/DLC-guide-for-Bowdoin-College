@@ -1,4 +1,6 @@
 library(tidyverse)
+library(MASS)
+library(stringr)
 
 #### 1_Master.R      (updated June 29, 2021 by Max Hukill for the tutorial video)
 ### This script controls the process of going from a DLC .csv file to a graphical .pdf file.
@@ -7,7 +9,7 @@ library(tidyverse)
 formatted_time <- format(Sys.time(), "%Y-%m-%d-%H-%M")
 output_description <- ""
 ### STEP 0: Define your directories
-primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
+primary_directory <- "~/2023 Summer/DLC-guide-for-Bowdoin-College"
 output_directory <- paste0("graphs_output/", formatted_time, " ", output_description)
 input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
 setwd(primary_directory)
@@ -62,11 +64,11 @@ for (i in stripped_files) {
   # results[2, 2] = diff.turn
   
   #results[num.files, 3] = sd.turn
-  source("R files/4_Calculator.R")
+  source("R files/4_Calculator_Fix_Anchor.R")
   #cat("Step 4 Complete. Calculations performed.", "\n")
 
   ### STEP 5: Generate and save the cricket's graph
-  source("R files/5_Grapher.R")
+  source("R files/5_Grapher_Fixed_Anchor.R")
   #qcat("Step 5 Complete. Graph saved as:", output_name_pdf ,"\n")
    
   num.files = num.files + 1
