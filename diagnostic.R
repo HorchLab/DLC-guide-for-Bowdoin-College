@@ -1,6 +1,10 @@
 library(tidyverse)
+library(MASS)
+library(raster)
+library(stringr)
+source("R files/utils.R")
 input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim05"
-primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
+primary_directory <- "~/2023 Summer/DLC-guide-for-Bowdoin-College"
 
 setwd(primary_directory)
 
@@ -9,7 +13,24 @@ file_list <- list.files(path = input_directory, pattern='.csv') # make sure to i
 stripped_files <- str_remove(file_list, pattern='.csv')
 cat("# of .csv files found: ", length(stripped_files), "\n")
 
-par(mfrow=c(3,3),mar = c(1,1,1,1))
+pdf("WaxTrackingKDE.pdf", width = 30, height = 20)
+par(mfrow=c(4,4),mar = c(2,2,2,2))
+
+center_point <- function(x, y) {
+  # Estimate the density of the points using kernel density estimation
+  dens <- kde2d(x, y, n = 100)
+  plot(raster(dens), main = convert_to_title(file_name))
+  
+  # Find the index of the point with the highest density
+  max_idx <- which(dens$z == max(dens$z), arr.ind = TRUE)
+  
+  # Extract the x and y coordinates of the center point
+  center_x <- dens$x[max_idx[1]]
+  center_y <- dens$y[max_idx[2]]
+  
+  # Return the center point as a vector
+  return(c(center_x, center_y))
+}
 
 for (i in stripped_files) 
 {
@@ -21,30 +42,39 @@ for (i in stripped_files)
   ### STEP 3: Load in the data
   source("R files/3_Reader.R")
   
-  # remove the first 30 and last 30 frames for consistentcy
-  stripped_wax_x <- wax_x[50:(length(wax_x) - 50)]
-  stripped_wax_y <- wax_y[50:(length(wax_y) - 50)]
-  
-  
-  movement = dist.func(stripped_wax_x[-length(stripped_wax_x)], stripped_wax_y[-length(stripped_wax_y)], 
-                       stripped_wax_x[-1], stripped_wax_y[-1])
-  
-  if(any(movement > 20)) {
-    
-    # Extracting individual name (e.g., 201027UM1)
-    individual_name <- sub(".*?(\\d{6}[A-Za-z0-9]+).*", "\\1", file_name)
-    
-    # Extracting description (e.g., SHORT ANTENNAE)
-    description <- sub(".*stim\\d{2}(.*?)DLC.*", "\\1", file_name)
-    
-    # Converting timestamp to a human-friendly format
-    timestamp <- sub("(\\d{4})-(\\d{2})-(\\d{2})\\s(\\d{2})-(\\d{2})-(\\d{2}).*", "\\2/\\3/\\1 \\4:\\5:\\6", file_name)
-    
-    info <- paste(individual_name, "at", timestamp, "with", description)
-    
-    cat("Unusual Movement in", info, "\n")
-    plot(movement, main = info)
-  }
+  source("R files/4_Calculator_Fix_Anchor.R")
   
   
 }
+
+dev.off()
+
+# Lines below are functions that could be inserted to testing.'
+
+check_wax_shift <- function() {
+  # remove the first 30 and last 30 frames for consistency
+  stripped_wax_x <- wax_x[50:(length(wax_x) - 50)]
+  stripped_wax_y <- wax_y[50:(length(wax_y) - 50)]
+
+  movement = dist.func(stripped_wax_x[-length(stripped_wax_x)], stripped_wax_y[-length(stripped_wax_y)], 
+                       stripped_wax_x[-1], stripped_wax_y[-1])
+
+  if(any(movement > 20)) {
+
+    # Extracting individual name (e.g., 201027UM1)
+    individual_name <- sub(".*?(\\d{6}[A-Za-z0-9]+).*", "\\1", file_name)
+
+    # Extracting description (e.g., SHORT ANTENNAE)
+    description <- sub(".*stim\\d{2}(.*?)DLC.*", "\\1", file_name)
+
+    # Converting timestamp to a human-friendly format
+    timestamp <- sub("(\\d{4})-(\\d{2})-(\\d{2})\\s(\\d{2})-(\\d{2})-(\\d{2}).*", "\\2/\\3/\\1 \\4:\\5:\\6", file_name)
+
+    info <- paste(individual_name, "at", timestamp, "with", description)
+
+    cat("Unusual Movement in", info, "\n")
+    plot(movement, main = info)
+  }
+}
+
+

@@ -1,5 +1,6 @@
 library(tidyverse)
-library(openxlsx)
+library(MASS)
+library(stringr)
 
 #### 1_Master.R      (updated June 29, 2021 by Max Hukill for the tutorial video)
 ### This script controls the process of going from a DLC .csv file to a graphical .pdf file.
@@ -8,7 +9,7 @@ library(openxlsx)
 formatted_time <- format(Sys.time(), "%Y-%m-%d-%H-%M")
 output_description <- ""
 ### STEP 0: Define your directories
-primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
+primary_directory <- "~/2023 Summer/DLC-guide-for-Bowdoin-College"
 output_directory <- paste0("graphs_output/", formatted_time, " ", output_description)
 input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
 setwd(primary_directory)
@@ -63,11 +64,11 @@ for (i in stripped_files) {
   # results[2, 2] = diff.turn
   
   #results[num.files, 3] = sd.turn
-  source("R files/4_Calculator.R")
+  source("R files/4_Calculator_Fix_Anchor.R")
   #cat("Step 4 Complete. Calculations performed.", "\n")
 
   ### STEP 5: Generate and save the cricket's graph
-  source("R files/5_Grapher.R")
+  source("R files/5_Grapher_Fixed_Anchor.R")
   #qcat("Step 5 Complete. Graph saved as:", output_name_pdf ,"\n")
    
   num.files = num.files + 1
@@ -77,21 +78,4 @@ for (i in stripped_files) {
 
 #print(results[2,2])
 # create a data frame with some values
-
-
-# create a new Excel workbook
-my_wb <- createWorkbook()
-
-# add a new worksheet to the workbook
-addWorksheet(my_wb, "Sheet2")
-
-# write the data frame to the worksheet
-writeData(my_wb, "Sheet2", results)
-
-# save the workbook to a file
-saveWorkbook(my_wb, "Full_pass_throughv2.xlsx")
-
-#write.xlsx(results, file = "test7.xlsx", sheetName = "Sheet1")
-
-#write.xlsx(results, "Turn angle stats", row.names=FALSE, col.names=FALSE)
 

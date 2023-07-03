@@ -44,3 +44,17 @@ extract_stim_from_filename <- function(filename) {
 extract_note_from_filename <- function(filename) {
   str_extract(filename, "(?<=stim\\d{2}).*(?=DLC)")
 }
+
+# Given three vectors of x and y coordinates, this function will return the
+# angle next to point 1. The angle is in degrees.
+angle_between_points <- function(x1, y1, x2, y2, x3, y3) {
+  # Think of it as 2 vectors, v1 1->2 and v2 1->3
+  v1 <- c(x2 - x1, y2 - y1)
+  v2 <- c(x3 - x1, y3 - y1)
+
+  # Calculate the angle between the two vectors
+  angle <- acos(sum(v1 * v2) / (sqrt(sum(v1^2)) * sqrt(sum(v2^2))))
+
+  # Convert the angle to degrees
+  angle * 180 / pi
+}
