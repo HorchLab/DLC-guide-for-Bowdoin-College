@@ -23,9 +23,10 @@ if (!file.exists(output_directory)) {
 # REMEMBER to change the output name too!!!
 filtering_critiera <- function() {
   # for S12 use !(info_vec[5] %in% c("S11","G","U")), cuz naming method for s12 is ass. 
-  (info_vec[6] == "F") && (info_vec[5] == "U")
+  # (info_vec[6] == "F") && (!(info_vec[5] %in% c("S11","G","U")))
+  (as.numeric(format(as.Date(info_vec[1]), "%m")) >= 6) && (format(as.Date(info_vec[1]), "%Y") == 2021)
 }
-output_name <- "U_F_stim01"  # don't add .pdf here. 
+output_name <- "2021AUG_stim01"  # don't add .pdf here. 
 
 file_list <- list.files(path = input_directory, pattern='.csv') # make sure to identify which directory 
 cat("# of .csv files found: ", length(file_list), "\n")

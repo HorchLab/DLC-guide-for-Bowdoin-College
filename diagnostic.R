@@ -4,7 +4,7 @@ library(raster)
 library(stringr)
 source("R files/utils.R")
 input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
-primary_directory <- "~/2023 Summer/DLC-guide-for-Bowdoin-College"
+primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
 
 setwd(primary_directory)
 
@@ -29,17 +29,19 @@ center_point <- function(x, y) {
   return(c(center_x, center_y))
 }
 
+date_vec <- c()
+
 for (i in stripped_files) 
 {
   file_name = i # this is one file in a directory
   file_name_csv <- paste(file_name, ".csv", sep='') 
-  output_name <- NULL
   # print(file_name_csv)
   
-  cat(extract_group_from_filename(file_name), " ")
+  date_vec <- c(date_vec, extract_date_from_filename(file_name))
   
 }
 
+hist(as.Date(date_vec))
 # Lines below are functions that could be inserted to testing.'
 
 check_wax_shift <- function() {
