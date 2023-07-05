@@ -3,8 +3,8 @@ library(MASS)
 library(raster)
 library(stringr)
 source("R files/utils.R")
-input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim05"
-primary_directory <- "~/2023 Summer/DLC-guide-for-Bowdoin-College"
+input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
+primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
 
 setwd(primary_directory)
 
@@ -12,9 +12,6 @@ setwd(primary_directory)
 file_list <- list.files(path = input_directory, pattern='.csv') # make sure to identify which directory 
 stripped_files <- str_remove(file_list, pattern='.csv')
 cat("# of .csv files found: ", length(stripped_files), "\n")
-
-pdf("WaxTrackingKDE.pdf", width = 30, height = 20)
-par(mfrow=c(4,4),mar = c(2,2,2,2))
 
 center_point <- function(x, y) {
   # Estimate the density of the points using kernel density estimation
@@ -32,23 +29,19 @@ center_point <- function(x, y) {
   return(c(center_x, center_y))
 }
 
+date_vec <- c()
+
 for (i in stripped_files) 
 {
   file_name = i # this is one file in a directory
   file_name_csv <- paste(file_name, ".csv", sep='') 
-  output_name <- NULL
   # print(file_name_csv)
   
-  ### STEP 3: Load in the data
-  source("R files/3_Reader.R")
-  
-  source("R files/4_Calculator_Fix_Anchor.R")
-  
+  date_vec <- c(date_vec, extract_date_from_filename(file_name))
   
 }
 
-dev.off()
-
+hist(as.Date(date_vec))
 # Lines below are functions that could be inserted to testing.'
 
 check_wax_shift <- function() {
