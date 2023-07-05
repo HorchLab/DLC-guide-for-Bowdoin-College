@@ -11,7 +11,7 @@ formatted_time <- format(Sys.time(), "%Y-%m-%d-%H-%M")
 output_description <- ""
 ### STEP 0: Define your directories
 primary_directory <- "~/2023 Summer/DLC-guide-for-Bowdoin-College"
-output_directory <- paste0("graphs_output/", formatted_time, " ", output_description)
+output_directory <- paste0("graphs_output/", formatted_time, output_description)
 input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
 setwd(primary_directory)
 
@@ -34,6 +34,16 @@ num.files = 1
 ### STEP 2: Load in the functions
 source("R files/2_Functions.R") # this will read in the script containing the necessary functions
 
+pdf(paste0(output_directory, "/", "all_plots.pdf"), width = 8.5, height = 11)
+par(mfrow = c(6,1), mar = c(1,1,2,0.5), oma = c(1,1,1,1),cex.lab=1,cex.axis=1)
+
+filter_plot <- function(filename) {
+  plot(shots, average_angle_per_shot, main = convert_to_title(file_name), xlab = "",
+  ylab = "Angle (degrees)", col = "blue", type = "l")
+  grid() # add gridlines
+  abline(h = 0, col = "red") # add a red line at y = 0
+}
+
 ## This loop allows us to read every csv file in a directory
 for (i in stripped_files) {
   file_name = i # this is one file in a directory
@@ -46,27 +56,28 @@ for (i in stripped_files) {
   if ((info_vec[6] == "M") && (info_vec[5] == "S11")) {
     # Filtering and only plot those that fits in the selection. 
     print(convert_to_title(file_name))
-  }
-  if (FALSE) {
-  ### STEP 3: Load in the data
-  source("R files/3_Reader.R")
+    
+    ### STEP 3: Load in the data
+    source("R files/3_Reader.R")
+    
+    ### STEP 4: Perform the relevant calculations
+    minimum_sound <- 0 # in dB, typically zero 
+    maximum_sound <- 90 # in dB, depends on experiment
+    tick_mark_interval <- 10 # in dB, space between tick marks
+    
+    #results[num.files, 3] = sd.turn
+    source("R files/4_Calculator_Fix_Anchor.R")
+    #cat("Step 4 Complete. Calculations performed.", "\n")
   
-  ### STEP 4: Perform the relevant calculations
-  minimum_sound <- 0 # in dB, typically zero 
-  maximum_sound <- 90 # in dB, depends on experiment
-  tick_mark_interval <- 10 # in dB, space between tick marks
-  
-  #results[num.files, 3] = sd.turn
-  source("R files/4_Calculator_Fix_Anchor.R")
-  #cat("Step 4 Complete. Calculations performed.", "\n")
-
-  ### STEP 5: Generate and save the cricket's graph
-  source("R files/5_Grapher_Fixed_Anchor.R")
-  #cat("Step 5 Complete. Graph saved as:", output_name_pdf ,"\n")
-   
-  num.files = num.files + 1
+    filter_plot()
+    
+    ### STEP 5: Generate and save the cricket's graph
+    # source("R files/5_Grapher_Fixed_Anchor.R")
+    #cat("Step 5 Complete. Graph saved as:", output_name_pdf ,"\n")
+     
+    num.files = num.files + 1
   }
 }
+dev.off()
 
 print(paste0(num.files, " files outputted sucessfully. "))
-
