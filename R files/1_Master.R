@@ -24,7 +24,7 @@ if (!file.exists(output_directory)) {
 ### STEP 1: Decide on your filename(s)
 file_list <- list.files(path = input_directory, pattern = ".csv")
 cat("# of .csv files found: ", length(file_list), "\n")
-num.files <- 1
+num_files <- 1
 
 ### STEP 2: Load in the necessary functions
 source("R files/2_Functions.R")
@@ -48,8 +48,8 @@ for (file_name in stripped_files) {
   # STEP 5: Generate and save the cricket's graph
   source("R files/5_Grapher_Fixed_Anchor.R")
 
-  num.files <- num.files + 1  # Thanks, R!
+  num_files <- num_files + 1  # Thanks, R!
 }
 dev.off()
 
-print(paste0(num.files, " files outputted sucessfully. "))
+print(paste0(num_files, " files outputted sucessfully. "))

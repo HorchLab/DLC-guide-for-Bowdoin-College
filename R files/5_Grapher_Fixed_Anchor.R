@@ -2,19 +2,22 @@
 
 source("R files/utils.R")
 setwd(output_directory)
-if(is.null(output_name)){ # generates the output name file according to preference specified in 1_Master.R
-  output_name_pdf <- paste(file_name, "_graphs.pdf", sep='')
-} else{
-  output_name_pdf <- paste(output_name, ".pdf", sep='')
+if (is.null(output_name)) {
+  # generates the output name file according to preference specified in
+  # 1_Master.R
+  output_name_pdf <- paste(file_name, "_graphs.pdf", sep = "")
+} else {
+  output_name_pdf <- paste(output_name, ".pdf", sep = "")
 }
 
 
-pdf(output_name_pdf, width=30,height=20)
-par(mfrow = c(4,1), mar = c(0.5,7,0.5,0.5), oma = c(10,2,4,10),cex.lab=1.5,cex.axis=1.5)
+pdf(output_name_pdf, width = 30, height = 20)
+par(mfrow = c(4, 1), mar = c(0.5, 7, 0.5, 0.5), oma = c(10, 2, 4, 10),
+    cex.lab = 1.5, cex.axis = 1.5)
 
 ## POSITION GRAPH
 {
-par(mar=c(0.5,9,5,0.5))
+par(mar = c(0.5, 9, 5, 0.5))
 plot(viz_a_x[14,],viz_a_y[14,], xlab = '', ylab='', ylim=c(-750,-90), col = "black",pch = 16,axes=FALSE, xaxt = 'n')
 points(viz_w_x[14,],viz_w_y[14,], xlim = c(0, frame_len), ylim=c(-800,-100), col = "blue",pch = 16,cex=3)
 points(viz_ul_x[14,],viz_ul_y[14,],col = "lime green",pch = 16,cex=3)
