@@ -1,6 +1,6 @@
 ## 3_Reader.R: reads in data, defines regions of interest (ROIs). Used with Master.R
 setwd(input_directory) # enter subdirectory containing data files
-data <- read.csv(file_name_csv, # generates dataframe from .csv file
+data <- read.csv(file_name, # generates dataframe from .csv file
                  skip = 3, header = FALSE) # skip first 3 lines, ignore header names
 ## Defining ROIs
 frame_col <- data[, 1]
