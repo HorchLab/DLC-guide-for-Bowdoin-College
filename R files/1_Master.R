@@ -43,7 +43,7 @@ for (file_name in stripped_files) {
   # STEP 4: Perform the relevant calculations
   minimum_sound <- 0 # in dB, typically zero
   maximum_sound <- 90 # in dB, depends on experiment
-  source("R files/4_Calculator_Fix_Anchor.R")
+  source("R files/4_Calculator.R")
 
   # STEP 5: Generate and save the cricket's graph
   source("R files/5_Grapher_Fixed_Anchor.R")
