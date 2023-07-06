@@ -5,24 +5,32 @@
 # existing script, many variables are removed/renamed for better readability.
 # Please don't try to copy and paste this script into original script.
 
+library(MASS)
+
 # Some positions of interest
 thorax_x_mean <- mean(ab_x)
 thorax_y_mean <- mean(ab_y)
 frame_len <- length(ab_x) # this is how many frames are in the dataset
 
+#' This function takes in 2 vectors of x and y coordinates in a timed series
+#' and return the center mode of the points.
+#'
+#' @param x A time series of x coordinates
+#' @param y A time series of y coordinates
+#'
+#' @return A vector of x and y coordinates of the center mode
 center_point <- function(x, y) {
   # Estimate the density of the points using kernel density estimation
-  # NOTE: when n is too small kde gets weird, N = 200 glitched. 
+  # NOTE: when n is too small kde gets weird, N = 200 glitched.
   dens <- kde2d(x, y, n = 300)
-  # plot(raster(dens), main = convert_to_title(file_name))
-  
+
   # Find the index of the point with the highest density
   max_idx <- which(dens$z == max(dens$z), arr.ind = TRUE)
-  
+
   # Extract the x and y coordinates of the center point
   center_x <- dens$x[max_idx[1]]
   center_y <- dens$y[max_idx[2]]
-  
+
   # Return the center point as a vector
   return(c(center_x, center_y))
 }
@@ -49,7 +57,7 @@ for (i in 1:frame_len) {
   }
 }
 
-T <- frame_len  # Totally unnecessary, here because legacy code below. 
+T <- frame_len  # Totally unnecessary, here because legacy code below.
 frames <- 1:frame_len
 frames_per_shot <- 12 # Changeable
 average_angle_per_shot <- rep(0, ceiling(frame_len / frames_per_shot))
@@ -62,8 +70,10 @@ for (i in seq(0, frame_len, frames_per_shot)) {
 shots <- seq(0, frame_len, frames_per_shot)
 
 # Below is the part of code I can't understand. I'll just leave it as it is.
-
-
+# Everything below is for calculate variance which is not used in future
+# iteration, I would keep it as it is, but I would try to fix it later after
+# I'm done with correcting the variace calculation part. (see 2_Functions.R)
+{
 body.twitch <- rep(0, frame_len)
 upperleft.twitch <- rep(0, frame_len)
 upperright.twitch <- rep(0, frame_len)
@@ -79,7 +89,8 @@ lowerleftshot.twitch <- rep(0,0)
 lowerrightshot.twitch <- rep(0,0)
 
 # TODO: This is a terrible implementation. Please fix this.
-for(i in seq(1, T-12,frames_per_shot)){
+# This part calculates the variance of the twitch between every frame. 
+for (i in seq(1, T - 12, frames_per_shot)) {
   ab_x_mean <- mean(ab_x[(i):(i+11)])
   ab_y_mean <- mean(ab_y[(i):(i+11)])
   wax_x_mean <- mean(wax_x[(i):(i+11)])
@@ -141,7 +152,7 @@ twitch.frame <- cbind(body.twitch, upperleft.twitch, lowerleft.twitch, upperrigh
 
 
 
-k <- round(T/27,0) # number of crickets per sequence
+k <- round(T/27,0) # number of shots per sequence
 len <- length(seq(0, T, k))
 index <- seq(0, T, k)
 viz_a_x <- matrix(0, nrow=14, ncol=len)
@@ -225,12 +236,10 @@ for (s in 1:len) {
     viz_ll_y[14,l] <- mean(viz_ll_y[(1:13),l])
   }
 }
-
+}
 ## Convert sound from DLC coordinates into dB
 ss_x_db <- scale.sound(ss_x, minimum_sound, maximum_sound)
-#print(ss_x_db)
 frame.db = rep(0, T)
-#print(frame.db)
 
 # end the script early because it is flawed. 
 return()

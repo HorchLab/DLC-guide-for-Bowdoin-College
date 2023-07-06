@@ -1,6 +1,8 @@
 # This function provides simple functions to handle long and complicated .csv
 # files names can extract useful informations.
 
+library(stringr)
+
 convert_to_title <- function(filename) {
   if (!is.character(filename)) {
     print("Not a valid filename type!")
@@ -22,8 +24,8 @@ convert_to_datavec <- function(filename) {
   c(extract_date_from_filename(filename),
     extract_name_from_filename(filename),
     extract_stim_from_filename(filename),
-    extract_note_from_filename(filename), 
-    extract_group_from_filename(filename), 
+    extract_note_from_filename(filename),
+    extract_group_from_filename(filename),
     extract_sex_from_filename(filename))
 }
 
@@ -35,9 +37,9 @@ extract_name_from_filename <- function(filename) {
 extract_date_from_filename <- function(filename) {
   # Extracting date and time from filename
   out <- str_extract(filename, "\\d{4}-\\d{2}-\\d{2}\\s\\d{2}-\\d{2}-\\d{2}")
-  
+
   if (is.na(out)) {
-    # if there's no time, date is fine. 
+    # if there's no time, only date is fine.
     out <- str_extract(filename, "\\d{4}-\\d{2}-\\d{2}")
   }
   out
