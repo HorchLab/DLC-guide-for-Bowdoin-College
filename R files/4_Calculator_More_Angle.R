@@ -69,13 +69,32 @@ for (i in seq(0, frame_len, frames_per_shot)) {
 
 shots <- seq(0, frame_len, frames_per_shot)
 
-# Calculate the wax-abdomen-leg angle:
+# Calculate the wax-abdomen-knee angle (wax_ab_knee_angle)
+left_wax_ab_knee_angle <-
+  angle_between_points(ab_x, ab_y, wax_x, wax_y, left_knee_x, left_knee_y)
+right_wax_ab_knee_angle <-
+  angle_between_points(ab_x, ab_y, wax_x, wax_y, right_knee_x, right_knee_y)
 
+# Calculate the abdomen-knee-leg angle (ab_knee_leg_angle)
+left_ab_leg_foot_angle <-
+  angle_between_points(left_knee_x, left_knee_y, left_foot_x, left_foot_y,
+                       ab_x, ab_y)
+right_ab_leg_foot_angle <-
+  angle_between_points(right_knee_x, right_knee_y, right_foot_x, right_foot_y,
+                       ab_x, ab_y)
+
+# Calculate the distance between centerline (wax-abdomen) and leg
+left_leg_center_dist <- perpendicular_distance(wax_x, wax_y, ab_x, ab_y,
+                                                left_foot_x, left_foot_y)
+right_leg_center_dist <- perpendicular_distance(wax_x, wax_y, ab_x, ab_y,
+                                                 right_foot_x, right_foot_y)
+
+foot_distance <- dist.func(left_foot_x, left_foot_y, right_foot_x, right_foot_y)
 
 
 ## Convert sound from DLC coordinates into dB
 ss_x_db <- scale.sound(ss_x, minimum_sound, maximum_sound)
-frame.db = rep(0, T)
+frame.db <- rep(0, T)
 
-# end the script early because it is flawed. 
+# end the script early because it is flawed.
 return()

@@ -83,3 +83,17 @@ angle_between_points <- function(x1, y1, x2, y2, x3, y3) {
   # Convert the angle to degrees
   angle * 180 / pi
 }
+
+#' This function calculates the perpendicular distance between a point and a
+#' line segment.
+#'
+#' @param x1 x-coordinate of the first point of the line segment
+#' @param y1 y-coordinate of the first point of the line segment
+#' @param x2 x-coordinate of the second point of the line segment
+#' @param y2 y-coordinate of the second point of the line segment
+#' @param x0 x-coordinate of the point
+#' @param y0 y-coordinate of the point
+#' @return perpendicular distance between the point and the line segment
+perpendicular_distance <- function(x1, y1, x2, y2, x0, y0) {
+  abs((y2-y1)*x0 - (x2-x1)*y0 + x2*y1 - y2*x1) / sqrt((y2-y1)^2 + (x2-x1)^2)
+}
