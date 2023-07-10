@@ -62,8 +62,19 @@ extract_sex_from_filename <- function(filename) {
   str_extract(extract_name_from_filename(filename), "[MF]")
 }
 
-# Given three vectors of x and y coordinates, this function will return the
-# angle next to point 1. The angle is in degrees.
+#' Given three vectors of x and y coordinates, this function will return the
+#' angle next to point 1. The angle is in degrees.
+#'
+#' @param x1 x-coordinate of the first point
+#' @param y1 y-coordinate of the first point
+#' @param x2 x-coordinate of the second point
+#' @param y2 y-coordinate of the second point
+#' @param x3 x-coordinate of the third point
+#' @param y3 y-coordinate of the third point
+#' @return angle next to point 1 in degrees
+#' @examples
+#' angle_between_points(0, 0, 1, 0, 1, 1)
+#' angle_between_points(c(0,0), c(0,1), c(1,0), c(1,1), c(2,2), c(2,3))
 angle_between_points <- function(x1, y1, x2, y2, x3, y3) {
   # Convert the input time series to a matrix
   mat <- cbind(x1, y1, x2, y2, x3, y3)

@@ -20,18 +20,23 @@ if (!file.exists(output_directory)) {
 
 # Change this if you want to display different audio.
 # REMEMBER to change the output name too!!!
-# filtering_criteria <- function() {
+filtering_criteria <- function() {
   # for S12 use !(info_vec[5] %in% c("S11","G","U")), cuz naming method for s12 is ass. 
-  # (info_vec[6] == "F") && (info_vec[5] == "S11")
+  (info_vec[6] == "M") && (info_vec[5] == "S11")
   # (as.numeric(format(as.Date(info_vec[1]), "%m")) >= 6) && (format(as.Date(info_vec[1]), "%Y") == 2021)
-# }
-output_name <- "S11_stim01"  # don't add .pdf here.
+}
+output_name <- "S11_stim01"  # don't add .pdf here. 
 
-criterias <- list(function() {(info_vec[5] == "S11")},
-                  function() {(info_vec[5] == "U")}, 
-                  function() {(info_vec[5] == "G")}, 
-                  function() {!(info_vec[5] %in% c("S11","G","U"))})
-criteria_order <- c("S11", "U", "GFP", "S12")
+criterias <- list(function() {(info_vec[5] == "S11") && (info_vec[6] == "M")},
+                  function() {(info_vec[5] == "U") && (info_vec[6] == "M")}, 
+                  function() {(info_vec[5] == "G") && (info_vec[6] == "M")}, 
+                  function() {!(info_vec[5] %in% c("S11","G","U")) && (info_vec[6] == "M")}, 
+                  function() {(info_vec[5] == "S11") && (info_vec[6] == "F")},
+                  function() {(info_vec[5] == "U") && (info_vec[6] == "F")}, 
+                  function() {(info_vec[5] == "G") && (info_vec[6] == "F")}, 
+                  function() {!(info_vec[5] %in% c("S11","G","U")) && (info_vec[6] == "F")})
+criteria_order <- c("S11_M", "U_M", "GFP_M", "S12_M", "S11_F",
+                    "U_F", "GFP_F", "S12_F")
 
 file_list <- list.files(path = input_directory, pattern='.csv') # make sure to identify which directory 
 cat("# of .csv files found: ", length(file_list), "\n")
@@ -45,7 +50,7 @@ filter_plot <- function(filename) {
        ylab = "Angle (degrees)", col = "mediumorchid4", type = "l", ylim = c(-25,25), xaxt = "n")
   grid() # add gridlines
   abline(h = 0, col = "red") # add a red line at y = 0
-
+  
   plot(right_leg_center_dist, type = "l", col = "blue", ylim = c(-100, 100),
        main = paste("leg-center distance for", convert_to_title(file_name)),
        xlab = "", ylab = "Distance(px)")
@@ -56,14 +61,16 @@ filter_plot <- function(filename) {
 }
 
 
+
 ## This loop allows us to read every csv file in a directory
 n <- 1
 for (filtering_criteria in criterias) {
-  print(filtering_criteria)
   pdf(paste0(output_directory, "/", criteria_order[n], "_stim01.pdf"), width = 17, height = 22)
   par(mfrow = c(6,1), mar = c(1,1,2,0.5), oma = c(1,1,1,1),cex.lab=1,cex.axis=1, 
       cex.main = 1.5)
-  n <- n + 1
+  num <- 0
+  Lvars <- c()
+  Rvars <- c()
   for (file_name in file_list) {
     info_vec <- convert_to_datavec(file_name)
 
@@ -81,8 +88,9 @@ for (filtering_criteria in criterias) {
       
       filter_plot()
       
-      num_files <- num_files + 1
+      num.files = num.files + 1
     }
+    
   }
   dev.off()
 }

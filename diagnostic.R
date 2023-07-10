@@ -29,7 +29,8 @@ for (file_name in file_list) {
   print(file_name)
   source("R files/3_Reader.R")
   source("R files/4_Calculator_More_Angle.R")
-  plot(right_leg_center_dist, type = "l", col = "blue", ylim = c(-100, 100),
+  plot(right_leg_center_dist, type = "l", col = "blue",
+       ylim = c(-max(left_leg_center_dist), max(right_leg_center_dist)), 
        main = paste("leg-center distance for", convert_to_title(file_name)),
        xlab = "", ylab = "Distance(px)")
   lines(left_leg_center_dist * -1, col = "red")
