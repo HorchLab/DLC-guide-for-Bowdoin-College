@@ -1,51 +1,79 @@
-# 4_Calculator.R: performs calculations and visualization routine given a 
-# file name. Used with 1_Master.R
+# 4_Calculator.R: performs calculations and visualization routine given a file
+# Used with 1_Master.R | This is a fix of the current existing script.
+
+# PLEASE READ: Despite the fact that this script is a fix of the current
+# existing script, many variables are removed/renamed for better readability.
+# Please don't try to copy and paste this script into original script.
+
+library(MASS)
 
 # Some positions of interest
 thorax_x_mean <- mean(ab_x)
 thorax_y_mean <- mean(ab_y)
 frame_len <- length(ab_x) # this is how many frames are in the dataset
 
+#' This function takes in 2 vectors of x and y coordinates in a timed series
+#' and return the center mode of the points.
+#'
+#' @param x A time series of x coordinates
+#' @param y A time series of y coordinates
+#'
+#' @return A vector of x and y coordinates of the center mode
+center_point <- function(x, y) {
+  # Estimate the density of the points using kernel density estimation
+  # NOTE: when n is too small kde gets weird, N = 200 glitched.
+  dens <- kde2d(x, y, n = 300)
+
+  # Find the index of the point with the highest density
+  max_idx <- which(dens$z == max(dens$z), arr.ind = TRUE)
+
+  # Extract the x and y coordinates of the center point
+  center_x <- dens$x[max_idx[1]]
+  center_y <- dens$y[max_idx[2]]
+
+  # Return the center point as a vector
+  return(c(center_x, center_y))
+}
+
+anchor <- center_point(wax_x, wax_y)
+anchor_x <- anchor[1]
+anchor_y <- anchor[2]
+
 # Find the angle between the abdomen and the center line:
-a <- dist.func(ab_x,ab_y,wax_x,ab_y)
-b <- dist.func(wax_x,wax_y,wax_x,ab_y)
-c <- dist.func(ab_x,ab_y,wax_x,wax_y)
+# Note: This part would've been much easier computationally, but since this is
+# not really a time consuming part I'm just going to use it as it is.
 
-angles <- acos((b^2+c^2-a^2)/(2*b*c))*180/pi # angle calculation
+a <- dist.func(ab_x, ab_y, anchor_x, ab_y)
+b <- dist.func(anchor_x, anchor_y, anchor_x, ab_y)
+c <- dist.func(ab_x, ab_y, anchor_x, anchor_y)
 
-# Define center line (wax) as zero; make angles positive or negative deviation from that line:
-for (i in 1:frame_len){ 
-  if (ab_x[i] <= wax_x[i]){
-    angles[i] <- -angles[i] 
+angles <- acos((b^2 + c^2 - a^2) / (2 * b * c)) * 180 / pi # angle calculation
+
+# Define center line (wax) as zero; make angles positive or negative deviation
+# from that line:
+for (i in 1:frame_len) {
+  if (ab_x[i] <= anchor_x) {
+    angles[i] <- -angles[i]
   }
 }
 
-# This part of the code is simplified in further iterations of the code. 
-frame_nums = rep(0, frame_len)
-for (i in 1:frame_len) {
-  frame_nums[i] = i
+T <- frame_len  # Totally unnecessary, here because legacy code below.
+frames <- 1:frame_len
+frames_per_shot <- 12 # Changeable
+average_angle_per_shot <- rep(0, ceiling(frame_len / frames_per_shot))
+
+for (i in seq(0, frame_len, frames_per_shot)) {
+  average_angle_per_shot[i / frames_per_shot] <-
+  mean(angles[i:i + frames_per_shot - 1])
 }
 
-# 21 spacings of zero and go until you get to the 26th
-# 2775 and 3195
-total = 0
-frames = 0
-avg.turn = 0
-T=frame_len # frames in dataset
-num.frames <- 12 # shots per frame. set to 12 after discussion and experimentation
-angle.frame <- rep(0, frame_len/num.frames) # calculating average angle per shot
-for(i in seq(0, T, num.frames)){
+shots <- seq(0, frame_len, frames_per_shot)
 
-  mean(angles[i:i+num.frames-1])
-  angle.frame[i/num.frames] <- mean(angles[i:i+num.frames-1])
-  #print(avg.turn)
-}
-#print(avg.turn)
-
-frames <- seq(1:frame_len)
-shots <- seq(0, T, num.frames)
-
-
+# Below is the part of code I can't understand. I'll just leave it as it is.
+# Everything below is for calculate variance which is not used in future
+# iteration, I would keep it as it is, but I would try to fix it later after
+# I'm done with correcting the variace calculation part. (see 2_Functions.R)
+{
 body.twitch <- rep(0, frame_len)
 upperleft.twitch <- rep(0, frame_len)
 upperright.twitch <- rep(0, frame_len)
@@ -60,9 +88,9 @@ upperrightshot.twitch <- rep(0,0)
 lowerleftshot.twitch <- rep(0,0)
 lowerrightshot.twitch <- rep(0,0)
 
-
-#
-for(i in seq(1, T-12,num.frames)){
+# TODO: This is a terrible implementation. Please fix this.
+# This part calculates the variance of the twitch between every frame. 
+for (i in seq(1, T - 12, frames_per_shot)) {
   ab_x_mean <- mean(ab_x[(i):(i+11)])
   ab_y_mean <- mean(ab_y[(i):(i+11)])
   wax_x_mean <- mean(wax_x[(i):(i+11)])
@@ -80,6 +108,13 @@ for(i in seq(1, T-12,num.frames)){
   lowerleft.sum <- 0
   lowerright.sum <- 0
   body.sum <- 0
+  
+  # This code block calculates the mean of the x and y coordinates for each body part over a 12-frame window.
+  # It then calculates the twitch for each body part using the mean coordinates and the coordinates for each frame in the window.
+  # The twitch is the Euclidean distance between the body part's coordinates in a frame and the mean coordinates for that body part.
+  # The code then sums the twitch for each body part over the 12-frame window and stores the result in a vector.
+  # The code repeats this process for each 12-frame window in the dataset.
+  # Finally, the code binds the twitch vectors for each body part into a matrix and stores it in twitch.frame.
   
   for(j in i:(i+11)){
     upperleft.twitch[j] <- upperleft(ab_x[j], ab_y[j], ab_x_mean, ab_y_mean, left_knee_x[j], left_knee_y[j], left_knee_x_mean, left_knee_y_mean)
@@ -116,7 +151,8 @@ for(i in seq(1, T-12,num.frames)){
 twitch.frame <- cbind(body.twitch, upperleft.twitch, lowerleft.twitch, upperright.twitch, lowerright.twitch)
 
 
-k <- round(T/27,0) # number of crickets per sequence
+
+k <- round(T/27,0) # number of shots per sequence
 len <- length(seq(0, T, k))
 index <- seq(0, T, k)
 viz_a_x <- matrix(0, nrow=14, ncol=len)
@@ -200,12 +236,10 @@ for (s in 1:len) {
     viz_ll_y[14,l] <- mean(viz_ll_y[(1:13),l])
   }
 }
-
+}
 ## Convert sound from DLC coordinates into dB
 ss_x_db <- scale.sound(ss_x, minimum_sound, maximum_sound)
-#print(ss_x_db)
 frame.db = rep(0, T)
-#print(frame.db)
 
 # end the script early because it is flawed. 
 return()

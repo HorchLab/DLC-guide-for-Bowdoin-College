@@ -65,7 +65,8 @@ upperleft <- function(thorax_x, thorax_y, thorax_x_mean, thorax_y_mean,
       triangle2_vector1 <- c(x_intersect, smaller_k_x, bigger_k_x, x_intersect)
       triangle2_vector2 <- c(y_intersect, smaller_k_y, bigger_k_y, y_intersect)
 
-      area <- picks_theorem(triangle1_vector1, triangle1_vector2) + picks_theorem(triangle2_vector1, triangle2_vector2)
+      area <- picks_theorem(triangle1_vector1, triangle1_vector2) +
+              picks_theorem(triangle2_vector1, triangle2_vector2)
       return(area)
     } else {
       vector1 <- c(smaller_t_x, bigger_t_x, bigger_k_x, smaller_k_x, smaller_t_x)
