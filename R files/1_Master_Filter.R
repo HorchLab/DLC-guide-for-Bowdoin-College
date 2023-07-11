@@ -70,10 +70,13 @@ filter_plot <- function(filename) {
   grid() # add gridlines
   abline(h = 0, col = "red") # add a red line at y = 0
 
-  plot(right_leg_center_dist, type = "l", col = "blue", ylim = c(-100, 100),
+  y_axis_size <- max(left_leg_center_dist_normalized, right_leg_center_dist_normalized)
+
+  plot(right_leg_center_dist_normalized, type = "l", col = "blue",
+       ylim = c(-y_axis_size, y_axis_size),
        main = paste("leg-center distance for", convert_to_title(file_name)),
        xlab = "", ylab = "Distance(px)")
-  lines(left_leg_center_dist * -1, col = "red")
+  lines(left_leg_center_dist_normalized * -1, col = "red")
   abline(h = 0, col = "black", lty = 2)
   legend("topright", legend = c("Left leg", "Right leg"),
          col = c("blue", "red"), lty = 1)

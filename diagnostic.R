@@ -26,21 +26,24 @@ par(mfrow = c(2, 1), mar = c(2, 2, 2, 2), oma = c(1,1,1,1))
 for (file_name in file_list) {
   info_vec <- convert_to_datavec(file_name)
   # if (!(filtering_critiera())) {next}
-  print(file_name)
   source("R files/3_Reader.R")
   source("R files/4_Calculator_More_Angle.R")
-  plot(right_leg_center_dist, type = "l", col = "blue",
-       ylim = c(-max(left_leg_center_dist), max(right_leg_center_dist)), 
+  plot(shots, average_angle_per_shot, main = convert_to_title(file_name),
+      xlab = "", ylab = "Angle (degrees)", col = "mediumorchid4",
+      type = "l", ylim = c(-25, 25), xaxt = "n")
+  grid() # add gridlines
+  abline(h = 0, col = "red") # add a red line at y = 0
+
+  y_axis_size <- max(left_leg_center_dist_normalized, right_leg_center_dist_normalized)
+
+  plot(right_leg_center_dist_normalized, type = "l", col = "blue",
+       ylim = c(-y_axis_size, y_axis_size),
        main = paste("leg-center distance for", convert_to_title(file_name)),
        xlab = "", ylab = "Distance(px)")
-  lines(left_leg_center_dist * -1, col = "red")
+  lines(left_leg_center_dist_normalized * -1, col = "red")
   abline(h = 0, col = "black", lty = 2)
   legend("topright", legend = c("Left leg", "Right leg"),
          col = c("blue", "red"), lty = 1)
-  
-  plot(foot_distance, type = "l", col = "orange",
-       main = "Right_Dist - Left_Dist", xlab = "")
-  abline(h = 0, col = "black", lty = 2)
   grid()
 }
 dev.off()

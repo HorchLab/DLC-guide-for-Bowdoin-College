@@ -57,7 +57,6 @@ for (i in 1:frame_len) {
   }
 }
 
-T <- frame_len  # Totally unnecessary, here because legacy code below.
 frames <- 1:frame_len
 frames_per_shot <- 12 # Changeable
 average_angle_per_shot <- rep(0, ceiling(frame_len / frames_per_shot))
@@ -91,10 +90,24 @@ right_leg_center_dist <- perpendicular_distance(wax_x, wax_y, ab_x, ab_y,
 
 foot_distance <- dist.func(left_foot_x, left_foot_y, right_foot_x, right_foot_y)
 
+# Normalize the distance between centerline and foot by the length
+# of the hind leg
+left_hind_leg_length <- mean(dist.func(left_knee_x, left_knee_y,
+                                      left_foot_x, left_foot_y))
+right_hind_leg_length <- mean(dist.func(right_knee_x, right_knee_y,
+                                      right_foot_x, right_foot_y))
+if (abs(left_hind_leg_length - right_hind_leg_length) > 20) {
+  print(paste0("WARNING: At ", file_name,
+  " left and right hind leg length are not equal (>20 px)",
+  abs(left_hind_leg_length - right_hind_leg_length), " px"))
+}
+
+left_leg_center_dist_normalized <- left_leg_center_dist / left_hind_leg_length
+right_leg_center_dist_normalized <- right_leg_center_dist / right_hind_leg_length
 
 ## Convert sound from DLC coordinates into dB
 ss_x_db <- scale.sound(ss_x, minimum_sound, maximum_sound)
-frame.db <- rep(0, T)
+frame.db <- rep(0, frame_len)
 
 # end the script early because it is flawed.
 return()
