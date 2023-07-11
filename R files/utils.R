@@ -62,6 +62,10 @@ extract_sex_from_filename <- function(filename) {
   str_extract(extract_name_from_filename(filename), "[MF]")
 }
 
+extract_POSIXct_from_filename <- function(filename) {
+  as.POSIXct(extract_date_from_filename(filename), format = "%Y-%m-%d %H-%M-%S")
+}
+
 #' Given three vectors of x and y coordinates, this function will return the
 #' angle next to point 1. The angle is in degrees.
 #'
