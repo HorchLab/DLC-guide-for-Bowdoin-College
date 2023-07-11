@@ -3,7 +3,6 @@ library(stringr)
 library(moments)
 source("R files/utils.R")
 
-
 # This script is used to curate the data frame with each row
 # representing a single cricket.
 primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
@@ -69,7 +68,6 @@ append_cricket <- function(df, filename) {
   source("R files/3_Reader.R")
   source("R files/4_Calculator_More_Angle.R")
 
-  
   # Append the new row to the data frame
   df <- df %>%
     add_row(Name = extract_name_from_filename(filename), # Name
@@ -100,4 +98,6 @@ for (file_name in file_list) {
 }
 
 # Write the data frame to a csv file
-write.csv(crickets_df, file = paste0(output_directory, "/crickets_df.csv"), row.names = FALSE)
+write.csv(crickets_df,
+          file = paste0(output_directory, "/crickets_df.csv"),
+          row.names = FALSE)

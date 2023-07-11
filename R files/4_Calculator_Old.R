@@ -1,4 +1,7 @@
-## 4_Calculator.R: performs calculations and visualization routine given a file name. Used with 1_Master.R
+# 4_Calculator.R: performs calculations and visualization routine 
+# Used with 1_Master.R
+# This is a deprecated version of the calculator. It is not used in the current
+# version of the code.
 
 # Some positions of interest
 thorax_x_mean <- mean(ab_x)
