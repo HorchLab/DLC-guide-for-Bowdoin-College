@@ -19,7 +19,10 @@ if (!file.exists(output_directory)) {
   cat("Output directory already exists.\n")
 }
 
-source("R files/2_Functions.R") 
+file_list <- list.files(path = input_directory, pattern='.csv') # make sure to identify which directory 
+cat("# of .csv files found: ", length(file_list), "\n")
+
+source("R files/2_Functions.R")
 
 # Create a new dataframe with the following columns:
 # 1. Cricket Name from extract_name_from_filename()
@@ -88,8 +91,6 @@ append_cricket <- function(df, filename) {
   df
 }
 
-file_list <- list.files(path = input_directory, pattern='.csv') # make sure to identify which directory 
-cat("# of .csv files found: ", length(file_list), "\n")
 num_files <- 1
 minimum_sound <- 0
 maximum_sound <- 90
