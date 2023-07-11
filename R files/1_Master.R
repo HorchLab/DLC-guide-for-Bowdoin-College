@@ -1,87 +1,55 @@
 library(tidyverse)
-library(openxlsx)
+library(MASS)
+library(stringr)
+source("R files/utils.R")
 
-#### 1_Master.R      (updated June 29, 2021 by Max Hukill for the tutorial video)
-### This script controls the process of going from a DLC .csv file to a graphical .pdf file.
-### We do this in 5 steps, each with its oscript. See the tutorial video and handout for more guidance.
+# 1_Master.R
 
-### STEP 0: Define your directories
-primary_directory <- "~/Desktop/DLC"
-output_directory <- "graphs_verified"
-input_directory <- "individuals4"
-## I recommend using the structure from the extant GitHub link, but you can use whatever file structure you deem fit. 
-## (These three lines above are all you should have to change if changing the file structure.)
+formatted_time <- format(Sys.time(), "%Y-%m-%d-%H-%M")
+output_description <- ""
+primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
+output_directory <- paste0("graphs_output/", formatted_time, output_description)
+input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
 setwd(primary_directory)
 
+if (!file.exists(output_directory)) {
+  # Create the output directory, recursive means if the parent dir does not
+  # exist, it will proceed to create.
+  dir.create(output_directory, recursive = TRUE)
+  cat("Output directory created successfully!\n")
+} else {
+  cat("Output directory already exists.\n")
+}
 
 ### STEP 1: Decide on your filename(s)
-file_list <- list.files(input_directory, pattern='.csv') # make sure to identify which directory 
-stripped_files <- str_remove(file_list, pattern='.csv')
-print(length(stripped_files))
-results = matrix(NA, nrow = length(stripped_files), ncol = 2)
-colnames(results) = c("File name", "Average turn (degrees)")
-num.files = 1
-#results <- aperm(results, c(2, 1))
+file_list <- list.files(path = input_directory, pattern = ".csv")
+cat("# of .csv files found: ", length(file_list), "\n")
+num_files <- 1
+
+### STEP 2: Load in the necessary functions
+source("R files/2_Functions.R")
+
+pdf(paste0(output_directory, "/", "S12_M_stim01.pdf"), width = 8.5, height = 11)
+par(mfrow = c(6, 1), mar = c(1, 1, 2, 0.5), oma = c(1, 1, 1, 1),
+    cex.lab = 1, cex.axis = 1, cex.main = 1)
+
 ## This loop allows us to read every csv file in a directory
-for (i in stripped_files) {
-  
-  
-  file_name = i # this is one file in a directory
-  file_name_csv <- paste(file_name, ".csv", sep='') 
-  output_name <- NULL
-  print(file_name_csv)
-  
-  ### STEP 2: Load in the functions
-  source("2_Functions.R") # this will read in the script containing the necessary functions
-  #cat("Step 2 Complete. Functions successfully read.", "\n")
-  
-  ### STEP 3: Load in the data
-  source("3_Reader.R")
-  #cat("Step 3 Complete. Data successfully read.", "\n")
-  
-  ### STEP 4: Perform the relevant calculations
-  minimum_sound <- 0 # in dB, typically zero 
+for (file_name in stripped_files) {
+  print(convert_to_title(file_name))
+
+  # STEP 3: Load in the data
+  source("R files/3_Reader.R")
+
+  # STEP 4: Perform the relevant calculations
+  minimum_sound <- 0 # in dB, typically zero
   maximum_sound <- 90 # in dB, depends on experiment
-  tick_mark_interval <- 10 # in dB, space between tick marks
-  # results[1, 1] = file_name_csv
-  # print(file_name_csv)
-  # results[1, 2] = avg.turn
-  # print(avg.turn)
-  # results[1, 3] = sd.turn
-  #cat("diff.turn is:", diff.turn)
-  # results[num.files, 1] = file_name_csv
-  # results[2, 2] = diff.turn
-  
-  #results[num.files, 3] = sd.turn
-  source("4_Calculator.R")
-  #cat("Step 4 Complete. Calculations performed.", "\n")
+  source("R files/4_Calculator.R")
 
-  ### STEP 5: Generate and save the cricket's graph
-  source("5_Grapher.R")
-  #qcat("Step 5 Complete. Graph saved as:", output_name_pdf ,"\n")
-   
-  num.files = num.files + 1
-  print(num.files)
+  # STEP 5: Generate and save the cricket's graph
+  source("R files/5_Grapher_Fixed_Anchor.R")
+
+  num_files <- num_files + 1  # Thanks, R!
 }
-#results <- aperm(results, c(2, 1))
+dev.off()
 
-#print(results[2,2])
-# create a data frame with some values
-
-
-# create a new Excel workbook
-my_wb <- createWorkbook()
-
-# add a new worksheet to the workbook
-addWorksheet(my_wb, "Sheet2")
-
-# write the data frame to the worksheet
-writeData(my_wb, "Sheet2", results)
-
-# save the workbook to a file
-saveWorkbook(my_wb, "Full_pass_throughv2.xlsx")
-
-#write.xlsx(results, file = "test7.xlsx", sheetName = "Sheet1")
-
-#write.xlsx(results, "Turn angle stats", row.names=FALSE, col.names=FALSE)
-
+print(paste0(num_files, " files outputted sucessfully. "))

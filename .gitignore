@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store*
+*.DS_Store*
+graphs_output/*
+filtering_output/*
+DLC_output/*
+filtering_angle_output/*
+single_cricket_processed_data/*
