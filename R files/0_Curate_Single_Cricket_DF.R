@@ -26,20 +26,24 @@ minimum_sound <- 0 # in decibels
 # Read in the data
 source("R files/utils.R")
 source("R files/2_Functions.R")
-source("R files/3_Reader.R")
-source("R files/4_Calculator_More_Angle.R")
+for (file_name in file_list) {
+  source("R files/3_Reader.R")
+  source("R files/4_Calculator_More_Angle.R")
 
-# Create a new dataframe with the following columns:
-# 1. Frame number
-# 2. Body Angle (wax-abdomen)
-# 3. Right_foot_centerline_dist (in pixels)
-# 4. Left_foot_centerline_dist (in pixels)
-df <- data.frame(
+  # Create a new dataframe with the following columns:
+  # 1. Frame number
+  # 2. Body Angle (wax-abdomen)
+  # 3. Right_foot_centerline_dist (in pixels)
+  # 4. Left_foot_centerline_dist (in pixels)
+  df <- data.frame(
   Frame = frame_col,
   Body_Angle = angles,
   Right_foot_centerline_dist = right_leg_center_dist,
   Left_foot_centerline_dist = left_leg_center_dist
-)
+  )
 
-# output the data frame to a csv file
-write.csv(df, file = paste0(output_directory, "/", file_name), row.names = FALSE)
+  # output the data frame to a csv file
+  write.csv(df,
+  file = paste0(output_directory, "/", convert_to_title(file_name), ".csv"),
+  row.names = FALSE)
+}
