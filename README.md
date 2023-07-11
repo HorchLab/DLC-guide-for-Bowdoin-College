@@ -1,6 +1,8 @@
 # Easy guide to use DeepLabCut on Bowdoin's HPC
 Reference to [DLC's official github](https://github.com/DeepLabCut/DeepLabCut/tree/master/deeplabcut).
-Reference to the (original R script in 2019)[https://github.com/mhukill/Crickets-Methods]. 
+Reference to the [original R script in 2019](https://github.com/mhukill/Crickets-Methods). 
+
+Link to [Tom's forked repository](https://github.com/tom21100227/DLC-guide-for-Bowdoin-College). Some leftover half-finished projects are still going and will be eventually merged back into this repository. 
 
 This page belongs to the lab of Professor Hadley W. Horch at Bowdoin College. All of her behavioral data, along with DeepLabCut information and user guide are centralized in this GitHub location. 
 
