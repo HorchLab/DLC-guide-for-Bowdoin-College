@@ -1,4 +1,8 @@
-## 2_Functions.R: defines functions needed. Used with Master.R
+# This script contains all the functions needed to run the Master.R script.
+# It is called by the Master.R script, and should not be run on its own.
+# And it won't do anything other than load the functions
+# KEEP IN MIND THAT PICK THEOREM IS WRONG AND SHOULD BE USED
+# AS OF JULY 2023
 
 #' Pick's Theorem: the underlying area calculation formula used in this pipeline
 #'

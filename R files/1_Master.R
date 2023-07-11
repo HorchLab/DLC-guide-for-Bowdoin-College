@@ -3,7 +3,12 @@ library(MASS)
 library(stringr)
 source("R files/utils.R")
 
-# 1_Master.R
+# This script is used to generate the graphs for each individual.
+# This would output files that are similar to Ean's honors (see Small 2023)
+# With position, variation, angle, and volume bar.
+# To use this script, you need to change the following variables:
+# 1. *_directory: the directory where you store/want to output all the files
+# 2. output_description: the description you want to add to the output directory
 
 formatted_time <- format(Sys.time(), "%Y-%m-%d-%H-%M")
 output_description <- ""

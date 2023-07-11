@@ -1,4 +1,6 @@
-## 5_Grapher.R. Used with 1_Master.
+# 5_Grapher.R. Used with 1_Master.
+# Depreciated. Use 5_Grapher_Fixed_Anchor.R instead. 
+
 setwd(output_directory) # enter subdirectory in which to store graphs
 if(is.null(output_name)){ # generates the output name file according to preference specified in 1_Master.R
   output_name_pdf <- paste(file_name, "_graphs.pdf", sep='')

@@ -16,14 +16,14 @@ if (!file.exists(output_directory)) {
 } else {
   cat("Output directory already exists.\n")
 }
-file_list <- list.files(path = input_directory, pattern='.csv') # make sure to identify which directory 
+
+file_list <- list.files(path = input_directory, pattern='.csv')
 cat("# of .csv files found: ", length(file_list), "\n")
 
 file_name <- file_list[1] # for first stage I'm just going to do one file
 maximum_sound <- 90 # in decibels
 minimum_sound <- 0 # in decibels
 
-# Read in the data
 source("R files/utils.R")
 source("R files/2_Functions.R")
 for (file_name in file_list) {
