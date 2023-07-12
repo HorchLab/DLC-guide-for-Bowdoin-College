@@ -80,6 +80,7 @@ filter_plot <- function(filename) {
   abline(h = 0, col = "black", lty = 2)
   legend("topright", legend = c("Left leg", "Right leg"),
          col = c("blue", "red"), lty = 1)
+  grid()
 }
 
 ## This loop allows us to read every csv file in a directory
@@ -88,9 +89,7 @@ for (filtering_criteria in criterias) {
   pdf(paste0(output_directory, "/", criteria_order[n], "_stim01.pdf"), width = 17, height = 22)
   par(mfrow = c(6,1), mar = c(1,1,2,0.5), oma = c(1,1,1,1),cex.lab=1,cex.axis=1, 
       cex.main = 1.5)
-  num <- 0
-  Lvars <- c()
-  Rvars <- c()
+  n <- n + 1
   for (file_name in file_list) {
     info_vec <- convert_to_datavec(file_name)
 

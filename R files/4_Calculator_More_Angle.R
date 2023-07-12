@@ -96,14 +96,16 @@ left_hind_leg_length <- mean(dist.func(left_knee_x, left_knee_y,
                                       left_foot_x, left_foot_y))
 right_hind_leg_length <- mean(dist.func(right_knee_x, right_knee_y,
                                       right_foot_x, right_foot_y))
-if (abs(left_hind_leg_length - right_hind_leg_length) > 20) {
+if (abs(left_hind_leg_length - right_hind_leg_length) > 10) {
   print(paste0("WARNING: At ", file_name,
-  " left and right hind leg length are not equal (>20 px)",
+  " left and right hind leg length are not equal (>10 px)",
   abs(left_hind_leg_length - right_hind_leg_length), " px"))
 }
 
-left_leg_center_dist_normalized <- left_leg_center_dist / left_hind_leg_length
-right_leg_center_dist_normalized <- right_leg_center_dist / right_hind_leg_length
+average_hind_leg_length <- mean(c(left_hind_leg_length, right_hind_leg_length))
+
+left_leg_center_dist_normalized <- left_leg_center_dist / average_hind_leg_length
+right_leg_center_dist_normalized <- right_leg_center_dist / average_hind_leg_length
 
 ## Convert sound from DLC coordinates into dB
 ss_x_db <- scale.sound(ss_x, minimum_sound, maximum_sound)
