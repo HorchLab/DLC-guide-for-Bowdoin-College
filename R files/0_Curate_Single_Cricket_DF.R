@@ -5,8 +5,8 @@ library(moments)
 # Convert raw DLC data for one crickets into a single data frame
 # containing secondary parameters like foot centerline distance.
 primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
-input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
-output_directory <- "single_cricket_processed_data"
+input_directory <- "DLC_output/DLC_csv_files_it8_stim01"
+output_directory <- "single_cricket_processed_data_it8"
 setwd(primary_directory)
 
 if (!file.exists(output_directory)) {

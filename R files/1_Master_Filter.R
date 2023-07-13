@@ -18,8 +18,8 @@ source("R files/utils.R")
 # to use this script for other purposes, you need to change/delete that.
 
 primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
-input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
-output_directory <- "filtering_angle_output"
+input_directory <- "DLC_output/DLC_csv_files_it8_stim01"
+output_directory <- "filtering_angle_output_it8"
 setwd(primary_directory)
 
 if (!file.exists(output_directory)) {
@@ -64,7 +64,7 @@ criteria_order <- c("S11_M", "U_M", "GFP_M", "S12_M", "S11_F",
 source("R files/2_Functions.R") # this will read in the script containing the necessary functions
 
 filter_plot <- function(filename) {
-  plot(shots, average_angle_per_shot, main = convert_to_title(file_name),
+  plot(angles, main = convert_to_title(file_name),
       xlab = "", ylab = "Angle (degrees)", col = "mediumorchid4",
       type = "l", ylim = c(-25, 25), xaxt = "n")
   grid() # add gridlines
