@@ -19,8 +19,10 @@ source("R files/utils.R")
 
 primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
 input_directory <- "DLC_output/DLC_csv_files_it8_stim01"
-output_directory <- "filtering_angle_output_it8"
+output_directory <- "filtering_angle_output_it8_skiped_low_llks"
 setwd(primary_directory)
+
+skip_low_confidence = TRUE
 
 if (!file.exists(output_directory)) {
   # Create the output directory
@@ -70,7 +72,7 @@ filter_plot <- function(filename) {
   grid() # add gridlines
   abline(h = 0, col = "red") # add a red line at y = 0
 
-  y_axis_size <- max(left_leg_center_dist_normalized, right_leg_center_dist_normalized)
+  y_axis_size <- max(na.omit(left_leg_center_dist_normalized), na.omit(right_leg_center_dist_normalized))
 
   plot(right_leg_center_dist_normalized, type = "l", col = "blue",
        ylim = c(-y_axis_size, y_axis_size),
