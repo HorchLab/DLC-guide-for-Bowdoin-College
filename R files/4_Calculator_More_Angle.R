@@ -22,7 +22,7 @@ frame_len <- length(ab_x) # this is how many frames are in the dataset
 center_point <- function(x, y) {
   # Estimate the density of the points using kernel density estimation
   # NOTE: when n is too small kde gets weird, N = 200 glitched.
-  dens <- kde2d(x, y, n = 300)
+  dens <- kde2d(na.omit(x), na.omit(y), n = 300)
 
   # Find the index of the point with the highest density
   max_idx <- which(dens$z == max(dens$z), arr.ind = TRUE)
@@ -52,6 +52,7 @@ angles <- acos((b^2 + c^2 - a^2) / (2 * b * c)) * 180 / pi # angle calculation
 # Define center line (wax) as zero; make angles positive or negative deviation
 # from that line:
 for (i in 1:frame_len) {
+  if (is.na(ab_x[i])) {next}
   if (ab_x[i] <= anchor_x) {
     angles[i] <- -angles[i]
   }
@@ -93,16 +94,17 @@ foot_distance <- dist.func(left_foot_x, left_foot_y, right_foot_x, right_foot_y)
 # Normalize the distance between centerline and foot by the length
 # of the hind leg
 left_hind_leg_length <- mean(dist.func(left_knee_x, left_knee_y,
-                                      left_foot_x, left_foot_y))
+                                      left_foot_x, left_foot_y), na.rm = TRUE)
 right_hind_leg_length <- mean(dist.func(right_knee_x, right_knee_y,
-                                      right_foot_x, right_foot_y))
+                                      right_foot_x, right_foot_y), na.rm = TRUE)
+
 if (abs(left_hind_leg_length - right_hind_leg_length) > 10) {
   print(paste0("WARNING: At ", file_name,
   " left and right hind leg length are not equal (>10 px)",
   abs(left_hind_leg_length - right_hind_leg_length), " px"))
 }
 
-average_hind_leg_length <- mean(c(left_hind_leg_length, right_hind_leg_length))
+average_hind_leg_length <- mean(c(left_hind_leg_length, right_hind_leg_length), na.rm = TRUE)
 
 left_leg_center_dist_normalized <- left_leg_center_dist / average_hind_leg_length
 right_leg_center_dist_normalized <- right_leg_center_dist / average_hind_leg_length

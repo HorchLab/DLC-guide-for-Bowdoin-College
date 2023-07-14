@@ -6,7 +6,7 @@ library(moments)
 # containing secondary parameters like foot centerline distance.
 primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
 input_directory <- "DLC_output/DLC_csv_files_it8_stim01"
-output_directory <- "single_cricket_processed_data_it8"
+output_directory <- "single_cricket_processed_data_it8_filtered_with_llks"
 setwd(primary_directory)
 
 if (!file.exists(output_directory)) {
@@ -27,6 +27,8 @@ minimum_sound <- 0 # in decibels
 source("R files/utils.R")
 source("R files/2_Functions.R")
 
+skip_low_confidence = TRUE
+
 for (file_name in file_list) {
   source("R files/3_Reader.R")
   source("R files/4_Calculator_More_Angle.R")
@@ -40,7 +42,9 @@ for (file_name in file_list) {
   Frame = frame_col,
   Body_Angle = angles,
   Right_foot_centerline_dist = right_leg_center_dist,
-  Left_foot_centerline_dist = left_leg_center_dist
+  Left_foot_centerline_dist = left_leg_center_dist, 
+  Right_foot_centerline_dist_normalized = right_leg_center_dist_normalized, 
+  Left_foot_centerline_dist_normalized = left_leg_center_dist_normalized
   )
 
   # output the data frame to a csv file

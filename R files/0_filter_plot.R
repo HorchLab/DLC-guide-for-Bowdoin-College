@@ -36,6 +36,6 @@ for (file_name in file_list) {
     legend("bottomright",
     legend = c("abdomen", "wax", "left knee", "left foot", "right knee", "right foot"),
     col = c("purple", "black", "blue", "green", "orange", "red"),
-    pch = 1, cex = 0.8)
+            pch = 1, cex = 0.8)
     dev.off()
 }

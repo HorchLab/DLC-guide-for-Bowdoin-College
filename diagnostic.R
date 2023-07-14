@@ -4,7 +4,7 @@ library(raster)
 library(stringr)
 source("R files/utils.R")
 source("R files/2_Functions.R")
-input_directory <- "DLC_output/DLC_csv_files_it7_s4_stim01"
+input_directory <- "DLC_output/DLC_csv_files_it8_stim01"
 primary_directory <- "~/summer2023/DLC-guide-for-Bowdoin-College"
 
 setwd(primary_directory)
@@ -21,12 +21,32 @@ filtering_critiera <- function() {
 minimum_sound <- 0 # in dB, typically zero 
 maximum_sound <- 90 # in dB, depends on experiment
 
-pdf("angle_and_foot_dist.pdf", width = 30, height = 20)
-par(mfrow = c(2, 1), mar = c(2, 2, 2, 2), oma = c(1,1,1,1))
+# pdf("angle_and_foot_dist.pdf", width = 30, height = 20)
+# par(mfrow = c(2, 2), mar = c(2, 2, 2, 2), oma = c(1,1,1,1))
 for (file_name in file_list) {
-  info_vec <- convert_to_datavec(file_name)
-  # if (!(filtering_critiera())) {next}
+  skip_low_confidence <- TRUE
   source("R files/3_Reader.R")
+  # plot likelihood for all points on one histogram with ggplot
+  # Plots a histogram of the likelihood values for all points using ggplot.
+  # Adds a legend to the plot with meaningful names.
+  #
+  # data: data frame containing the likelihood values for all points.
+  # Returns: a ggplot object.
+  likelihood_plot <- ggplot(data, aes(V4, V7, V10, V13, V16, V19, V22)) +
+    geom_histogram(binwidth = 0.01) +
+    labs(title = convert_to_title(file_name),
+      x = "Likelihood Value", y = "Count") +
+    scale_fill_manual(values = c("V4" = "red", "V7" = "blue", "V10" = "green",
+               "V13" = "purple", "V16" = "orange", "V19" = "black",
+               "V22" = "brown"),
+               name = "Point Number",
+               labels = c("Abdomen", "Wax", "Left Knee", "Left Foot", "Right Knee", "Right Foot", "Sound")) +
+    guides(fill = guide_legend(title = NULL))
+  likelihood_plot
+}
+# Lines below are functions that could be inserted to testing.'
+
+filter_plot <- function() {
   source("R files/4_Calculator_More_Angle.R")
   plot(shots, average_angle_per_shot, main = convert_to_title(file_name),
       xlab = "", ylab = "Angle (degrees)", col = "mediumorchid4",
@@ -46,8 +66,6 @@ for (file_name in file_list) {
          col = c("blue", "red"), lty = 1)
   grid()
 }
-dev.off()
-# Lines below are functions that could be inserted to testing.'
 
 check_wax_shift <- function() {
   # remove the first 30 and last 30 frames for consistency
@@ -57,7 +75,7 @@ check_wax_shift <- function() {
   movement <- dist.func(stripped_wax_x[-length(stripped_wax_x)],
     stripped_wax_y[-length(stripped_wax_y)], stripped_wax_x[-1], stripped_wax_y[-1])
 
-  if(any(movement > 20)) {
+  if (any(movement > 20)) {
 
     # Extracting individual name (e.g., 201027UM1)
     individual_name <- sub(".*?(\\d{6}[A-Za-z0-9]+).*", "\\1", file_name)
