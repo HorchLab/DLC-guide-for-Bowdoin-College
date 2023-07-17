@@ -9,6 +9,63 @@ input_directory <- "DLC_output/DLC_csv_files_it8_stim01"
 output_directory <- "filtered_trajectory_plot_it8"
 setwd(primary_directory)
 
+
+## function that takes in data and returns the sliding window of specified
+## size and movement along the dataset, and turns the average value for the 
+## data points in the window
+moving.mean <- function(data, window.size = 1000, window.diff = 100)
+{
+  num.values <- length(data)
+  means <- 1:((floor(num.values/window.diff)) + 1)
+  i = 1
+  list.index = 1
+  while(i <= num.values)
+    {
+    start.index <- i
+    end.index <- i + window.size
+    if(end.index <= num.values)
+      {
+      window <- data[start.index:end.index]
+    }else 
+      {
+      window <- data[start.index:num.values]
+      }
+    means[list.index] <- mean(window, na.rm=TRUE)
+    i = i + window.diff
+    list.index = list.index + 1 
+  }
+  return(means)
+}
+
+
+## function that takes in data and returns the sliding window of specified
+## size and movement along the dataset, and turns the standard deviation for the 
+## data points in the window
+moving.sd <- function(data, window.size = 1000, window.diff = 100)
+{
+  num.values <- length(data)
+  sds <- 1:((floor(num.values/window.diff)) + 1)
+  i = 1
+  list.index = 1
+  while(i <= num.values)
+  {
+    start.index <- i
+    end.index <- i + window.size
+    if(end.index <= num.values)
+    {
+      window <- data[start.index:end.index]
+    }else 
+    {
+      window <- data[start.index:num.values]
+    }
+    sds[list.index] <- sd(window, na.rm=TRUE)
+    i = i + window.diff
+    list.index = list.index + 1 
+  }
+  return(sds)
+}
+
+
 if (!file.exists(output_directory)) {
   # Create the output directory
   dir.create(output_directory, recursive = TRUE)  # recursive means if the parent dir doesn't exist, it will proceed to create. 
