@@ -13,16 +13,9 @@ setwd(primary_directory)
 file_list <- list.files(path = input_directory, pattern = ".csv")
 cat("# of .csv files found: ", length(file_list), "\n")
 
-filtering_critiera <- function() {
-  # for S12 use !(info_vec[5] %in% c("S11","G","U")), cuz naming method for s12 is ass. 
-  (info_vec[6] == "M") && (info_vec[5] == "S11")
-  # (as.numeric(format(as.Date(info_vec[1]), "%m")) >= 6) && (format(as.Date(info_vec[1]), "%Y") == 2021)
-}
 minimum_sound <- 0 # in dB, typically zero 
 maximum_sound <- 90 # in dB, depends on experiment
 
-# pdf("angle_and_foot_dist.pdf", width = 30, height = 20)
-# par(mfrow = c(2, 2), mar = c(2, 2, 2, 2), oma = c(1,1,1,1))
 for (file_name in file_list) {
   skip_low_confidence <- TRUE
   source("R files/3_Reader.R")
@@ -48,23 +41,9 @@ for (file_name in file_list) {
 
 filter_plot <- function() {
   source("R files/4_Calculator_More_Angle.R")
-  plot(shots, average_angle_per_shot, main = convert_to_title(file_name),
-      xlab = "", ylab = "Angle (degrees)", col = "mediumorchid4",
-      type = "l", ylim = c(-25, 25), xaxt = "n")
-  grid() # add gridlines
-  abline(h = 0, col = "red") # add a red line at y = 0
-
-  y_axis_size <- max(left_leg_center_dist_normalized, right_leg_center_dist_normalized)
-
-  plot(right_leg_center_dist_normalized, type = "l", col = "blue",
-       ylim = c(-y_axis_size, y_axis_size),
-       main = paste("leg-center distance for", convert_to_title(file_name)),
-       xlab = "", ylab = "Distance(px)")
-  lines(left_leg_center_dist_normalized * -1, col = "red")
-  abline(h = 0, col = "black", lty = 2)
-  legend("topright", legend = c("Left leg", "Right leg"),
-         col = c("blue", "red"), lty = 1)
-  grid()
+  
+  good_flyer_index = 
+  
 }
 
 check_wax_shift <- function() {
