@@ -26,6 +26,7 @@ I suggest reading through this entire Markdown and if any specific questions rem
   dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
   [username]@dover.bowdoin.edu's password: [enter your password here]
   ```
+  > `-Y` here is needed to estabilish a X11 connection (which enables display)! 
   - To make sure the graphic user interface (GUI), we need to submit following line of code:
   ```
   $ xeyes
@@ -101,6 +102,7 @@ In [3]: config_path = '/mnt/research/hhorch/[username]/[working directory]'
 4.3: We can now extract frames:
     - This may take a few moments, but you should see the frames being counted
     - You will primarily use 'automatic' and 'kmeans' as the parameters, but these are default, so you don't always have to fill them in
+    - For some reasons, this line is sensitive to case and/or the difference between double and single quote. (Tom - 11/7/2023)
 ```python
 In [4]: deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmeans')
 "Do you want to extract (perhaps additional) frames for [file path]? yes/no" yes 
