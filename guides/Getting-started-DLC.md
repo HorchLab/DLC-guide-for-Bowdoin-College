@@ -4,9 +4,47 @@ This guide was written to help with the basics of getting DLC up and running. Fo
 
 I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
 
+> With the new version of DeepLabCut's GUI, you can now use the GUI on Bowdoin's HPC. **If you decided to use the GUI, step 1-3 is not necessary. **
+
+## Step 1.ALT: Use interactive server with GUI: 
+
+> Skip this step if you:
+> - Are **not planning on** using the new version of DeepLabCut's GUI. **OR**
+> - Read [the updated guide on Bowdoin's HPC wiki about deeplabcut](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut#New_2024_Slurm_HPC_Cluster). 
+
+### Step 1.1: Connect to the HPC
+
+Login to the [HPC Web Portal](https://newhpcweb.bowdoin.edu) at https://newhpcweb.bowdoin.edu using your Bowdoin login name **(not email address, no `@bowdoin.edu`)** and password.
+
+Select the Interactive Applications menu and choose the "Bowdoin HPC Desktop", request a session with at least 16GB of memory. Press the Blue Launch button. Wait several seconds as the Cluster sets up the job, then press the blue Launch Bowdoin HPC Desktop button.
+
+> [Not working as of Jun 06 2024]: Alternatively, choose "Bowdoin HPC Desktop with GPU" if you wish to do GPU intensive steps (labelling data is not GPU intensive, but training the network is). This includes everything mentioned in Step 6. 
+
+> [**TODO**]: Include a picture of that desktop and terminal. 
+
+### Step 1.2: Get to DeepLabCut GUI
+
+Once you get to open a Linux shell by going to the Applications menu, Systems Tools, then MATE Terminal. In the terminal, run the following command to activate the DLC environment:
+
+```bash
+run deeplabcut
+```
+
+This should bring up an iPython interface (look for `In [1]`) on your terminal. Once in the iPython interface, you can run the following command to open the GUI:
+
+```python
+In [1]: import deeplabcut
+# There's gonna be some warning messages popping out, you can safely ignore any messages about "Tensorflow binary optimizations", "Unable to register cuBLAS", and "networkx backend definted more than once"
+In [2]: deeplabcut.launch_dlc()
+# This line would open the GUI in a new window
+```
+
+Once you get to the GUI, you can follow the rest of the steps in the GUI starting from Step 4.
+
 ## Step 1: Downloading Necessary Software for DLC
 
 > Skip this step if you:
+> - Are using the new version of DeepLabCut's GUI, **OR**
 > - Already have XQUARTZ installed, and
 > - Are on campus and connected to the Bowdoin network.
 
@@ -23,6 +61,7 @@ I suggest reading through this entire Markdown and if any specific questions rem
 ## Step 2: Accessing the Bowdoin HPC through interactive server
 
 > Skip this step if you:
+> - Are using the new version of DeepLabCut's GUI, **OR**
 > - Are already familiar with using terminal on macOS or alternative shell on Windows, and
 > - Have used Bowdoin HPC before. 
 
@@ -70,6 +109,7 @@ Other helpful tips with terminal
 ## Step 3: creating DeepLabCut (DLC) environments and running ipython to use DLC on HPC interactive servers
 
 > Skip this step if you:
+> - Are using the new version of DeepLabCut's GUI, **OR**
 > - Read and understood the [DLC user guide on Bowdoin's HPC website](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut). 
 
 ### 3.1: Create a DLC environment
