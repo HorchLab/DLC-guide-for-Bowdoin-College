@@ -1,13 +1,16 @@
 # Easy guide to use DeepLabCut on Bowdoin's HPC
 
-This page belongs to the lab of Professor Hadley W. Horch at Bowdoin College. All of her behavioral data, along with DeepLabCut information and user guide are centralized in this GitHub location. 
+> This page belongs to the lab of Professor Hadley W. Horch at Bowdoin College. All of her behavioral data, along with DeepLabCut information and user guide are centralized in this GitHub location. 
+
+For actual guide on how to use DeepLabCut on Bowdoin's HPC, please refer to `Getting-started-DLC.md`.
+[Click here](guides/Getting-started-DLC.md) to go to the guide.
 
 ## References
-1. Steps on how to get started using DLC on the HPC (`Getting-started-DLC.md`) [Click here](guides/Getting-started-DLC.md)
+1. Steps on how to get started using DLC on the HPC (`Getting-started-DLC.md`) 
 2. The R scripts and Python files necessary to do so (`HPC_scripts`)
-3. Extensive videos & data on cricket behavior (negative phonotaxis) (Hidden by `.gitignore`)
-4. DLC examples on cricket negative phonotaxis
-5. DLC and HPC troubleshooting information (`Additional_DLC_Help/*`)
+3. ~~Extensive videos & data on cricket behavior (negative phonotaxis)~~ (Hidden by `.gitignore`)
+4. ~~DLC examples on cricket negative phonotaxis~~
+5. DLC and HPC troubleshooting information (`Additional_DLC_Help/*`) *Some of the information is outdated, but still useful for reference.*
 
 Reference to [DLC's official github](https://github.com/DeepLabCut/DeepLabCut/tree/master/deeplabcut).
 Reference to the [original R script in 2019](https://github.com/mhukill/Crickets-Methods). 
