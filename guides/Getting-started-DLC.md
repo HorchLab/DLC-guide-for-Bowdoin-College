@@ -1,8 +1,14 @@
 # Steps to use DLC on Bowdoin's HPC
 
-This guide was written to help with the basics of getting DLC up and running. For the most detailed user guide, [DLC offers a very handy one. ](https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/standardDeepLabCut_UserGuide.md) 
+This guide was written to help with the basics of getting DLC up and running. For the most detailed user guide, [DLC offers a very handy one.](https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/standardDeepLabCut_UserGuide.md) I attached links to the specific sections of the user guide that correspond to each step, so if there's something you don't understand, you can refer to the user guide for more information.
 
 I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
+
+This guide is still a work in progress, as there's a lot of information to cover. If you have any questions, feel free to [reach out to me(Tom)](mailto:chan@bowdoin.edu). 
+
+- [ ] Update the guide to include a full directions for DLC using the new GUI. 
+- [ ] Explaining each step's purpose and what it does.
+- [ ] Add a section about [3D projects](https://deeplabcut.github.io/DeepLabCut/docs/Overviewof3D.html#d-overview) and how to set them up.
 
 > With the new version of DeepLabCut's GUI, you can now use the GUI on Bowdoin's HPC. **If you decided to use the GUI, step 1-3 is not necessary.**
 
@@ -146,7 +152,7 @@ In [1]: import deeplabcut
 
 ## Step 4: creating DeepLabCut (DLC) project, extract frames, label frames, and train your network
 
-### 4.1: Create a new project
+### 4.1: Create a new project [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#a-create-a-new-project)
 Now, lets start using DLC to create a new project with the following code:
 
 ```python
@@ -168,7 +174,7 @@ In [3]: config_path = '/mnt/research/hhorch/[username]/[working directory]/confi
 > ```python
 > In [1]: config_path = deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 > ```
-### 4.3: Extract frames from the video. 
+### 4.3: Extract frames from the video. [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#c-data-selection-extract-frames)
 We can now extract frames:
   - This may take a few moments, but you should see the frames being counted
   - You will primarily use 'automatic' and 'kmeans' as the parameters, but these are default, so you don't always have to fill them in
@@ -206,7 +212,7 @@ If you are extracting frames for a second time, it will prompt you with the foll
   - `crop=True/False` which can crop the video if True
   - `userFeedback=True/False` which will ask the user to process a specific video before doing so. 
 
-### 4.4: Label frames
+### 4.4: Label extracted frames [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#d-label-frames)
 
 Step 4.3 gives us the extracted frames, now we can label them:
 
@@ -220,7 +226,7 @@ You can now label each bodypart for each frame before training the network
 > NOTE: I was using a marker size of 12 for each training before this. I changed it to 5 to be more precise, whihc I think will ultimately be more accurate. - Ean
 > The marker size doesn't matter for the actual training, because the labels are just one xy coordinate for each body part, but a smaller marker size will allow for more precise labeling. - Tom
 
-### 4.5: Check Labels
+### 4.5: Check Labels [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#e-check-annotated-frames)
 
 > Skip this step if you're very confident in your labeling abilities.
 
@@ -233,7 +239,7 @@ In [6]: deeplabcut.check_labels(config_path)
 "If all the labels are ok, then use the function 'create_training_dataset' to create the training dataset!"
 ```
 
-### 4.6: Create training data set
+### 4.6: Create training dataset [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#f-create-training-dataset-s)
 
 Finally, let's create a training dataset
 
@@ -257,7 +263,7 @@ ssh -Y [username]@slurm.bowdoin.edu
 - Unlike @dover and @foxcroft, we have to pass scripts (.sh files) to the HPC so that it can perfom high performance computing using the GPU's (which allow for larger capacities of data)
 - You can find all of the scipts and python files in the [HPC_scripts](https://github.com/esmall2023/DLC_HPC/tree/main/HPC_scripts) folder in this repository.
 
-### 5.2: Submit the training job to the cluster
+### 5.2: Training the network [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#g-train-the-network)
 You then need to submit this "job" to the cluster with the following code:
 
 ```
@@ -271,11 +277,13 @@ Once we have trained our network as in step 6, we want to evaluate the network t
 
 ~~There are parameters called Train error and Test Error. For the sake of our experiment and from my research (which was very hard to find), if the train and test error are close to eachother (in pixels) and they are both close to, or below 4 px, then the training is sufficient.~~
 
-> Train error and Test error means in-sample error and out-of-sample error. If the train error is very low and the test error is very high, then the model is overfitting. If the train error is high and the test error is low, then the model is underfitting. A rule of thumb is to have the train error and test error be close to each other and low. - Tom
+> Train error and Test error means in-sample error and out-of-sample error. If the train error is very low and the test error is very high, then the model is overfitting. If the train error is high and the test error is low, then the model is underfitting. **A rule of thumb is to have the train error and test error be close to each other and low.** - Tom
 
 You can also create labeled videos to determine whether DLC was able to accurately locate each body part throughout the video.
 
-### 6.1: Evaluating the network
+### 6.1: Evaluating the network [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#h-evaluate-the-trained-network)
+
+> This step is optional to analyze new videos, but you should always evaluate the network after training it.
 
 We do so the same way as training the network with the script file. Make sure you are in the right directory where your HPC_scripts are like this: `/mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/HPC_Scripts`
 
@@ -288,28 +296,40 @@ sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G evaluate_script.sh
 The evaluation results might look something like this: you can find them by going to ./evaluation-results/iteration-7/ and it is the .csv file at the top
 ![Might look something like this](./images/evaluation.png)
 
-### 6.2: Analyze Novel Videos
+### 6.2: Analyze (Novel) Videos [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#i-novel-video-analysis)
 Once we evaluate the network, we will want to analyse new video to determine how well the network was actually trained:
 
 ```python
 In [1]: deeplabcut.analyze_videos(config_path, ['full path of video'], videotype='mkv or your videotype', save_as_csv=True)
 ```
 
-### 6.3: Filter predictions.
+### 6.3: Filter predictions. [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#j-filter-pose-data-data-recommended)
 
-In order to make a graph, we need to filter the CSV values using the following code:
+~~In order to make a graph~~, we need to filter the CSV values using the following code:
 
 ```python
 In [2]: deeplabcut.filterpredictions(config_path, ['full path of video'], videotype='mkv or your videotype', shuffle=1)
 ```
 
-### 6.4: Create Labelled Videos
+### 6.4: Additional analysis methods
+
+#### 6.4.1 Create labeled video [Link to Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#l-create-labeled-videos)
 
 We can also create a labeled video to see whether the labels for the body parts were marked correctly using one of the HPC scripts:
 
 ```
 sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G create_labeled_script.sh
 ```
+
+#### 6.4.2 Plotting trajectories [Link to Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#k-plot-trajectories)
+
+We can also plot the trajectories of the body parts to see how they move throughout the video using the following code:
+
+```python
+In [3]: deeplabcut.plot_trajectories(config_path, ['full path of video'], videotype='mkv or your videotype', shuffle=1)
+```
+
+#### 6.4.3 Network refinements [Link to Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#m-optional-active-learning-network-refinement-extract-outlier-frames)
 
 ## Step 7: Re-training the network if it wasn't trained well enough
 
