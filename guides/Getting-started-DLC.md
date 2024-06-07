@@ -4,7 +4,7 @@ This guide was written to help with the basics of getting DLC up and running. Fo
 
 I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
 
-> With the new version of DeepLabCut's GUI, you can now use the GUI on Bowdoin's HPC. **If you decided to use the GUI, step 1-3 is not necessary. **
+> With the new version of DeepLabCut's GUI, you can now use the GUI on Bowdoin's HPC. **If you decided to use the GUI, step 1-3 is not necessary.**
 
 ## Step 1.ALT: Use interactive server with GUI: 
 
@@ -73,6 +73,7 @@ Once you get to the GUI, you can follow the rest of the steps in the GUI startin
 -  Example code:
 ```
 dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
+... (There will be some text here)
 [username]@dover.bowdoin.edu's password: [enter your password here]
 ```
 > - `-Y` here is needed to estabilish a X11 connection (which enables display)! 
@@ -83,7 +84,8 @@ dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
 ```
 [chan@dover ~]$ xeyes
 ```
-- This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work
+- This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work. 
+- If the eyes does not pops out, if could be an issue with XQUARTZ configuretion. To check that, open XQuartz, Go to Settings > Security > and ENABLE the checkbox "Allow connections from network clients". After enabling, restart Xquartz and restart your computer.
 
 2.3: Now, we want to access the correct filepath (directory)
 
@@ -140,6 +142,7 @@ In [1]: import deeplabcut
 ```
 
 > If you see an warning message like: `"DLC loaded in light mode; you cannot use any GUI (labeling, relabeling and standalone GUI)"`, double check that you have the `-Y` flag in your ssh command.
+> If you see any kinds of `FutureWarning` or `DeprecationWarning`, you can ignore them (for now). 
 
 ## Step 4: creating DeepLabCut (DLC) project, extract frames, label frames, and train your network
 
@@ -158,9 +161,13 @@ Great, your new project is created, but lets save the filepath to the configurat
 > This part is optional, but would save you a lot of time in the future and codes below will assume you have done this step. 
 
 ```python
-In [3]: config_path = '/mnt/research/hhorch/[username]/[working directory]' 
+In [3]: config_path = '/mnt/research/hhorch/[username]/[working directory]/config.yaml' 
 ```
 
+> Alternatively, `config_path` is also returned when you call `create_new_project` function, so you can technically combine those two lines into one like this: Note that DeepLabCut team might change this in the future. 
+> ```python
+> In [1]: config_path = deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
+> ```
 ### 4.3: Extract frames from the video. 
 We can now extract frames:
   - This may take a few moments, but you should see the frames being counted
@@ -238,10 +245,10 @@ In [7]: deeplabcut.create_training_dataset(config_path)
 Great! Now we can start training the network.
   
 ## Step 5: Training the network using Bowdoin's GPU computers (ie ~~Moosehead~~ slrum)
-All of this is located [here](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut) as well
+This section is located [here](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut) as well. 
 
 ### 5.1: Log into HPC
-Now we need to log into Bowdoin's @slurm or @moosehead GPU servers with the following. Open a new terminal window and login within the following:
+Now we need to log into Bowdoin's @slurm ~~or @moosehead~~ GPU servers with the following. Open a new terminal window and login within the following:
 ```
 ssh -Y [username]@slurm.bowdoin.edu
 [username]@slurm's password: [enter password]
