@@ -8,7 +8,7 @@ This guide is still a work in progress, as there's a lot of information to cover
 
 - [ ] Update the guide to include a full directions for DLC using the new GUI. 
 - [ ] Explaining each step's purpose and what it does.
-- [ ] Add a section about [3D projects](https://deeplabcut.github.io/DeepLabCut/docs/Overviewof3D.html#d-overview) and how to set them up.
+- [ ] Add a section about [3D projects](https://deeplabcut.github.io/DeepLabCut/docs/Overviewof3D.html#d-overview) and how to set them up. (This might need to be a separated document). 
 
 > With the new version of DeepLabCut's GUI, you can now use the GUI on Bowdoin's HPC. **If you decided to use the GUI, step 1-3 is not necessary.**
 
@@ -33,7 +33,7 @@ Select the Interactive Applications menu and choose the "Bowdoin HPC Desktop", r
 Once you get to open a Linux shell by going to the Applications menu, Systems Tools, then MATE Terminal. In the terminal, run the following command to activate the DLC environment:
 
 ```bash
-run deeplabcut
+run-deeplabcut-2.3.9
 ```
 
 This should bring up an iPython interface (look for `In [1]`) on your terminal. Once in the iPython interface, you can run the following command to open the GUI:
@@ -101,7 +101,7 @@ we can use the `cd` feature to quickly move around in terminal's filepaths like 
 ```
 - We are now in your HPC-research directory
 
-Other helpful tips with terminal
+### Other helpful tips with terminal
 | Command | Description |
 | --- | --- |
 | `cd .` | View current directory |
@@ -212,7 +212,9 @@ If you are extracting frames for a second time, it will prompt you with the foll
   - `crop=True/False` which can crop the video if True
   - `userFeedback=True/False` which will ask the user to process a specific video before doing so. 
 
-### 4.4: Label extracted frames [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#d-label-frames)
+### 4.4: Label extracted frames using old GUI [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#d-label-frames)
+
+> The labelling part is perhaps the most labor intensive part of the process, and also the most important part. With the better methods of labelling described below, this step is much easier. Personally I recommend trying the two alternative methods below first, as they have less point of failure (alt.1 does everything on Bowdoin's HPC, alt.2 does everything on your personal computer, while this method projects GUI from Bowdoin's HPC to your personal computer, which can be glitchy factoring in the internet connection). **However, this method is the original method and was what we're using until 2024 Summer.** Use this as the last resort as it is quite painful to use. - Tom
 
 Step 4.3 gives us the extracted frames, now we can label them:
 
@@ -223,8 +225,53 @@ In [5]: deeplabcut.label_frames(config_path)
 You can now label each bodypart for each frame before training the network
 ![The DLC GUI should now pop-up](./images/labeling.png)
 
-> NOTE: I was using a marker size of 12 for each training before this. I changed it to 5 to be more precise, whihc I think will ultimately be more accurate. - Ean
 > The marker size doesn't matter for the actual training, because the labels are just one xy coordinate for each body part, but a smaller marker size will allow for more precise labeling. - Tom
+
+### 4.4.alt1: Labelling with Bowdoin's HPC Web. 
+
+> Not working as of Jun 10 2024, actively working with Dj to fixing this. - Tom
+
+First of all, make sure you have a stable connection to Bowdoin's network. Following [Step 1.ALT](#step-1alt-use-interactive-server-with-gui) to get to the Bowdoin HPC Desktop. If you have followed the steps above, select "load projects" and navigate to where you saved your `config.yaml` file. 
+
+Go to "Label Frames" and click the "Label Frames" button. A file selection window should pop up: 
+
+![The label frames window](./images/hpc_dlc_labels.png)
+
+From there, follow the instructions on the screen to label the frames. 
+
+### 4.4.alt2: Labelling on your computer. 
+
+> This method is what I'd say the most reliable one, as it doesn't rely on the internet connection between your computer and Bowdoin's HPC. And since everything is located on your computer, there's more ways to make it right. - Tom
+
+To make this step work, first install DeepLabCut on your computer. I assume you're using your Bowdoin-issued laptop with Apple Silicon, if that is not the case, you can follow the [official guide](https://deeplabcut.github.io/DeepLabCut/docs/installation.html) to install DeepLabCut on your computer. 
+
+- [ ] Install miniconda3 on your computer. (If you have homebrew, run `brew install miniconda3`)
+- [ ] Download the config file from DLC's website: [Link here](https://github.com/DeepLabCut/DeepLabCut/blob/main/conda-environments/DEEPLABCUT_M1.yaml#:~:text=Raw%20file%20content-,Download,-%E2%8C%98)
+- [ ] Navigate to where you downloaded the file in terminal, and run `conda env create -f DEEPLABCUT_M1.yaml`. [Not sure how to do that?](#other-helpful-tips-with-terminal)
+- [ ] Depending on how you installed miniconda3, you might want to run `conda init zsh` to initialize conda.
+
+> **Q: I use my terminal for other stuff and don't want conda to be activated every time I open a new terminal window. What should I do?**
+> A: Run `conda config --set auto_activate_base false` to stop conda from activating every time you open a new terminal window.
+
+Another prerequisite, assuming your experiment data / project is located in microwave, is to have microwave mounted on your computer. I'm not going into details here but [Bowdoin IT have an article for how to do that.](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=25556)
+
+From here, you can run the following code to activate the DLC environment:
+
+```bash
+conda activate DEEPLABCUT_M1
+```
+
+Now, you can run the following code to open the GUI:
+
+```bash
+ipython
+# Wait for the iPython interface to open
+# In iPython, run the following code:
+In [1]: import deeplabcut
+In [2]: deeplabcut.launch_dlc()
+```
+
+From here, follow the instruction in [alt.1](#44alt1-labelling-with-bowdoins-hpc-web) to label the frames. This method does most of the weight on your computer, so it should be more reliable than the other two methods.
 
 ### 4.5: Check Labels [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#e-check-annotated-frames)
 
