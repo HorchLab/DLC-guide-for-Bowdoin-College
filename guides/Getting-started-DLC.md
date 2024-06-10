@@ -251,6 +251,7 @@ To make this step work, first install DeepLabCut on your computer. I assume you'
 - [ ] Depending on how you installed miniconda3, you might want to run `conda init zsh` to initialize conda.
 
 > **Q: I use my terminal for other stuff and don't want conda to be activated every time I open a new terminal window. What should I do?**
+> 
 > A: Run `conda config --set auto_activate_base false` to stop conda from activating every time you open a new terminal window.
 
 Another prerequisite, assuming your experiment data / project is located in microwave, is to have microwave mounted on your computer. I'm not going into details here but [Bowdoin IT have an article for how to do that.](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=25556)
@@ -272,6 +273,11 @@ In [2]: deeplabcut.launch_dlc()
 ```
 
 From here, follow the instruction in [alt.1](#44alt1-labelling-with-bowdoins-hpc-web) to label the frames. This method does most of the weight on your computer, so it should be more reliable than the other two methods.
+
+The labelling UI, in it's full glory, should look like this:
+![The label frames window](./images/dlc_labels.png)
+
+There's already a ton of tutorial baked into this GUI, so I won't go into details here.
 
 ### 4.5: Check Labels [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#e-check-annotated-frames)
 
