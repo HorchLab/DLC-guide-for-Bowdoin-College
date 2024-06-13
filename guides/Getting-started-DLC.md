@@ -215,6 +215,11 @@ If you are extracting frames for a second time, it will prompt you with the foll
 ### 4.4: Label extracted frames using old GUI [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#d-label-frames)
 
 > The labelling part is perhaps the most labor intensive part of the process, and also the most important part. With the better methods of labelling described below, this step is much easier. Personally I recommend trying the two alternative methods below first, as they have less point of failure (alt.1 does everything on Bowdoin's HPC, alt.2 does everything on your personal computer, while this method projects GUI from Bowdoin's HPC to your personal computer, which can be glitchy factoring in the internet connection). **However, this method is the original method and was what we're using until 2024 Summer.** Use this as the last resort as it is quite painful to use. - Tom
+>
+> **General Rules when Labelling**: 
+> - **Don't Label Points when the body part is not visible.** Even if you (as a human) knows where that body part if, the computer doesn't. For example, if the leg is behind the body, even if you know where the leg is, don't label it. If you really want at least some tracking, label the visble part of the leg, don't put the point in where the leg is behind the body. The computer would be able to track the leg when it's visible again.
+> - **Label the same body part the same way.** If you decided that the very end of a tail is the tail, label the very end of the tail as the tail for all frames. Don't label the middle of the tail as the tail for some frames and the end of the tail as the tail for other frames.
+> - **Similar body parts?** Create sepearate labels for them is far better than labelling more frames with the part that you're interested. E.g. it is easier for DLC to acknowledge there's two separate body part when you label both of them instead of giving DLC more examples of the same body part.
 
 Step 4.3 gives us the extracted frames, now we can label them:
 
