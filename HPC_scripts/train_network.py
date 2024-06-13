@@ -1,6 +1,7 @@
 import deeplabcut
 
-config_path = '/mnt/research/hhorch/esmall2/config.yaml'
-deeplabcut.train_network(config_path, shuffle=1, saveiters=5000, maxiters=200000)
+config_path = '/put/your/project/directory/here/config.yaml'
+# Per DLC team's recommendation, all changes on iterations should be done on post_cfg.yaml
+deeplabcut.train_network(config_path, shuffle=1)
 
 

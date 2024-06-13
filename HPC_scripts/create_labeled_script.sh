@@ -1,6 +1,8 @@
 #!/bin/bash
-#SBATCH --mail-type=BEGIN,END,FAIL
-
-source /mnt/local/python-venv/dlc-2.2.1/bin/activate
+#SBATCH --mail-type=BEGIN,END,FAIL -p gpu -gres=gpu:rtx3080:1
+export PATH=/mnt/local/python-venv/dlc-2.3.9/bin:/mnt/local/cuda-11.8/bin:$PATH
+export LD_LIBRARY_PATH=/mnt/local/python-venv/dlc-2.3.9/lib/python3.9/site-packages/nvidia/cudnn/lib:/mnt/local/python-venv/dlc-2.3.9/lib/python3.9/site-packages/tensorrt_libs:/mnt/local/cuda-11.8/lib64:$LD_LIBRARY_PATH
+source /mnt/local/python-venv/dlc-2.3.9/bin/activate
 export DLClight="True";
-python '/mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/HPC_Scripts/create_labeled_video.py'
+
+python -u ./create_labeled_video.py

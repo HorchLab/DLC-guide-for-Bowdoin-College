@@ -1,10 +1,10 @@
 #!/bin/bash
-#$ -cwd
-#$ -j y
-#$ -S /bin/bash
-#$ -M esmall2@bowdoin.edu -m be
+#SBATCH --mail-type=BEGIN,END,FAIL -p gpu -gres=gpu:rtx3080:1
 
-source /mnt/local/python-venv/dlc-2.2/bin/activate
+export PATH=/mnt/local/python-venv/dlc-2.3.9/bin:/mnt/local/cuda-11.8/bin:$PATH
+export LD_LIBRARY_PATH=/mnt/local/python-venv/dlc-2.3.9/lib/python3.9/site-packages/nvidia/cudnn/lib:/mnt/local/python-venv/dlc-2.3.9/lib/python3.9/site-packages/tensorrt_libs:/mnt/local/cuda-11.8/lib64:$LD_LIBRARY_PATH
+source /mnt/local/python-venv/dlc-2.3.9/bin/activate
 export DLClight="True";
-python3.6 '/mnt/research/hhorch/esmall2/practice_DLC/actual_demov2-ELS-2022-06-02/HPC_Scripts/train_network.py'
+
+python -u ./train_network.py
 
