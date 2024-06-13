@@ -323,17 +323,20 @@ ssh -Y [username]@slurm.bowdoin.edu
 
 ### 5.2: Training the network [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#g-train-the-network)
 You then need to submit this "job" to the cluster with the following code:
+> If you're using scripts in this repo, `sbatch training_script.sh` is suffcient. Adding `-p gpu --gres=gpu:rtx3080:1 --mem=32G` is unnecessary, as the script would request the GPU for you.
 
-```
+```bash
 sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G training_script.sh
+```
+The corresponding python command: 
+```python
+deeplabcut.train_network(config_path, shuffle=1)
 ```
 
 > **TODO:** Add some information about sbatch and .out files here. 
 
 ## Step 6: Evaluating the network, analyzing novel videos, and filtering predictions
 Once we have trained our network as in step 6, we want to evaluate the network to see how well it was trained. 
-
-~~There are parameters called Train error and Test Error. For the sake of our experiment and from my research (which was very hard to find), if the train and test error are close to eachother (in pixels) and they are both close to, or below 4 px, then the training is sufficient.~~
 
 > Train error and Test error means in-sample error and out-of-sample error. If the train error is very low and the test error is very high, then the model is overfitting. If the train error is high and the test error is low, then the model is underfitting. **A rule of thumb is to have the train error and test error be close to each other and low.** - Tom
 
@@ -342,11 +345,16 @@ You can also create labeled videos to determine whether DLC was able to accurate
 ### 6.1: Evaluating the network [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#h-evaluate-the-trained-network)
 
 > This step is optional to analyze new videos, but you should always evaluate the network after training it.
+> If you're using scripts in this repo, `sbatch evaluate_script.sh` is suffcient. Adding `-p gpu --gres=gpu:rtx3080:1 --mem=32G` is unnecessary, as the script would request the GPU for you.
 
-We do so the same way as training the network with the script file. Make sure you are in the right directory where your HPC_scripts are like this: `/mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/HPC_Scripts`
+We do the same way as training the network with the script file. Make sure you are in the right directory where your HPC_scripts are like this: `/mnt/research/hhorch/esmall2/Explore-the-space/stim01-trained-ELS-2022-06-09/HPC_Scripts`
 
-```
+```bash
 sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G evaluate_script.sh
+```
+The corresponding python command: 
+```python
+deeplabcut.evaluate_network(config_path, plotting=True)
 ```
 
 - For `Shuffles[1]` in evaluate_network.py, you will want to change this for each shuffle that you did. For example, if you set Shuffles=3 when training the network, then submit this script when Shuffles=[1], Shuffles=[2], and Shuffles=[3]. 
@@ -357,13 +365,21 @@ The evaluation results might look something like this: you can find them by goin
 ### 6.2: Analyze (Novel) Videos [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#i-novel-video-analysis)
 Once we evaluate the network, we will want to analyse new video to determine how well the network was actually trained:
 
+> **Note**: If you're using scripts in this repo, `sbatch analyze_script.sh` is suffcient. Adding `-p gpu --gres=gpu:rtx3080:1 --mem=32G` is unnecessary, as the script would request the GPU for you.
+
+```bash
+sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G analyze_script.sh
+```
+
 ```python
-In [1]: deeplabcut.analyze_videos(config_path, ['full path of video'], videotype='mkv or your videotype', save_as_csv=True)
+deeplabcut.analyze_videos(config_path, ['full path of video'], videotype='mkv or your videotype', save_as_csv=True)
 ```
 
 ### 6.3: Filter predictions. [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#j-filter-pose-data-data-recommended)
 
-~~In order to make a graph~~, we need to filter the CSV values using the following code:
+Filtering is very necessary for subsequent analysis as it removes outliers that could **significantly** affect your conclusion. 
+
+We need to filter the CSV values using the following code:
 
 ```python
 In [2]: deeplabcut.filterpredictions(config_path, ['full path of video'], videotype='mkv or your videotype', shuffle=1)
@@ -373,10 +389,20 @@ In [2]: deeplabcut.filterpredictions(config_path, ['full path of video'], videot
 
 #### 6.4.1 Create labeled video [Link to Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#l-create-labeled-videos)
 
-We can also create a labeled video to see whether the labels for the body parts were marked correctly using one of the HPC scripts:
+We can also create a labeled video to see whether the labels for the body parts were marked correctly using one of the HPC scripts: If you're using the scripts in this repo, `sbatch create_labeled_script.sh` is suffcient. Adding `-p gpu --gres=gpu:rtx3080:1 --mem=32G` is unnecessary, as the script would request the GPU for you.
 
 ```
 sbatch -p gpu --gres=gpu:rtx3080:1 --mem=32G create_labeled_script.sh
+```
+
+```python
+deeplabcut.create_labeled_video(config_path,\
+                                ['/put/your/project/directory/to/afolderofvideos'], \
+                                videotype='mp4 or your videoformat',\
+                                shuffle=1, # change this according to the shuffle you used
+                                save_frames=True, # slow, but useful if you want high quality video
+                                fastmode=True, # if you don't need to crop the videos
+                                filtered=True)
 ```
 
 #### 6.4.2 Plotting trajectories [Link to Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#k-plot-trajectories)
