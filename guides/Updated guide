@@ -1,0 +1,78 @@
+# Steps to use DLC on Bowdoin's HPC
+
+This guide was written to help with the basics of getting DLC up and running. For the most detailed user guide, [DLC offers a very handy one.](https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/standardDeepLabCut_UserGuide.md) I attached links to the specific sections of the user guide that correspond to each step, so if there's something you don't understand, you can refer to the user guide for more information.
+
+I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
+
+This guide is still a work in progress, as there's a lot of information to cover. If you have any questions, feel free to [reach out to me(Tom)](mailto:chan@bowdoin.edu). 
+
+- [ ] Update the guide to include a full directions for DLC using the new GUI. 
+- [ ] Explaining each step's purpose and what it does.
+- [ ] Add a section about [3D projects](https://deeplabcut.github.io/DeepLabCut/docs/Overviewof3D.html#d-overview) and how to set them up. (This might need to be a separated document). 
+
+> With the new version of DeepLabCut's GUI, you can now use the GUI on Bowdoin's HPC. **If you decided to use the GUI, step 1-3 is not necessary.**
+
+## Option 1.ALT: Use interactive HPC server with GUI: 
+
+> Skip this step if you:
+> - Are **not planning on** using the new version of DeepLabCut's GUI. **OR**
+> - Read [the updated guide on Bowdoin's HPC wiki about deeplabcut](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut#New_2024_Slurm_HPC_Cluster). 
+
+### Step 1.1: Connect to the HPC
+
+Login to the [HPC Web Portal](https://newhpcweb.bowdoin.edu) at https://newhpcweb.bowdoin.edu using your Bowdoin login name **(not email address, no `@bowdoin.edu`)** and password.
+
+Select the Interactive Applications menu and choose the "Bowdoin HPC Desktop", request a session with at least 16GB of memory. Press the Blue Launch button. Wait several seconds as the Cluster sets up the job, then press the blue Launch Bowdoin HPC Desktop button.
+
+> [Not working as of Jun 06 2024]: Alternatively, choose "Bowdoin HPC Desktop with GPU" if you wish to do GPU intensive steps (labelling data is not GPU intensive, but training the network is). This includes everything mentioned in Step 6. 
+
+> [**TODO**]: Include a picture of that desktop and terminal. 
+
+### Step 1.2: Get to DeepLabCut GUI
+
+Once you get to open a Linux shell by going to the Applications menu, Systems Tools, then MATE Terminal. In the terminal, run the following command to activate the DLC environment:
+
+```bash
+run-deeplabcut-2.3.9
+```
+
+This should bring up an iPython interface (look for `In [1]`) on your terminal. Once in the iPython interface, you can run the following command to open the GUI:
+
+```python
+In [1]: import deeplabcut
+# There's gonna be some warning messages popping out, you can safely ignore any messages about "Tensorflow binary optimizations", "Unable to register cuBLAS", and "networkx backend definted more than once"
+In [2]: deeplabcut.launch_dlc()
+# This line would open the GUI in a new window
+```
+
+Once you get to the GUI, you can follow the rest of the steps in the GUI starting from Step 4.
+
+## Option 1: Downloading Necessary Software for DLC
+
+> Skip this step if you:
+> - Are using the new version of DeepLabCut's GUI (2.3.10), **OR**
+> - Already have XQUARTZ installed, and
+> - Are on campus and connected to the Bowdoin network.
+
+
+1.1 install homebrew. - directions https://brew.sh/
+
+1.2 install tensorflow - run in terminal:
+	>>pip install --upgrade pip
+	>>pip install tensorflow
+	
+1.3 install miniconda - run in terminal:
+	>>mkdir -p ~/miniconda3
+  >>curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -o ~/miniconda3/miniconda.sh
+  >>bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+  >>rm -rf ~/miniconda3/miniconda.sh
+  
+1.4 install wget (needed for DLC installation) using homebrew:
+	>>brew install wget
+	
+1.5 Install DLC using https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/installation.md
+[] notes: 
+[] I ended up moving the repo onto my desktop and made a new folder just for the installation/file
+		○ Made a new environment by running in terminal:
+		>>conda env create -f desktop/DLC/DEEPLABCUT_M1.yaml 
+[] I DID NOT USE THE PIP INSTALL. This was all done inside the virtual DLC_M1 env that I made. 
