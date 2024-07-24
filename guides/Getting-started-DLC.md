@@ -2,7 +2,7 @@
 
 This guide was written to help with the basics of getting DLC up and running. For the most detailed user guide, [DLC offers a very handy one.](https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/standardDeepLabCut_UserGuide.md) I attached links to the specific sections of the user guide that correspond to each step, so if there's something you don't understand, you can refer to the user guide for more information.
 
-I suggest reading through this entire Markdown and if any specific questions remain, take a look at DLC's user guide.
+I suggest reading through this entire Markdown document. If any specific questions remain, take a look at DLC's user guide.
 
 This guide is still a work in progress, as there's a lot of information to cover. If you have any questions, feel free to [reach out to me(Tom)](mailto:chan@bowdoin.edu). 
 
@@ -10,7 +10,6 @@ This guide is still a work in progress, as there's a lot of information to cover
 - [ ] Explaining each step's purpose and what it does.
 - [ ] Add a section about [3D projects](https://deeplabcut.github.io/DeepLabCut/docs/Overviewof3D.html#d-overview) and how to set them up. (This might need to be a separated document). 
 
-> With the new version of DeepLabCut's GUI, you can now use the GUI on Bowdoin's HPC. **If you decided to use the GUI, step 1-3 is not necessary.**
 
 ## Step 1.ALT: Use interactive server with GUI: 
 
@@ -174,6 +173,8 @@ In [3]: config_path = '/mnt/research/hhorch/[username]/[working directory]/confi
 > ```python
 > In [1]: config_path = deeplabcut.create_new_project('name of project', 'your name', ['complete file path to video'], (optional) working_directory='file path to where you want project saved')
 > ```
+
+
 ### 4.3: Extract frames from the video. [Link to DLC's User Guide on this step](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#c-data-selection-extract-frames)
 We can now extract frames:
   - This may take a few moments, but you should see the frames being counted
