@@ -1,0 +1,4 @@
+numpy
+imageio
+opencv-python
+pynput
