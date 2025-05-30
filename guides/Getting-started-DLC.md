@@ -393,7 +393,9 @@ The evaluation results might look something like this: you can find them by goin
 
 ### 6.2: Analyze (Novel) Videos [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#i-novel-video-analysis)
 
-Once we evaluate the network, we will want to analyse new video to determine how well the network was actually trained:
+> This is the key step where we use DLC to extract the pose information from each and every frame of the video. This is what DLC is all about! 
+
+Once we evaluate the network, we will want to analyse new video:
 
 > **Note**: If you're using scripts in this repo, `sbatch analyze_script.sh` is suffcient. Adding `-p gpu --gres=gpu:rtx3080:1 --mem=32G` is unnecessary, as the script would request the GPU for you.
 
