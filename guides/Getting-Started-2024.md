@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Getting Started"
+nav_order: 2
+---
+
 # Using DeepLabCut on Bowdoin's Environment - Before DeepLabCut
 
 This guide was based on the older version of DLC guide from Ean Small '23, written to help with the basics of getting DLC up and running. For the most detailed user guide, [DLC offers a very handy one.](https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/standardDeepLabCut_UserGuide.md)
@@ -158,12 +164,12 @@ deeplabcut.train_network(
 
 This part actually called the `train_network` function from DLC, and starts the training process. Two emails will be sent to you for notifications: one when the job starts, and one when the job ends. To check how the job is doing, check the `slurm-???.out` file generated.
 
-This should cover all the questions on how to get started with DeepLabCut. The next step is to [use DeepLabCut for a project](./Use-DLC-2024.md).
+This should cover all the questions on how to get started with DeepLabCut. The next step is to use DeepLabCut for a project, I have [a step-by-step guide that is based on Ean's old guide.](./Getting-started-DLC.md).
 
 [^1]: **What is PyTorch?** PyTorch is a machine learning library that is used in DeepLabCut 3.0 to run the computer vision model (ResNet) used for pose estimation. It is a popular library for machine learning and is used in many research projects. Compares to Tensorflow (the previous backend for DeepLabCut), PyTorch is more flexible and easier to use, and has been widely adapted to academic research.
 
 [^2]: **What is conda?**: Conda, miniconda, and anaconda are package managers, they help install dependencies (All additional software and scripts that are needed for a program to run) for DeepLabCut. Conda keeps all those software in an isolated environment so it doesn't mess up anything else on your computer.
 
-[^3]: **What is homebrew?**: Imagine App Store, but better. You can install homebrew [here.](https://brew.sh/)
+[^3]: **What is homebrew?**: Imagine App Store, but better. You can install homebrew [on their offical website.](https://brew.sh/)
 
 [^4]: Not sure how to do that? [This small Guide from the CS dept would help.](https://tildesites.bowdoin.edu/~sbarker/unix/)
