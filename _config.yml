@@ -19,6 +19,7 @@ just_the_docs:
   # If you want the sidebar to show page headings (collapsible sections):
   show_playground: false   # disables embedded code sandbox
   search: true             # enables built-in search box
+  show_toc: true
 
 # ─────────────── Content Source & Build Settings ───────────────
 

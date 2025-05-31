@@ -1,3 +1,14 @@
+---
+title: "Unfinished Guide for Tips and Tricks"
+layout: default
+nav_order: 3
+toc: true
+toc_levels: 
+  - 1
+  - 2
+  - 3
+---
+
 # Use DeepLabCut: A Step by Step Guide
 
 Before we start, here's a flowchart from DLC team that give you an idea on how a DLC project works.
