@@ -31,7 +31,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.x"   # or whatever Ruby version you want
+          ruby-version: "3.4.0"   # or whatever Ruby version you want
       - name: Install dependencies
         run: bundle install
       - name: Setup Pages
