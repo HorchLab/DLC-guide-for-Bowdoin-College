@@ -1,0 +1,57 @@
+# ─────────────── Site & Theme Settings ───────────────
+
+# 1) Placeholder theme (will be overridden by remote_theme)
+theme: "jekyll-theme-minimal"
+
+# 2) Tell Jekyll to fetch Just the Docs from GitHub
+plugins:
+  - jekyll-remote-theme
+
+remote_theme: "pmarsceill/just-the-docs"
+
+# 3) Site metadata (used in layouts, search index, etc.)
+title: "DLC Guide"
+description: "A step-by-step walkthrough from Tom Han ’25"
+
+# ─────────────── Just the Docs Configuration ───────────────
+
+just_the_docs:
+  # If you want the sidebar to show page headings (collapsible sections):
+  show_playground: false   # disables embedded code sandbox
+  search: true             # enables built-in search box
+
+# ─────────────── Content Source & Build Settings ───────────────
+
+# 4) Treat everything under `guides/` as your "source" folder
+source: "guides"
+
+# 5) Output the generated site into `_site/` at the repo root
+destination: "_site"
+
+# 6) Use "pretty" permalinks (e.g. /getting-started/ instead of .html files)
+permalink: pretty
+
+# ─────────────── Exclusions ───────────────
+
+exclude:
+  - node_modules
+  - vendor
+  - .github             # don’t process your Actions workflow folder
+  - Gemfile             # no need to bundle gems when using remote_theme
+  - Gemfile.lock
+
+# ─────────────── Optional Sass/CSS Settings ───────────────
+
+sass:
+  style: compressed     # if you ever add custom SCSS, it’ll be minified
+
+# ─────────── Defaults & Layouts (optional) ───────────
+
+# By default, pages will use `layout: default` from Just the Docs,
+# so you don’t strictly need this block—but it’s here for clarity.
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
