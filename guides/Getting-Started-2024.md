@@ -2,6 +2,11 @@
 layout: default
 title: "Getting Started"
 nav_order: 2
+toc: true
+toc_levels: 
+  - 1
+  - 2
+  - 3
 ---
 
 # Using DeepLabCut on Bowdoin's Environment - Before DeepLabCut
@@ -170,6 +175,6 @@ This should cover all the questions on how to get started with DeepLabCut. The n
 
 [^2]: **What is conda?**: Conda, miniconda, and anaconda are package managers, they help install dependencies (All additional software and scripts that are needed for a program to run) for DeepLabCut. Conda keeps all those software in an isolated environment so it doesn't mess up anything else on your computer.
 
-[^3]: **What is homebrew?**: Imagine App Store, but better. You can install homebrew [on their offical website.](https://brew.sh/)
+[^3]: **What is homebrew?**: Imagine App Store for your laptop, but for the programs that your apps rely on. You can install homebrew [on their offical website.](https://brew.sh/)
 
 [^4]: Not sure how to do that? [This small Guide from the CS dept would help.](https://tildesites.bowdoin.edu/~sbarker/unix/)

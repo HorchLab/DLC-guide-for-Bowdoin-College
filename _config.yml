@@ -10,7 +10,7 @@ plugins:
 remote_theme: "pmarsceill/just-the-docs"
 
 # 3) Site metadata (used in layouts, search index, etc.)
-title: "DLC Guide"
+title: "DLC Guide for Bowdoin College"
 description: "A step-by-step walkthrough from Tom Han ’25"
 
 # ─────────────── Just the Docs Configuration ───────────────

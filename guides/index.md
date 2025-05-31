@@ -3,11 +3,16 @@ layout: default
 title: "A hopefully comprehensive guide to DeepLabCut"
 nav_order: 1
 has_children: true
+toc: true
 ---
 
 # DeepLabCut Guides
 
 Hi guys, this is a collection of guides to help you use DeepLabCut effectively. I'll walk through what each guides is about, and how it can help you.
+
+> A lot of those guides are written thoughout the years, so they may not be up to date. I tried my best to keep them up to date, but DeepLabCut is a constantly evolving software, so does Bowdoin's HPC environment. __Always sanity check before you copy and paste code from these guides.__
+
+> Ryan had his own set of guides, which are not in the format of documents. You should [check those out as well.](https://github.com/HorchLab/DLC-guide-for-Bowdoin-College/tree/main/Ryan's%20Guide)
 
 - [Getting Started 2024](Getting-Started-2024.md): This guide is designed for new users of DeepLabCut. I recommend you start here: this guide covers the basics of setting up DeepLabCut.
 - [Getting Started DLC](Getting-Started-DLC.md): This guide is based on Ean's old guide, and it is a step-by-step guide to using DeepLabCut for a project. It covers the entire process from creating a project to analyzing videos in details. I recommend following this guide when you're starting a new project. Note that you should always have DeepLabCut's offical documentation open in another tab, as it is the most up-to-date and comprehensive resource.

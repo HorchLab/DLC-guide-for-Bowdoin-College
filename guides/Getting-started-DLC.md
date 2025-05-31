@@ -2,6 +2,11 @@
 title: "Step by Step Guide to DeepLabCut"
 layout: default
 nav_order: 3
+toc: true
+toc_levels: 
+  - 1
+  - 2
+  - 3
 ---
 
 # Steps to use DLC on Bowdoin's HPC
