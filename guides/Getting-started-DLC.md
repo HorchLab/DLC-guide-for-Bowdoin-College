@@ -207,7 +207,7 @@ In [4]: deeplabcut.extract_frames(config_path, 'automatic/manual', 'uniform/kmea
 "You can now label the frames using the function 'label_frames' (Note, you should label frames extracted from diverse videos (and many videos; we do not recommend training on single videos!))."
 ```
 
-> **[TODO]**: Explain the difference between `uniform` and `kmeans` here. - Tom
+> Go to the DeepLabCut website if you really want to learn the different between `uniform` and `kmeans`. For our purposes, `kmeans` is the best option, as it extracts frames based on the distribution of the video, which is what we want. `uniform` extracts frames at regular intervals, which is not what we want.
 
 A real example would look like the following:
 
@@ -254,7 +254,7 @@ You can now label each bodypart for each frame before training the network
 
 ### 4.4.alt1: Labelling with Bowdoin's HPC Web
 
-> Not working as of Jun 10 2024, actively working with Dj to fixing this. - Tom
+> Not working as of Jun 10 2024.
 
 First of all, make sure you have a stable connection to Bowdoin's network. Following [Step 1.ALT](#step-1alt-use-interactive-server-with-gui) to get to the Bowdoin HPC Desktop. If you have followed the steps above, select "load projects" and navigate to where you saved your `config.yaml` file.
 
@@ -328,9 +328,9 @@ In [7]: deeplabcut.create_training_dataset(config_path)
 
 Great! Now we can start training the network.
   
-## Step 5: Training the network using Bowdoin's GPU computers (ie ~~Moosehead~~ slrum)
+## Step 5: Training the network using Bowdoin's GPU computers (ie ~~Moosehead~~ slurm)
 
-This section is located [here](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut) as well.
+This section is located [on Bowdoin's HPC website](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut) as well.
 
 ### 5.1: Log into HPC
 
@@ -359,7 +359,9 @@ The corresponding python command:
 deeplabcut.train_network(config_path, shuffle=1)
 ```
 
-> **TODO:** Add some information about sbatch and .out files here.
+> This is probably a good time to explain what sbatch and .out files are.
+> `sbatch` is a command that submits a _batch_ job to the HPC, which is a script that would run your code on the HPC. In your case, it is the `training_script.sh` file that you just submitted. Inside the `.sh` file, your script will start a Python interpreter that runs the `train_network.py` file, which is the actual code that trains the network.
+> The `.out` file is the output file that contains the logs of your job. It is named `slurm-?????.out`, where the `?????` is a number that is unique to your job. You can check this file to see how your job is doing, and whether it has finished or not.
 
 ## Step 6: Evaluating the network, analyzing novel videos, and filtering predictions
 
@@ -393,7 +395,7 @@ The evaluation results might look something like this: you can find them by goin
 
 ### 6.2: Analyze (Novel) Videos [Link to DLC's Wiki](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#i-novel-video-analysis)
 
-> This is the key step where we use DLC to extract the pose information from each and every frame of the video. This is what DLC is all about! 
+> This is the key step where we use DLC to extract the pose information from each and every frame of the video. This is what DLC is all about!
 
 Once we evaluate the network, we will want to analyse new video:
 

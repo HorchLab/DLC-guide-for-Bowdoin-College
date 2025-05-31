@@ -1,4 +1,4 @@
-# Use DeepLabCut
+# Use DeepLabCut: A Step by Step Guide
 
 Before we start, here's a flowchart from DLC team that give you an idea on how a DLC project works.
 
@@ -12,8 +12,6 @@ And, to reiterate from [last section](./Getting-started-2024.md):
 | Labelling with GUI | Evaluating model | Extracting outlier frames |
 | Create training datasets | Analyzing videos | Plotting Trajectories |
 |  |  | Filtering Predictions |
-
-# Step by Step Guide
 
 ## [1. Create a new project](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#a-create-a-new-project)
 
@@ -96,3 +94,5 @@ With the skeleton defined, when you run check labels, you would see the skeleton
 ![Labelled Skeleton](./images/labelled_animal.png)
 
 ## [4. Create Training Dataset](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#f-create-training-dataset-s)
+
+## [5. Train the Network](https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide.html#g-train-the-network)

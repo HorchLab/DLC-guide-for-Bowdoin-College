@@ -158,7 +158,7 @@ deeplabcut.train_network(
 
 This part actually called the `train_network` function from DLC, and starts the training process. Two emails will be sent to you for notifications: one when the job starts, and one when the job ends. To check how the job is doing, check the `slurm-???.out` file generated.
 
-This should cover all the questions on how to get started with DeepLabCut. The next step is to [use DeepLabCut for a project](./Use-DLC-2024.md).
+This should cover all the questions on how to get started with DeepLabCut. The next step is to use DeepLabCut for a project, I have [a step-by-step guide that is based on Ean's old guide.](./Getting-started-DLC.md).
 
 [^1]: **What is PyTorch?** PyTorch is a machine learning library that is used in DeepLabCut 3.0 to run the computer vision model (ResNet) used for pose estimation. It is a popular library for machine learning and is used in many research projects. Compares to Tensorflow (the previous backend for DeepLabCut), PyTorch is more flexible and easier to use, and has been widely adapted to academic research.
 
