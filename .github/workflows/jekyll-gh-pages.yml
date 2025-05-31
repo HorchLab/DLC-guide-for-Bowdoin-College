@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Copy config into guides/
+        run: cp _config.yml guides/_config.yml
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -41,6 +43,7 @@ jobs:
         with:
           source: ./guides/
           destination: ./_site
+          config: "./_config.yml"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
