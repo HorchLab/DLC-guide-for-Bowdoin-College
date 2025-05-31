@@ -22,7 +22,10 @@ I suggest reading through this entire Markdown document. If any specific questio
 > - Are **not planning on** using the new version of DeepLabCut's GUI. **OR**
 > - Read [the updated guide on Bowdoin's HPC wiki about deeplabcut](https://hpc.bowdoin.edu/hpcwiki/index.php?title=Linuxhelp:Deeplabcut#New_2024_Slurm_HPC_Cluster).
 
-### Step 1.1: Connect to the HPC
+{: .warning }
+If you're using the interactive server, make sure the DLC version is correct. As of 2025 we're using DLC version 3.0.0 and above. 
+
+### Step 1.ALT.1: Connect to the HPC
 
 Login to the [HPC Web Portal](https://newhpcweb.bowdoin.edu) at <https://newhpcweb.bowdoin.edu> using your Bowdoin login name **(not email address, no `@bowdoin.edu`)** and password.
 
@@ -30,7 +33,7 @@ Select the Interactive Applications menu and choose the "Bowdoin HPC Desktop", r
 
 > [Not working as of Jun 06 2024]: Alternatively, choose "Bowdoin HPC Desktop with GPU" if you wish to do GPU intensive steps (labelling data is not GPU intensive, but training the network is). This includes everything mentioned in Step 6.
 
-### Step 1.2: Get to DeepLabCut GUI
+### Step 1.ALT.2: Get to DeepLabCut GUI
 
 Once you get to open a Linux shell by going to the Applications menu, Systems Tools, then MATE Terminal. In the terminal, run the following command to activate the DLC environment:
 
@@ -57,16 +60,16 @@ Once you get to the GUI, you can follow the rest of the steps in the GUI startin
 > - Already have XQUARTZ installed, and
 > - Are on campus and connected to the Bowdoin network.
 
-1.1: Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
+### 1.1: Download the latest verion of [XQUARTZ](https://www.xquartz.org/) to your MacOS computer (peferably 2.8+)
 
 - Use following code to check if it works `$ xeyes`, there should be an window with two eyes 👀.
 - If you're using homebrew on your computer, run `brew install --casks xquartz` would be an easy way out.
 
-1.2.1: If you are on campus:
+### 1.2.1: If you are on campus:
 
 - Make sure you are connected to the Bowdoin network (must be **Bowdoin** or **eduroam**, not Bowdoin-Guest or Bowdoin-PSK)
 
-1.2.2: If you are off campus:
+### 1.2.2: If you are off campus:
 
 - Log into the [Bowdoin VPN](https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=99743)
 
@@ -78,9 +81,11 @@ Once you get to the GUI, you can follow the rest of the steps in the GUI startin
 > - Are already familiar with using terminal on macOS or alternative shell on Windows, and
 > - Have used Bowdoin HPC before.
 
-2.1: Open terminal on macOS. (If you're on a window laptop, try using [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) or [PuTTY](https://www.putty.org/) for a shell)
+### 2.1: Open terminal
 
-2.2: Log in with your Bowdoin credentials with the SSH sever
+If you're on a window laptop, try using [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) or [PuTTY](https://www.putty.org/) for a shell)
+
+### 2.2: Log in with your Bowdoin credentials with the SSH sever
 
 - Can either use @dover, @foxcroft, or @slurm
 
@@ -105,7 +110,7 @@ dhcp-195-230:~ eansmall$ ssh -Y [username]@dover.bowoin.edu
 - This code should result in a pair of eyes pop-up that tracks your mouse. You can exit that screen, but now your GUI should work.
 - If the eyes does not pops out, if could be an issue with XQUARTZ configuretion. To check that, open XQuartz, Go to Settings > Security > and ENABLE the checkbox "Allow connections from network clients". After enabling, restart Xquartz and restart your computer.
 
-2.3: Now, we want to access the correct filepath (directory)
+### 2.3: Access the correct filepath (directory)
 
 we can use the `cd` feature to quickly move around in terminal's filepaths like the following (once entering a few letters, use the tab key to fill in the rest instead of writing out your file path each time)
 
@@ -113,7 +118,7 @@ we can use the `cd` feature to quickly move around in terminal's filepaths like 
 [chan@dover ~]$ cd /mnt/research/hhorch/[username]
 ```
 
-- We are now in your HPC-research directory
+We are now in your HPC-research directory
 
 ### Other helpful tips with terminal
 
