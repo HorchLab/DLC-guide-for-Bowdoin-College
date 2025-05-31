@@ -1,0 +1,47 @@
+# _config.yml
+
+# 1) Tell Jekyll to use the “just-the-docs” theme
+theme: "just-the-docs"
+
+# 2) Site metadata (used in templates)
+title: "DLC Guide"
+description: "A step-by-step walkthrough from Tom Han '25"
+
+# 3) Just the Docs navigation settings
+just_the_docs:
+  # If you want the sidebar to show headings from each page:
+  show_playground: false           # disable the embedded code sandbox
+  search: true                     # enable built-in search
+
+# 4) Point Jekyll’s “source” to the guides folder
+#    By default Jekyll expects to find your *.md files & _layouts etc. at the repo root.
+#    But because your files live in `guides/`, tell it:
+collections: {}
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+
+# 5) Use `guides/` as the folder where your Markdown lives
+#    This is a built-in Jekyll setting: `source:`
+source: "guides"
+
+# 6) Build destination (this is what your Actions workflow already does, but you can mirror it)
+destination: "_site"
+
+# 7) Exclude certain files/folders from the build if needed
+exclude:
+  - node_modules
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - .github
+
+# 8) (Optional) If you have custom Sass/CSS, etc.
+sass:
+  style: compressed
+
+# 9) Permalinks (if you want clean URLs; e.g. /getting-started/ instead of /getting-started.html)
+permalink: pretty

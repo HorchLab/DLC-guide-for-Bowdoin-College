@@ -1,3 +1,9 @@
+---
+title: "Step by Step Guide to DeepLabCut"
+layout: default
+nav_order: 3
+---
+
 # Steps to use DLC on Bowdoin's HPC
 
 This guide was written to help with the basics of getting DLC up and running. For the most detailed user guide, [DLC offers a very handy one.](https://github.com/DeepLabCut/DeepLabCut/blob/main/docs/standardDeepLabCut_UserGuide.md) I attached links to the specific sections of the user guide that correspond to each step, so if there's something you don't understand, you can refer to the user guide for more information.
