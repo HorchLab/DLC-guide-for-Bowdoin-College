@@ -1,5 +1,3 @@
-# _config.yml
-
 # 1) Tell Jekyll to use the “just-the-docs” theme
 theme: "just-the-docs"
 
